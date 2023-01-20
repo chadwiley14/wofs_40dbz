@@ -1,2 +1,2 @@
-# wofs_40dbz
-WoFS ML research project forecasting thunderstorm location over 40dbz
+# wofs_ml_ci
+Code base for WOFS ML Convection Initiation project
