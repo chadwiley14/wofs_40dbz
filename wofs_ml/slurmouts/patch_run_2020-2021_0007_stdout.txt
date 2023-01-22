@@ -1,0 +1,87 @@
+Number of dates found: [53153, 53080, 11268, 11268]
+Governing dataset size: 877
+Governing dataset's date count after parallel job split: 44
+---------------------------------------------
+Reached search number: 0
+Matching dataset time: 5.8763086795806885
+Load dataset time: 47.35930609703064
+Reproj dataset time: 0.009182214736938477
+Master dataset time: 0.42008066177368164
+Find valid patches time: 2.847892999649048
+Accepted Patches: [16]
+Make patches time: 0.15576386451721191
+Indices of patches added in this search: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 5.916672229766846
+Load dataset time: 84.23870706558228
+Reproj dataset time: 0.008475303649902344
+Master dataset time: 0.4087698459625244
+Find valid patches time: 2.7146573066711426
+Accepted Patches: [16]
+Make patches time: 0.3820643424987793
+Indices of patches added in this search: [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 5.8878819942474365
+Load dataset time: 91.58607649803162
+Reproj dataset time: 0.007894277572631836
+Master dataset time: 0.41805028915405273
+Find valid patches time: 2.893604040145874
+Accepted Patches: [16]
+Make patches time: 0.816727876663208
+Indices of patches added in this search: [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.480598449707031
+Load dataset time: 116.8741979598999
+Reproj dataset time: 0.00818777084350586
+Master dataset time: 0.29576611518859863
+Find valid patches time: 2.875950574874878
+Accepted Patches: [16]
+Make patches time: 1.160433053970337
+Indices of patches added in this search: [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 5.853477716445923
+Load dataset time: 122.64861464500427
+Reproj dataset time: 0.008821964263916016
+Master dataset time: 0.30068492889404297
+Find valid patches time: 2.7444612979888916
+Accepted Patches: [16]
+Make patches time: 1.4746160507202148
+Indices of patches added in this search: [64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
+---------------------------------------------
+---------------------------------------------
+Reached search number: 5
+Matching dataset time: 5.89573860168457
+Load dataset time: 117.99531888961792
+Reproj dataset time: 0.00836491584777832
+Master dataset time: 0.35165905952453613
+Find valid patches time: 4.767928123474121
+Accepted Patches: [16]
+Make patches time: 1.8366522789001465
+Indices of patches added in this search: [80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.527430534362793
+Load dataset time: 116.83901190757751
+Reproj dataset time: 0.00849294662475586
+Master dataset time: 0.9607038497924805
+Find valid patches time: 21.784223556518555
+Accepted Patches: [16]
+Make patches time: 36.21084380149841
+Indices of patches added in this search: [96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 69.02777361869812
+Load dataset time: 87.9378764629364
+Reproj dataset time: 0.06425166130065918
+Master dataset time: 1.9061286449432373
+Find valid patches time: 9.118919134140015
+Accepted Patches: [16]
+Make patches time: 24.77070641517639
+Indices of patches added in this search: [112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 78.26740717887878

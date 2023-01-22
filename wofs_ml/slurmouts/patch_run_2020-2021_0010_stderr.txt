@@ -1,0 +1,2 @@
+slurmstepd: error: *** JOB 13786268 ON c588 CANCELLED AT 2023-01-20T15:59:36 ***
+slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name

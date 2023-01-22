@@ -1,0 +1,35 @@
+patcher.py:532: UserWarning: WARNING: One or more of your selected dataset(s) contains at least one netcdf file that does not follow netcdf convections. Less useful netcdf loader had to be used.
+  warnings.warn('WARNING: One or more of your selected dataset(s) contains at least one netcdf file that does not follow netcdf convections. Less useful netcdf loader had to be used.')
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+Traceback (most recent call last):
+  File "patcher.py", line 1575, in <module>
+    patcher.run()
+  File "patcher.py", line 406, in run
+    self._load_datasets_from_disk()
+  File "patcher.py", line 666, in _load_datasets_from_disk
+    ds = self._netcdf_loader(path, i, y_dim_name, x_dim_name)
+  File "patcher.py", line 526, in _netcdf_loader
+    ds = xr.open_dataset(path, decode_cf=False, drop_variables=[lat_dim, lon_dim])
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/api.py", line 479, in open_dataset
+    engine = plugins.guess_engine(filename_or_obj)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/plugins.py", line 152, in guess_engine
+    raise ValueError(error_msg)
+ValueError: did not find a match in any of xarray's currently installed IO backends ['netcdf4', 'scipy']. Consider explicitly selecting one of the installed engines via the ``engine`` parameter, or installing additional IO dependencies, see:
+http://xarray.pydata.org/en/stable/getting-started-guide/installing.html
+http://xarray.pydata.org/en/stable/user-guide/io.html
+slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name

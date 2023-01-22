@@ -1,0 +1,9 @@
+Number of dates found: [53153, 53080, 11268, 11268]
+Governing dataset size: 877
+Governing dataset's date count after parallel job split: 44
+---------------------------------------------
+Reached search number: 0
+Matching dataset time: 6.116405010223389
+Load dataset time: 314.3606560230255
+Reproj dataset time: 14.750225305557251
+Master dataset time: 68.01400113105774
