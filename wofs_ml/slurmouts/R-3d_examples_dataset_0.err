@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_3d_creator.py", line 14, in <module>
+    get_2017_2018_data()
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_3d_helper.py", line 38, in get_2017_2018_data
+    examples = xr.concat([examples, extract_data(cur_file,'2017')], axis = 0)
+TypeError: concat() got an unexpected keyword argument 'axis'
+slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name

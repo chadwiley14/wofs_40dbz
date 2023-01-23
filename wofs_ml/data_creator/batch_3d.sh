@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH --output=/home/chadwiley/research/wofs_40dbz/wofs_ml/slurmouts/R-%x_%a.out
 #SBATCH --error=/home/chadwiley/research/wofs_40dbz/wofs_ml/slurmouts/R-%x_%a.err
-#SBATCH --array=0
+#SBATCH --array=0-2%1
 
 
 source /home/chadwiley/.bashrc

@@ -35,7 +35,7 @@ def get_2017_2018_data():
         if count == 0:
             examples = extract_data(cur_file,'2017')
         else:
-            examples = xr.concat([examples, extract_data(cur_file,'2017')], axis = 0)
+            examples = xr.concat([examples, extract_data(cur_file,'2017')], dim = 'n_samples')
 
         print(np.shape(examples['comp_dz_max']))
         
@@ -60,7 +60,7 @@ def get_2019_data():
         if count == 0:
             examples = extract_data(cur_file,'2019')
         else:
-            examples = xr.concat([examples, extract_data(cur_file,'2019')], axis = 0)
+            examples = xr.concat([examples, extract_data(cur_file,'2019')], dim = 'n_samples')
         print(np.shape(examples['comp_dz_max']))
         
         count = count + 1
@@ -84,7 +84,7 @@ def get_2020_2021_data():
         if count == 0:
             examples = extract_data(cur_file,'2021')
         else:
-            examples = xr.concat([examples, extract_data(cur_file,'2021')], axis = 0)
+            examples = xr.concat([examples, extract_data(cur_file,'2021')], dim='n_samples')
         print(np.shape(examples['comp_dz_max']))
         
         count = count + 1
@@ -177,7 +177,7 @@ def merge_examples():
     ex_2020 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/2017-2018examples.nc')
     print('Data is loaded')
 
-    examples = xr.merge([ex_2017,ex_2019,ex_2020])
+    examples = xr.concat([ex_2017,ex_2019,ex_2020],dim='n_samples')
 
     examples.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/full_examples.nc')
 
