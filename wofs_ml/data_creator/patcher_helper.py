@@ -23,7 +23,6 @@ def add_padding(cur_var, year):
     a padding of 10 or 3 on all edges. 
     """
     np.shape(cur_var)
-    #FIX TO ADD PADDING TO ONLY VARIABLES
     if year == '2017' or year =='2018':
         return np.pad(cur_var, pad_width=3,mode='constant')
     else:
@@ -40,10 +39,9 @@ def create_parser1():
 
     parser.add_argument('--lead_time', type=str, default = '00', help= 'Amount of time between init and valid')
     parser.add_argument('--year', type=str, default = '2020', help = "Year of interest. As of now only 2019 and 2020")
-    parser.add_argument('--lead_time', type=str)
+    parser.add_argument('--save_path',type=str, default = None )
     parser.add_argument('--run_num', type=int, nargs='+', default = None)
     parser.add_argument('--run_num2', type=int, nargs='+', default = None)
-    parser.add_argument('--norm', type=int, default=0, help='Turns on and off min-max normalization. 0 for normalization. 1 for no normalization.')
     return parser
 
 
@@ -282,7 +280,7 @@ def match_wofs_mrms(init_mrms, val_mrms, lead_time, year):
     return complete_ens, complete_svr
 
 
-def get_ens_data(ens_data, lead_time, year, norm):
+def get_ens_data(ens_data, lead_time, year):
     """
     Takes in the ENS data from a time step,
     extracts
@@ -316,7 +314,7 @@ def get_ens_data(ens_data, lead_time, year, norm):
 
                 #90th percentile
                 cur_w_up_90 = np.float32(np.percentile(ens['w_up'], 90., axis=0))
-                cur_w_down_90 = np.float32(np.percentile(ens['w_down'], 90., axis=0))  #FIX
+                cur_w_down_90 = np.float32(np.percentile(ens['w_down'], 90., axis=0))
                 cur_comp_dz_90 = np.float32(np.percentile(ens['comp_dz'],90., axis = 0))
 
                 #averages
@@ -324,34 +322,24 @@ def get_ens_data(ens_data, lead_time, year, norm):
                 cur_w_down_avg = np.float32(np.average(ens['w_down'], axis=0))
                 cur_comp_dz_avg = np.float32(np.average(ens['comp_dz'], axis=0))
 
-                if norm == 0:
-                    #min-max normalize
-                    norm_w_up_max = min_max_norm(cur_w_up_max)
-                    norm_w_down_max = min_max_norm(cur_w_down_max)
-                    norm_comp_dz_max = min_max_norm(cur_comp_dz_max)
+                lat.append(ens['xlat'])
+                lon.append(ens['xlon'])
 
-                    norm_w_up_90 = min_max_norm(cur_w_up_90)
-                    norm_w_down_90 = min_max_norm(cur_w_down_90)
-                    norm_comp_dz_90 = min_max_norm(cur_comp_dz_90)
+                #min-max normalize
+                norm_w_up_max = min_max_norm(cur_w_up_max)
+                norm_w_down_max = min_max_norm(cur_w_down_max)
+                norm_comp_dz_max = min_max_norm(cur_comp_dz_max)
 
-                    norm_w_up_avg = min_max_norm(cur_w_up_avg)
-                    norm_w_down_avg = min_max_norm(cur_w_down_avg)
-                    norm_comp_dz_avg = min_max_norm(cur_comp_dz_avg)
-                else:
-                    norm_w_up_max = cur_w_up_max
-                    norm_w_down_max = cur_w_down_max
-                    norm_comp_dz_max = cur_comp_dz_max
+                norm_w_up_90 = min_max_norm(cur_w_up_90)
+                norm_w_down_90 = min_max_norm(cur_w_down_90)
+                norm_comp_dz_90 = min_max_norm(cur_comp_dz_90)
 
-                    norm_w_up_90 = cur_w_up_90
-                    norm_w_down_90 = cur_w_down_90
-                    norm_comp_dz_90 = cur_comp_dz_90
-
-                    norm_w_up_avg = cur_w_up_avg
-                    norm_w_down_avg = cur_w_down_avg
-                    norm_comp_dz_avg = cur_comp_dz_avg
+                norm_w_up_avg = min_max_norm(cur_w_up_avg)
+                norm_w_down_avg = min_max_norm(cur_w_down_avg)
+                norm_comp_dz_avg = min_max_norm(cur_comp_dz_avg)
+                print('before padding: %s'%str(np.shape(norm_comp_dz_max)))
 
                 #add in padding
-                print('before padding: %s'%str(np.shape(norm_comp_dz_max)))
                 norm_comp_dz_max = add_padding(norm_comp_dz_max, year)
                 norm_comp_dz_90 = add_padding(norm_comp_dz_90, year)
                 norm_comp_dz_avg = add_padding(norm_comp_dz_avg, year)
@@ -366,7 +354,7 @@ def get_ens_data(ens_data, lead_time, year, norm):
                 norm_w_down_avg = add_padding(norm_w_down_avg, year)
 
 
-                # print('Done Normalizing')
+                print('Done Normalizing')
                 comp_dz_max.append(norm_comp_dz_max)
                 comp_dz_90.append(norm_comp_dz_90)
                 comp_dz_avg.append(norm_comp_dz_avg)
@@ -378,16 +366,6 @@ def get_ens_data(ens_data, lead_time, year, norm):
                 w_down_max.append(norm_w_down_max)
                 w_down_90.append(norm_w_down_90)
                 w_down_avg.append(norm_w_down_avg)
-
-                #add in the lats and lons
-                cur_lat = ens['xlat']
-                cur_lon = ens['xlon']
-                
-                cur_lat = add_padding(cur_lat, year)
-                cur_lon = add_padding(cur_lon, year)
-
-                lat.append(cur_lat)
-                lon.append(cur_lon)
         
                 print('Done : %s'%i)
             
@@ -418,12 +396,9 @@ def get_ens_data(ens_data, lead_time, year, norm):
 
     out_ds = xr.Dataset(data_vars)
     out_ds2 = xr.Dataset(data_vars2)
-    print(out_ds2)
-    #save norm and no norm data to different places
-    if norm == 0:
-        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/ENS_data_%s_%s.nc'%(year, lead_time))
-    else:
-        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/nonorm/ENS_data_%s_%s.nc'%(year, lead_time))
+    print(out_ds)
+
+    out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/ENS_data_%s_%s.nc'%(year, lead_time))
     out_ds2.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/lat_lon_%s.nc'%year)
 
 def get_svr_data(svr_data, lead_time, year):
@@ -565,64 +540,3 @@ def get_val_data(val_data, lead_time, year):
 
  #/ourdisk/hpc/ai2es/wofs/2019_summary/20190503/0000/wofs_ENS_24_20190504_0000_0200.nc 
  #/ourdisk/hpc/ai2es/wofs/2019_summary/20190503/0000/wofs_SVR_24_20190504_0000_0200.nc
-
-def get_ens_data_probs(ens_data, year):
-    """
-    Takes in the ENS data from a time step,
-    extracts
-    """
-    comp_dz_prob = []
-    lat = []
-    lon =[]
-
-    for i in ens_data:
-        ens = xr.load_dataset(i, decode_cf = False, drop_variables = ['wz_0to2', 'uh_0to2'])
-        if np.shape(ens['comp_dz'][0,:,:]) == (300,300) or np.shape(ens['comp_dz'][0,:,:]) == (250,250):
-            if year == '2018' and np.shape(ens['comp_dz'][0,:,:]) == (300,300):
-                pass
-            else:
-                #make each ensemble member binary when dBz >=40
-                comp_dz_binary = np.where(ens['comp_dz'] >=40,1,0)
-                
-                #append the probabilies for severe dBz
-                comp_dz_prob.append(np.average(comp_dz_binary,axis=0))
-
-
-                #add in the lats and lons
-                cur_lat = ens['xlat']
-                cur_lon = ens['xlon']
-
-                cur_lat = add_padding(lat,year)
-                cur_lon = add_padding(lon,year)
-
-                lat.append(cur_lat)
-                lon.append(cur_lon)
-        
-                print('Done : %s'%i)
-            
-    print(np.shape(comp_dz_prob))
-    print(np.shape(comp_dz_binary))
-
-    vars = [comp_dz_prob]
-            
-    names =['comp_dz_prob']
-
-    size = ['n_samples','lat', 'lon']
-
-    vars2 =[lat,lon]
-    names2 = ['lat', 'lon']
-    size2 = ['n_samples','NY', 'NX']
-
-
-    tuples = [(size,var)for var in vars]
-    data_vars = {name : data_tup for name, data_tup in zip(names, tuples)}
-
-    tup = [(size2,var)for var in vars2]
-    data_vars2  = {names2 : data_tups for names2, data_tups in zip(names2, tup)}
-
-
-
-    out_ds = xr.Dataset(data_vars)
-    print(out_ds)
-
-    out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/comp_dz_probs_%s.nc'%year)

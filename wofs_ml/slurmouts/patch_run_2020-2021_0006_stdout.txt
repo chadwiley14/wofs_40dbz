@@ -3,121 +3,437 @@ Governing dataset size: 877
 Governing dataset's date count after parallel job split: 44
 ---------------------------------------------
 Reached search number: 0
-Matching dataset time: 6.233893394470215
-Load dataset time: 46.73441219329834
-Reproj dataset time: 0.008445262908935547
-Master dataset time: 0.43005990982055664
-Find valid patches time: 2.7520077228546143
+Matching dataset time: 6.896679639816284
+Load dataset time: 84.05373954772949
+Reproj dataset time: 0.008614301681518555
+Master dataset time: 0.4055361747741699
+Find valid patches time: 2.6062588691711426
 Accepted Patches: [16]
-Make patches time: 0.16552734375
+Make patches time: 0.15847110748291016
 Indices of patches added in this search: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 ---------------------------------------------
 ---------------------------------------------
-Matching dataset time: 6.087432146072388
-Load dataset time: 84.43698263168335
-Reproj dataset time: 0.008120298385620117
-Master dataset time: 0.424558162689209
-Find valid patches time: 2.7088656425476074
+Matching dataset time: 6.201794624328613
+Load dataset time: 82.60481905937195
+Reproj dataset time: 0.008946418762207031
+Master dataset time: 0.40803956985473633
+Find valid patches time: 2.6686768531799316
 Accepted Patches: [16]
-Make patches time: 0.456714391708374
+Make patches time: 0.4185302257537842
 Indices of patches added in this search: [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 ---------------------------------------------
 ---------------------------------------------
-Matching dataset time: 6.361617803573608
-Load dataset time: 96.48083710670471
-Reproj dataset time: 0.00868535041809082
-Master dataset time: 0.427051305770874
-Find valid patches time: 2.752673864364624
+Matching dataset time: 6.22390604019165
+Load dataset time: 81.00605082511902
+Reproj dataset time: 0.008908987045288086
+Master dataset time: 0.40702128410339355
+Find valid patches time: 2.6519229412078857
 Accepted Patches: [16]
-Make patches time: 0.8332271575927734
+Make patches time: 0.7662270069122314
 Indices of patches added in this search: [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]
 ---------------------------------------------
 ---------------------------------------------
-Matching dataset time: 6.3732380867004395
-Load dataset time: 121.4434175491333
-Reproj dataset time: 0.008733034133911133
-Master dataset time: 0.42405223846435547
-Find valid patches time: 2.8693606853485107
+Matching dataset time: 6.162187099456787
+Load dataset time: 81.85485529899597
+Reproj dataset time: 0.0087738037109375
+Master dataset time: 0.3616602420806885
+Find valid patches time: 2.6438167095184326
 Accepted Patches: [16]
-Make patches time: 1.2511231899261475
+Make patches time: 1.021559715270996
 Indices of patches added in this search: [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]
 ---------------------------------------------
 ---------------------------------------------
-Matching dataset time: 6.096867084503174
-Load dataset time: 133.23030018806458
-Reproj dataset time: 0.008163928985595703
-Master dataset time: 0.33437371253967285
-Find valid patches time: 2.7031521797180176
+Matching dataset time: 6.238525152206421
+Load dataset time: 81.70600390434265
+Reproj dataset time: 0.009014368057250977
+Master dataset time: 0.4053788185119629
+Find valid patches time: 2.6629436016082764
 Accepted Patches: [16]
-Make patches time: 1.3081891536712646
+Make patches time: 1.4232287406921387
 Indices of patches added in this search: [64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
 ---------------------------------------------
 ---------------------------------------------
 Reached search number: 5
-Matching dataset time: 6.12263298034668
-Load dataset time: 114.65297651290894
-Reproj dataset time: 0.008012533187866211
-Master dataset time: 0.4114110469818115
-Find valid patches time: 3.356987237930298
+Matching dataset time: 6.187638521194458
+Load dataset time: 76.45672845840454
+Reproj dataset time: 0.009039878845214844
+Master dataset time: 0.3249545097351074
+Find valid patches time: 2.8944637775421143
 Accepted Patches: [16]
-Make patches time: 1.7424592971801758
+Make patches time: 1.8414583206176758
 Indices of patches added in this search: [80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]
 ---------------------------------------------
 ---------------------------------------------
-Matching dataset time: 6.166158676147461
-Load dataset time: 124.02940797805786
-Reproj dataset time: 0.5881428718566895
-Master dataset time: 1.5017082691192627
-Find valid patches time: 8.069675922393799
+Matching dataset time: 6.121387481689453
+Load dataset time: 78.1469395160675
+Reproj dataset time: 0.008842706680297852
+Master dataset time: 0.3219106197357178
+Find valid patches time: 2.844231367111206
 Accepted Patches: [16]
-Make patches time: 7.108440160751343
+Make patches time: 2.184433937072754
 Indices of patches added in this search: [96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
 ---------------------------------------------
 ---------------------------------------------
-Matching dataset time: 658.9827666282654
-Load dataset time: 98.0572247505188
-Reproj dataset time: 0.0212247371673584
-Master dataset time: 0.5686264038085938
-Find valid patches time: 3.045989990234375
+Matching dataset time: 6.11865758895874
+Load dataset time: 74.73108696937561
+Reproj dataset time: 0.008898258209228516
+Master dataset time: 0.3541836738586426
+Find valid patches time: 2.910557508468628
 Accepted Patches: [16]
-Make patches time: 2.5830652713775635
+Make patches time: 2.578651189804077
 Indices of patches added in this search: [112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127]
 ---------------------------------------------
 ---------------------------------------------
-Matching dataset time: 6.788012266159058
-Load dataset time: 90.2483139038086
-Reproj dataset time: 0.008156538009643555
-Master dataset time: 0.5892295837402344
-Find valid patches time: 3.2022576332092285
+Matching dataset time: 6.1783740520477295
+Load dataset time: 73.75387692451477
+Reproj dataset time: 0.008957147598266602
+Master dataset time: 0.35811305046081543
+Find valid patches time: 3.119847059249878
 Accepted Patches: [16]
-Make patches time: 2.840611457824707
+Make patches time: 2.9494240283966064
 Indices of patches added in this search: [128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143]
 ---------------------------------------------
 ---------------------------------------------
-Matching dataset time: 6.693474769592285
-Load dataset time: 86.56745505332947
-Reproj dataset time: 0.011770248413085938
-Master dataset time: 0.6209170818328857
-Find valid patches time: 2.9362215995788574
+Matching dataset time: 6.145328998565674
+Load dataset time: 73.40366101264954
+Reproj dataset time: 0.008843183517456055
+Master dataset time: 0.35320544242858887
+Find valid patches time: 2.917813777923584
 Accepted Patches: [16]
-Make patches time: 3.0155975818634033
+Make patches time: 3.264756202697754
 Indices of patches added in this search: [144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159]
 ---------------------------------------------
 ---------------------------------------------
 Reached search number: 10
-Matching dataset time: 6.82386040687561
-Load dataset time: 81.47716498374939
-Reproj dataset time: 0.008366823196411133
-Master dataset time: 0.6426458358764648
-Find valid patches time: 2.9258182048797607
+Matching dataset time: 6.141040086746216
+Load dataset time: 71.8671875
+Reproj dataset time: 0.009372234344482422
+Master dataset time: 0.3819468021392822
+Find valid patches time: 2.817551851272583
 Accepted Patches: [16]
-Make patches time: 3.2066259384155273
+Make patches time: 3.088498115539551
 Indices of patches added in this search: [160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175]
 ---------------------------------------------
 ---------------------------------------------
-Matching dataset time: 6.144123077392578
-Load dataset time: 79.30275583267212
-Reproj dataset time: 0.008561849594116211
-Master dataset time: 0.6500802040100098
-Find valid patches time: 57.80503177642822
+Matching dataset time: 6.219343662261963
+Load dataset time: 67.26036381721497
+Reproj dataset time: 0.008798360824584961
+Master dataset time: 0.35350751876831055
+Find valid patches time: 3.1092143058776855
 Accepted Patches: [16]
+Make patches time: 3.8981974124908447
+Indices of patches added in this search: [176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.164901256561279
+Load dataset time: 85.33709359169006
+Reproj dataset time: 0.008533239364624023
+Master dataset time: 0.4001884460449219
+Find valid patches time: 3.10459566116333
+Accepted Patches: [16]
+Make patches time: 4.233742713928223
+Indices of patches added in this search: [192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.089352607727051
+Load dataset time: 86.55894160270691
+Reproj dataset time: 0.008914470672607422
+Master dataset time: 0.3996734619140625
+Find valid patches time: 3.108920097351074
+Accepted Patches: [16]
+Make patches time: 4.518638610839844
+Indices of patches added in this search: [208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.249767303466797
+Load dataset time: 83.98839569091797
+Reproj dataset time: 0.008672237396240234
+Master dataset time: 0.3983440399169922
+Find valid patches time: 3.093346357345581
+Accepted Patches: [16]
+Make patches time: 4.738130331039429
+Indices of patches added in this search: [224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239]
+---------------------------------------------
+---------------------------------------------
+Reached search number: 15
+Matching dataset time: 6.957582235336304
+Load dataset time: 85.29741621017456
+Reproj dataset time: 0.008778572082519531
+Master dataset time: 0.4461944103240967
+Find valid patches time: 3.1050944328308105
+Accepted Patches: [16]
+Make patches time: 4.99964165687561
+Indices of patches added in this search: [240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.280102252960205
+Load dataset time: 80.70653939247131
+Reproj dataset time: 0.008697748184204102
+Master dataset time: 0.4448864459991455
+Find valid patches time: 3.1021525859832764
+Accepted Patches: [16]
+Make patches time: 5.239790678024292
+Indices of patches added in this search: [256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 7.046893835067749
+Load dataset time: 83.95517253875732
+Reproj dataset time: 0.008814811706542969
+Master dataset time: 0.40459299087524414
+Find valid patches time: 3.0362579822540283
+Accepted Patches: [16]
+Make patches time: 5.560492992401123
+Indices of patches added in this search: [272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 7.057790040969849
+Load dataset time: 85.14874815940857
+Reproj dataset time: 0.009086847305297852
+Master dataset time: 0.41713905334472656
+Find valid patches time: 2.956702470779419
+Accepted Patches: [16]
+Make patches time: 5.556307792663574
+Indices of patches added in this search: [288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 7.039916276931763
+Load dataset time: 83.5809051990509
+Reproj dataset time: 0.009217977523803711
+Master dataset time: 0.4173252582550049
+Find valid patches time: 2.9594552516937256
+Accepted Patches: [16]
+Make patches time: 5.770220994949341
+Indices of patches added in this search: [304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319]
+---------------------------------------------
+---------------------------------------------
+Reached search number: 20
+Matching dataset time: 20.67525291442871
+Load dataset time: 87.30840349197388
+Reproj dataset time: 0.009601831436157227
+Master dataset time: 0.4167020320892334
+Find valid patches time: 2.9492433071136475
+Accepted Patches: [16]
+Make patches time: 6.252401113510132
+Indices of patches added in this search: [320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.190399885177612
+Load dataset time: 83.68050861358643
+Reproj dataset time: 0.008680582046508789
+Master dataset time: 0.3695828914642334
+Find valid patches time: 3.0996716022491455
+Accepted Patches: [16]
+Make patches time: 6.811381101608276
+Indices of patches added in this search: [336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.1840314865112305
+Load dataset time: 83.57634496688843
+Reproj dataset time: 0.008913516998291016
+Master dataset time: 0.40564823150634766
+Find valid patches time: 2.9810187816619873
+Accepted Patches: [16]
+Make patches time: 7.182757377624512
+Indices of patches added in this search: [352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 7.023223876953125
+Load dataset time: 89.36784172058105
+Reproj dataset time: 0.009174585342407227
+Master dataset time: 0.3661231994628906
+Find valid patches time: 3.0275166034698486
+Accepted Patches: [16]
+Make patches time: 7.5422797203063965
+Indices of patches added in this search: [368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 7.049630165100098
+Load dataset time: 93.6550304889679
+Reproj dataset time: 0.009461641311645508
+Master dataset time: 0.38158178329467773
+Find valid patches time: 2.8064937591552734
+Accepted Patches: [16]
+Make patches time: 7.437094449996948
+Indices of patches added in this search: [384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399]
+---------------------------------------------
+---------------------------------------------
+Reached search number: 25
+Matching dataset time: 6.19382905960083
+Load dataset time: 89.645427942276
+Reproj dataset time: 0.008804798126220703
+Master dataset time: 0.36166810989379883
+Find valid patches time: 3.0460877418518066
+Accepted Patches: [16]
+Make patches time: 8.135485649108887
+Indices of patches added in this search: [400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.898852109909058
+Load dataset time: 91.33844470977783
+Reproj dataset time: 0.009600400924682617
+Master dataset time: 0.3818483352661133
+Find valid patches time: 2.9504635334014893
+Accepted Patches: [16]
+Make patches time: 8.028007507324219
+Indices of patches added in this search: [416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.859058380126953
+Load dataset time: 90.19074487686157
+Reproj dataset time: 0.00882720947265625
+Master dataset time: 0.3669564723968506
+Find valid patches time: 2.9638192653656006
+Accepted Patches: [16]
+Make patches time: 8.713590621948242
+Indices of patches added in this search: [432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 7.019447326660156
+Load dataset time: 89.84946846961975
+Reproj dataset time: 0.00910496711730957
+Master dataset time: 0.41153502464294434
+Find valid patches time: 2.8107426166534424
+Accepted Patches: [16]
+Make patches time: 8.748850584030151
+Indices of patches added in this search: [448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.182177782058716
+Load dataset time: 86.8218731880188
+Reproj dataset time: 0.00883340835571289
+Master dataset time: 0.407029390335083
+Find valid patches time: 2.9931564331054688
+Accepted Patches: [16]
+Make patches time: 9.350919485092163
+Indices of patches added in this search: [464, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479]
+---------------------------------------------
+---------------------------------------------
+Reached search number: 30
+Matching dataset time: 6.184092998504639
+Load dataset time: 86.02663445472717
+Reproj dataset time: 0.008890151977539062
+Master dataset time: 0.40464067459106445
+Find valid patches time: 2.8195252418518066
+Accepted Patches: [16]
+Make patches time: 9.383578062057495
+Indices of patches added in this search: [480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 7.035860538482666
+Load dataset time: 83.7963650226593
+Reproj dataset time: 0.008996963500976562
+Master dataset time: 0.40247344970703125
+Find valid patches time: 2.790381669998169
+Accepted Patches: [16]
+Make patches time: 9.804681777954102
+Indices of patches added in this search: [496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 7.0557472705841064
+Load dataset time: 85.71907329559326
+Reproj dataset time: 0.009431600570678711
+Master dataset time: 0.41701507568359375
+Find valid patches time: 2.9585909843444824
+Accepted Patches: [16]
+Make patches time: 9.876869916915894
+Indices of patches added in this search: [512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.959065675735474
+Load dataset time: 86.6453161239624
+Reproj dataset time: 0.00947117805480957
+Master dataset time: 0.4170999526977539
+Find valid patches time: 2.8173234462738037
+Accepted Patches: [16]
+Make patches time: 10.310575723648071
+Indices of patches added in this search: [528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.322070121765137
+Load dataset time: 84.18365216255188
+Reproj dataset time: 0.008932352066040039
+Master dataset time: 0.36246705055236816
+Find valid patches time: 2.799593210220337
+Accepted Patches: [16]
+Make patches time: 11.757604837417603
+Indices of patches added in this search: [544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559]
+---------------------------------------------
+---------------------------------------------
+Reached search number: 35
+Matching dataset time: 6.181573390960693
+Load dataset time: 83.3177719116211
+Reproj dataset time: 0.009049654006958008
+Master dataset time: 0.36608147621154785
+Find valid patches time: 2.8134965896606445
+Accepted Patches: [16]
+Make patches time: 13.835838079452515
+Indices of patches added in this search: [560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 7.970006465911865
+Load dataset time: 84.8061454296112
+Reproj dataset time: 0.009076118469238281
+Master dataset time: 0.4782397747039795
+Find valid patches time: 2.8118011951446533
+Accepted Patches: [16]
+Make patches time: 23.383174180984497
+Indices of patches added in this search: [576, 577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 6.205824136734009
+Load dataset time: 98.56091451644897
+Reproj dataset time: 0.05389070510864258
+Master dataset time: 0.5978565216064453
+Find valid patches time: 2.8071699142456055
+Accepted Patches: [16]
+Make patches time: 26.55561900138855
+Indices of patches added in this search: [592, 593, 594, 595, 596, 597, 598, 599, 600, 601, 602, 603, 604, 605, 606, 607]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 30.430870532989502
+Load dataset time: 91.83227348327637
+Reproj dataset time: 0.05259418487548828
+Master dataset time: 2.324819803237915
+Find valid patches time: 2.884129524230957
+Accepted Patches: [16]
+Make patches time: 33.7152373790741
+Indices of patches added in this search: [608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 67.82724809646606
+Load dataset time: 94.45559430122375
+Reproj dataset time: 0.10366654396057129
+Master dataset time: 0.6230349540710449
+Find valid patches time: 2.8712353706359863
+Accepted Patches: [16]
+Make patches time: 41.05059337615967
+Indices of patches added in this search: [624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639]
+---------------------------------------------
+---------------------------------------------
+Reached search number: 40
+Matching dataset time: 6.355971097946167
+Load dataset time: 97.91029906272888
+Reproj dataset time: 0.12909412384033203
+Master dataset time: 5.4945762157440186
+Find valid patches time: 3.0224390029907227
+Accepted Patches: [16]
+Make patches time: 44.14143371582031
+Indices of patches added in this search: [640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653, 654, 655]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 22.48803162574768
+Load dataset time: 91.87142300605774
+Reproj dataset time: 0.10627150535583496
+Master dataset time: 0.7658171653747559
+Find valid patches time: 3.025120973587036
+Accepted Patches: [16]
+Make patches time: 53.112908363342285
+Indices of patches added in this search: [656, 657, 658, 659, 660, 661, 662, 663, 664, 665, 666, 667, 668, 669, 670, 671]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 7.152557373046875e-06
+Save examples netcdf time: 21.01181721687317
+Save labels netcdf time: 0.8731210231781006
+Completed on search number: 43
+Final patch count per balanced class:
+[672]

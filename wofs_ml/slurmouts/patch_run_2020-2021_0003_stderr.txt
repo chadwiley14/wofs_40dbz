@@ -20,22 +20,26 @@ patcher.py:1158: UserWarning: While generating patches for a single timestep, th
   warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
 patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
   warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
-Traceback (most recent call last):
-  File "patcher.py", line 1575, in <module>
-    patcher.run()
-  File "patcher.py", line 414, in run
-    self._make_patches()
-  File "patcher.py", line 1125, in _make_patches
-    filtered_balanced_pixels = self.get_valid_pixels(master_examples_dataset, master_labels_dataset)
-  File "patcher.py", line 1077, in get_valid_pixels
-    ds = ds.to_array()
-  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/core/dataset.py", line 5293, in to_array
-    data = duck_array_ops.stack([b.data for b in broadcast_vars], axis=0)
-  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/core/duck_array_ops.py", line 308, in stack
-    return _stack(as_shared_dtype(arrays), axis=axis)
-  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/core/duck_array_ops.py", line 209, in as_shared_dtype
-    return [x.astype(out_type, copy=False) for x in arrays]
-  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/core/duck_array_ops.py", line 209, in <listcomp>
-    return [x.astype(out_type, copy=False) for x in arrays]
-numpy.core._exceptions.MemoryError: Unable to allocate 148. MiB for an array with shape (12, 18, 300, 300) and data type float64
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:1158: UserWarning: While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...
+  warnings.warn("While generating patches for a single timestep, the function _make_patches ran out of possible patches that meet the set filters' requirements. Continuing search...")
+patcher.py:403: UserWarning: WARNING: Ran out of files with matching datetimes. Number of completed patches may be less than expected. Please consider adjusting "patches_per_unit_time"
+  warnings.warn('WARNING: Ran out of files with matching datetimes. Number of completed patches may be less than expected. Please consider adjusting "patches_per_unit_time"')
 slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name
