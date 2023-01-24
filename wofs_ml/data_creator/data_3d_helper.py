@@ -295,7 +295,7 @@ def get_lat_lon(cur_file):
 
     vars = [lats,lons]
 
-    name = ['lat', 'lon']
+    name = ['lats', 'lons']
 
     size= ['n_samples','lat', 'lon']
 

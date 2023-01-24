@@ -20,12 +20,15 @@ elif run_num == 3:
     merge_examples()
 elif run_num == 4:
     labels_2017 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels/*')
+    labels_2017.sort()
     get_labels(labels_2017,'2017-2018')
 elif run_num == 5:
     labels_2019 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_2019/*')
+    labels_2019.sort()
     get_labels(labels_2019,'2019')
 elif run_num == 6:
     labels_2020 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_2020-2021/*')
+    labels_2020.sort()
     get_labels(labels_2020,'2020-2021')
 
 elif run_num==7:

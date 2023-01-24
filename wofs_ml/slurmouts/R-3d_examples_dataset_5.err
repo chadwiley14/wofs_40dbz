@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_3d_creator.py", line 26, in <module>
+    get_labels(labels_2019,'2019')
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_3d_helper.py", line 335, in get_labels
+    lat_lon = get_lat_lon(cur_file)
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_3d_helper.py", line 308, in get_lat_lon
+    out_ds = xr.Dataset(data_vars)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/dataset.py", line 604, in __init__
+    variables, coord_names, dims, indexes, _ = merge_data_and_coords(
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/merge.py", line 575, in merge_data_and_coords
+    return merge_core(
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/merge.py", line 755, in merge_core
+    collected = collect_variables_and_indexes(aligned, indexes=indexes)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/merge.py", line 365, in collect_variables_and_indexes
+    variable = as_variable(variable, name=name)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/variable.py", line 163, in as_variable
+    raise MissingDimensionsError(
+xarray.core.variable.MissingDimensionsError: 'lat' has more than 1-dimension and the same name as one of its dimensions ('n_samples', 'lat', 'lon'). xarray disallows such variables because they conflict with the coordinates used to label dimensions.
+slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name
