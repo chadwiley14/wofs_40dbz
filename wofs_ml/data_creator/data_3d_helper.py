@@ -18,6 +18,14 @@ def create_parser():
 
     return parser
 
+def min_max_norm(variable):
+    """
+    This does min_max scaling on the
+    given variable.
+    """
+    variable = (variable - np.min(variable)) / (np.max(variable) - np.min(variable))
+    return variable
+
 def get_2017_2018_data():
     #get all files for 2017-2018
     example_files_2017_2018 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples/*')
@@ -142,17 +150,38 @@ def extract_data(cur_file, year):
         cin_sfc_avg.append(np.average(cur_file['cin_sfc'][i], axis = 1))
         cin_ml_avg.append(np.average(cur_file['cin_ml'][i], axis = 1))
 
-        if year == '2017' or '2018' or '2019':
+        if year == '2017' or year =='2018' or year =='2019':
             mrms.append(cur_file['DZ_CRESSMAN'][i])
         else:
             mrms.append(cur_file['dz_cress'][i])
 
+        #apply normalization
+        comp_dz_max_norm = min_max_norm(comp_dz_max)
+        comp_dz_90_norm = min_max_norm(comp_dz_90)
+        comp_dz_avg_norm = min_max_norm(comp_dz_avg)
+
+        w_up_max_norm = min_max_norm(w_up_max)
+        w_up_90_norm = min_max_norm(w_up_90)
+        w_up_avg_norm = min_max_norm(w_up_avg)
+
+        w_down_max_norm = min_max_norm(w_down_max)
+        w_down_90_norm= min_max_norm(w_down_90)
+        w_down_avg_norm = min_max_norm(w_down_avg)
+
+        cape_sfc_avg_norm = min_max_norm(cape_sfc_avg)
+        cape_ml_avg_norm = min_max_norm(cape_ml_avg)
+
+        cin_sfc_avg_norm = min_max_norm(cin_sfc_avg)
+        cin_ml_avg_norm = min_max_norm(cin_ml_avg)
+
+        mrms_norm = min_max_norm(mrms)
+
     #make in xr dataset
-    vars = [comp_dz_max,comp_dz_90,comp_dz_avg,
-            w_up_max, w_up_90, w_up_avg,
-            w_down_max, w_down_90, w_down_avg,
-            cape_sfc_avg, cape_ml_avg, cin_sfc_avg,
-            cin_ml_avg, mrms]
+    vars = [comp_dz_max_norm,comp_dz_90_norm,comp_dz_avg_norm,
+            w_up_max_norm, w_up_90_norm, w_up_avg_norm,
+            w_down_max_norm, w_down_90_norm, w_down_avg_norm,
+            cape_sfc_avg_norm, cape_ml_avg_norm, cin_sfc_avg_norm,
+            cin_ml_avg_norm, mrms_norm]
         
     names =['comp_dz_max','comp_dz_90','comp_dz_avg',
             'w_up_max', 'w_up_90', 'w_up_avg',
@@ -180,6 +209,7 @@ def merge_examples():
     examples = xr.concat([ex_2017,ex_2019,ex_2020],dim='n_samples')
 
     examples.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/full_examples.nc')
+
 
 
 

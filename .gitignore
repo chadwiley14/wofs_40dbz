@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 .png 
-wofs_40dbz/slurmouts/
+wofs_40dbz/slurmouts/*

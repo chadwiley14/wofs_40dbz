@@ -1,8 +1,8 @@
 Traceback (most recent call last):
-  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_3d_creator.py", line 14, in <module>
-    get_2017_2018_data()
-  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_3d_helper.py", line 44, in get_2017_2018_data
-    examples = extract_data(cur_file,'2017')
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_3d_creator.py", line 16, in <module>
+    get_2019_data()
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_3d_helper.py", line 69, in get_2019_data
+    examples = extract_data(cur_file,'2019')
   File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_3d_helper.py", line 135, in extract_data
     comp_dz_max.append(np.max(cur_file['w_up'][i], axis = 1))
 AttributeError: 'numpy.ndarray' object has no attribute 'append'
