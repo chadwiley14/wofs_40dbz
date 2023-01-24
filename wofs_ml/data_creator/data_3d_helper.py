@@ -338,8 +338,8 @@ def get_labels(glob_files, year):
             lat_lon = xr.concat([lat_lon, get_lat_lon(cur_file)], dim = 'n_samples')
 
 
-        print('labels shape: %s'%np.shape(labels['dz_binary']))
-        print('labels shape: %s'%np.shape(labels['dz_binary']))
+        print('labels shape: %s'%str(np.shape(labels['dz_binary'])))
+        print('labels shape: %s'%str(np.shape(labels['dz_binary'])))
         
         count = count + 1
 
