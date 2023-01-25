@@ -231,6 +231,7 @@ def save_lat_lon(lat_patches):
 
 def make_wofs_patches(ds, year):
     wofs_patches = break_into_patches(ds)
+    print('wofs patches shape : %s'%str(np.shape(wofs_patches)))
 
     #save
     vars2 =[wofs_patches]

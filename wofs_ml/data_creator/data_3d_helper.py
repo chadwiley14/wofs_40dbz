@@ -228,9 +228,9 @@ def merge_examples():
     Takes in all the examples from the years of interest and makes them into
     one dataset for training.
     '''
-    ex_2017 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/2017-2018examples.nc')
-    ex_2019 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/2019examples.nc')
-    ex_2020 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/2017-2018examples.nc')
+    ex_2017 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/2017-2018examples.nc')
+    ex_2019 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/2019examples.nc')
+    ex_2020 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/2017-2018examples.nc')
     print('Data is loaded')
 
     examples = xr.concat([ex_2017,ex_2019,ex_2020],dim='n_samples')

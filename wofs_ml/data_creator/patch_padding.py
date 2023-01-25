@@ -97,29 +97,29 @@ elif run_num == 5:
 
 elif run_num == 6:
     #make probs into patches 2017
-    probs_2017 = '/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2017_06.nc'
+    probs_2017 = ['/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2017_06.nc']
 
     make_wofs_patches(probs_2017,'2017')
 elif run_num == 7:
     #make probs into patches 2017
-    probs_2018 = '/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2018_06.nc'
+    probs_2018 = ['/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2018_06.nc']
 
     make_wofs_patches(probs_2018,'2018')
 elif run_num == 8:
     #make probs into patches 2017
-    probs_2019 = '/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2019_06.nc'
+    probs_2019 = ['/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2019_06.nc']
 
     make_wofs_patches(probs_2019,'2019')
 
 elif run_num == 9:
     #make probs into patches 2017
-    probs_2020 = '/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2020_06.nc'
+    probs_2020 = ['/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2020_06.nc']
 
     make_wofs_patches(probs_2020,'2020')
 
 elif run_num == 10:
     #make probs into patches 2017
-    probs_2021 = '/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2021_06.nc'
+    probs_2021 = ['/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2021_06.nc']
 
     make_wofs_patches(probs_2021,'2021')
 
