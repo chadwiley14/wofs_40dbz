@@ -271,7 +271,7 @@ def extract_labels(cur_file):
 
     return out_ds
 
-def get_lat_lon(cur_file):
+def get_lat_lon(cur_file, year):
     '''
     Extracts the lat and lons for plotting. Meant to be used in
     conjunction with get_labels.
@@ -332,10 +332,10 @@ def get_labels(glob_files, year):
         #if first instance set examples to this dataset, else add the new examples on the n_samples dim
         if count == 0:
             labels = extract_labels(cur_file)
-            lat_lon = get_lat_lon(cur_file)
+            lat_lon = get_lat_lon(cur_file, year)
         else:
             labels = xr.concat([labels, extract_labels(cur_file)], dim = 'n_samples')
-            lat_lon = xr.concat([lat_lon, get_lat_lon(cur_file)], dim = 'n_samples')
+            lat_lon = xr.concat([lat_lon, get_lat_lon(cur_file, year)], dim = 'n_samples')
 
 
         print('labels shape: %s'%str(np.shape(labels['dz_binary'])))
