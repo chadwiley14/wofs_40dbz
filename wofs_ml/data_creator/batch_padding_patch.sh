@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --partition=ai2es
+#SBATCH --partition=normal
 #SBATCH --nodes=1
 #SBATCH --ntasks=4
 #SBATCH --mem=32G
@@ -7,9 +7,9 @@
 #SBATCH --job-name=patch_splitting_no_overlapping
 #SBATCH --mail-user=chadwiley@ou.edu
 #SBATCH --mail-type=ALL
-#SBATCH --output=/home/chadwiley/research/wofs_ml_ci/wofs_ml/slurmouts/R-%x_%a.out
-#SBATCH --error=/home/chadwiley/research/wofs_ml_ci/wofs_ml/slurmouts/R-%x_%a.err
-#SBATCH --array=5
+#SBATCH --output=/home/chadwiley/research/wofs_40dbz/wofs_ml/slurmouts/R-%x_%a.out
+#SBATCH --error=/home/chadwiley/research/wofs_40dbz/wofs_ml/slurmouts/R-%x_%a.err
+#SBATCH --array=6-10
 
 
 source /home/chadwiley/.bashrc

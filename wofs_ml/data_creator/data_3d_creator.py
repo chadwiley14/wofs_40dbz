@@ -47,7 +47,3 @@ elif run_num==7:
 
     full_labels.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/full_labels.nc')
     full_lat_lon.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/full_lat_lon.nc')
-
-
-
-

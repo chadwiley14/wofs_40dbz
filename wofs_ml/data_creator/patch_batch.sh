@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --partition=ai2es
-#SBATCH --time=08:00:00
+#SBATCH --partition=normal
+#SBATCH --time=02:00:00
 #SBATCH --job-name=patch_data_inter
 #SBATCH --mail-user=chadwiley@ou.edu
 #SBATCH --mail-type=ALL
-#SBATCH --output=/home/chadwiley/research/wofs_ml_ci/wofs_ml/slurmouts/R-%x_%a.out
-#SBATCH --error=/home/chadwiley/research/wofs_ml_ci/wofs_ml/slurmouts/R-%x_%a.err
-#SBATCH --array=0-19
+#SBATCH --output=/home/chadwiley/research/wofs_40dbz/wofs_ml/slurmouts/R-%x_%a.out
+#SBATCH --error=/home/chadwiley/research/wofs_40dbz/wofs_ml/slurmouts/R-%x_%a.err
+#SBATCH --array=20-22
 
 source /home/chadwiley/.bashrc
 bash

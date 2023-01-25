@@ -130,3 +130,6 @@ dmypy.json
 
 .png 
 wofs_40dbz/wofs_ml/slurmouts/*
+.txt
+.out
+.err

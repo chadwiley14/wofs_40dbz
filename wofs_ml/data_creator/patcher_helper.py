@@ -530,7 +530,38 @@ def get_val_data(val_data, lead_time, year):
 
     out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/val_mrms_data_%s_%s.nc'%(year, lead_time))
 
+def make_wofs_probs(ens_data,year,lead_time):
+    ens_probs = []
+    wofs_probs_padding = []
+    for i in ens_data:
+        ens = xr.load_dataset(i, decode_cf = False, drop_variables = ['wz_0to2', 'uh_0to2'])
+        if np.shape(ens['comp_dz'][0,:,:]) == (300,300) or np.shape(ens['comp_dz'][0,:,:]) == (250,250):
+            if year == '2018' and np.shape(ens['comp_dz'][0,:,:]) == (300,300):
+                pass
+            else:
+                ens_binary = np.where(ens['comp_dz'] >= 40,1,0)
+                print('ens binary: %s'%str(np.shape(ens_binary)))
 
+                ens_probs.append(np.average(ens_binary,axis=0))
+
+    print('ENS Probs shape : %s'%str(np.shape(ens_probs)))
+
+    for n in range(np.size(ens_probs,axis=0)):
+        wofs_probs_padding.append(add_padding(ens_probs[n], year))
+    print('WoFS with padding: %s'%str(np.shape(wofs_probs_padding)))
+
+    #save in a xr dataset
+    vars = [wofs_probs_padding]
+    names =['wofs_probs']
+    size = ['n_samples','lat', 'lon']
+
+    tuples = [(size,var)for var in vars]
+    data_vars = {name : data_tup for name, data_tup in zip(names, tuples)}
+
+    out_ds = xr.Dataset(data_vars)
+    print(out_ds)
+
+    out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_%s_%s.nc'%(year, lead_time))
 
  #/ourdisk/hpc/ai2es/wofs/MRMS/2020/2020/20200515/wofs_MRMS_RAD_20200515_2220.nc
  #/ourdisk/hpc/ai2es/wofs/MRMS/2019/2019/20190510/20190510_192000.nc

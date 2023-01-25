@@ -70,7 +70,7 @@ for i in ENS_files:
 
     #/ourdisk/hpc/ai2es/wofs/MRMS/2021/RAD_AZS_MSH/20210406/wofs_MRMS_RAD_20210406_2225.nc 
     #/ourdisk/hpc/ai2es/wofs/MRMS/2020/2020/20200515/wofs_MRMS_RAD_20200515_2220.nc
-    #/ourdisk/hpc/ai2es/wofs/MRMS/2019_NEW/2019/20190530/20190530_220000.nc 
+    #/ourdisk/hpc/ai2es/wofs/MRMS/2019/2019/20190530/20190530_220000.nc 
     #/ourdisk/hpc/ai2es/wofs/MRMS/2018/2018/20180501/20180501-233000.nc
     #/ourdisk/hpc/ai2es/wofs/MRMS/2017/2017/20170502/20170502-204500.nc 
 
@@ -83,7 +83,7 @@ for i in ENS_files:
             .format(file_date = file_date[0], init_date = init_date[0][1:-1], init_time = init_time[0][1:-1])
 
     elif file_date[0][1:5] == '2019':
-        temp_init = '/ourdisk/hpc/ai2es/wofs/MRMS/2019_NEW/2019{file_date}{init_date}_{init_time}00.nc'\
+        temp_init = '/ourdisk/hpc/ai2es/wofs/MRMS/2019/2019{file_date}{init_date}_{init_time}00.nc'\
             .format(file_date=file_date[0], init_date = init_date[0][1:-1], init_time = init_time[0][1:-1])
 
     elif file_date[0][1:5] == '2018':
@@ -357,6 +357,14 @@ elif run_num == 18:
 
 elif run_num == 19:
     get_val_data(val_mrms_2017, '06', '2017')   
+elif run_num == 20:
+    make_wofs_probs(full_ens_2017, '2017', '06')
+    make_wofs_probs(full_ens_2018, '2018', '06')
+elif run_num == 21:
+    make_wofs_probs(full_ens_2019, '2019', '06')
+    make_wofs_probs(full_ens_2020, '2020', '06')
+elif run_num == 22:
+    make_wofs_probs(full_ens_2021, '2021', '06')
 
 print('data is loaded')
 print('saved')
