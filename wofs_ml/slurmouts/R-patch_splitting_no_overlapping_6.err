@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/patch_padding.py", line 102, in <module>
+    make_wofs_patches(probs_2017,'2017')
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/patch_padding_helper.py", line 234, in make_wofs_patches
+    cur_file = xr.load_dataset(ds)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/backends/api.py", line 278, in load_dataset
+    with open_dataset(filename_or_obj, **kwargs) as ds:
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/backends/api.py", line 523, in open_dataset
+    engine = plugins.guess_engine(filename_or_obj)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/backends/plugins.py", line 177, in guess_engine
+    raise ValueError(error_msg)
+ValueError: did not find a match in any of xarray's currently installed IO backends ['netcdf4', 'scipy']. Consider explicitly selecting one of the installed engines via the ``engine`` parameter, or installing additional IO dependencies, see:
+https://docs.xarray.dev/en/stable/getting-started-guide/installing.html
+https://docs.xarray.dev/en/stable/user-guide/io.html
+slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name

@@ -366,5 +366,9 @@ elif run_num == 21:
 elif run_num == 22:
     make_wofs_probs(full_ens_2021, '2021', '06')
 
+elif run_num == 23:
+    #merge all the probs patch files files
+    probs_2017 = xr.load_dataset()
+
 print('data is loaded')
 print('saved')
