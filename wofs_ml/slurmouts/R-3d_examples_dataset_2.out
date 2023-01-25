@@ -170,3 +170,41 @@ Data variables: (12/14)
     mrms          (n_samples, time, lat, lon) float32 0.1321 0.1321 ... 0.2429
 (4592, 12, 64, 64)
 Loaded : /ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_2020-2021/0011.nc
+<xarray.Dataset>
+Dimensions:       (n_samples: 640, time: 12, lat: 64, lon: 64)
+Dimensions without coordinates: n_samples, time, lat, lon
+Data variables: (12/14)
+    comp_dz_max   (n_samples, time, lat, lon) float32 0.0003815 ... 0.0006265
+    comp_dz_90    (n_samples, time, lat, lon) float64 0.000442 ... 0.0008916
+    comp_dz_avg   (n_samples, time, lat, lon) float32 0.0006698 ... 0.001455
+    w_up_max      (n_samples, time, lat, lon) float32 0.0003815 ... 0.0006265
+    w_up_90       (n_samples, time, lat, lon) float64 0.000442 ... 0.0008916
+    w_up_avg      (n_samples, time, lat, lon) float32 0.0006698 ... 0.001455
+    ...            ...
+    w_down_avg    (n_samples, time, lat, lon) float32 0.998 0.9978 ... 0.9984
+    cape_sfc_avg  (n_samples, time, lat, lon) float32 0.2396 0.2436 ... 0.7417
+    cape_ml_avg   (n_samples, time, lat, lon) float32 0.1441 0.147 ... 0.6275
+    cin_sfc_avg   (n_samples, time, lat, lon) float32 0.7369 0.7433 ... 0.9583
+    cin_ml_avg    (n_samples, time, lat, lon) float32 0.7137 0.714 ... 0.7948
+    mrms          (n_samples, time, lat, lon) float32 0.04457 ... 0.04457
+(5232, 12, 64, 64)
+Loaded : /ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_2020-2021/0012.nc
+<xarray.Dataset>
+Dimensions:       (n_samples: 32, time: 12, lat: 64, lon: 64)
+Dimensions without coordinates: n_samples, time, lat, lon
+Data variables: (12/14)
+    comp_dz_max   (n_samples, time, lat, lon) float32 0.006801 ... 0.07751
+    comp_dz_90    (n_samples, time, lat, lon) float64 0.00768 ... 0.1004
+    comp_dz_avg   (n_samples, time, lat, lon) float32 0.009089 ... 0.1044
+    w_up_max      (n_samples, time, lat, lon) float32 0.006801 ... 0.07751
+    w_up_90       (n_samples, time, lat, lon) float64 0.00768 ... 0.1004
+    w_up_avg      (n_samples, time, lat, lon) float32 0.009089 ... 0.1044
+    ...            ...
+    w_down_avg    (n_samples, time, lat, lon) float32 0.9447 0.9467 ... 0.9114
+    cape_sfc_avg  (n_samples, time, lat, lon) float32 0.06279 0.06655 ... 0.1933
+    cape_ml_avg   (n_samples, time, lat, lon) float32 0.0008992 ... 0.1722
+    cin_sfc_avg   (n_samples, time, lat, lon) float32 0.9807 0.9793 ... 0.8387
+    cin_ml_avg    (n_samples, time, lat, lon) float32 1.0 1.0 ... 0.5015 0.4312
+    mrms          (n_samples, time, lat, lon) float32 0.0 0.0 0.0 ... 0.0 0.0
+(5264, 12, 64, 64)
+Saved examples for 2020-2021

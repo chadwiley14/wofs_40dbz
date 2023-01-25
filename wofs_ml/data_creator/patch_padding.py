@@ -97,31 +97,47 @@ elif run_num == 5:
 
 elif run_num == 6:
     #make probs into patches 2017
-    probs_2017 = ['/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2017_06.nc']
+    probs_2017 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2017_06.nc')
 
     make_wofs_patches(probs_2017,'2017')
+
 elif run_num == 7:
-    #make probs into patches 2017
-    probs_2018 = ['/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2018_06.nc']
+    #make probs into patches 2018
+    probs_2018 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2018_06.nc')
 
     make_wofs_patches(probs_2018,'2018')
+
 elif run_num == 8:
     #make probs into patches 2017
-    probs_2019 = ['/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2019_06.nc']
+    probs_2019 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2019_06.nc')
 
     make_wofs_patches(probs_2019,'2019')
 
 elif run_num == 9:
     #make probs into patches 2017
-    probs_2020 = ['/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2020_06.nc']
+    probs_2020 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2020_06.nc')
 
     make_wofs_patches(probs_2020,'2020')
 
 elif run_num == 10:
     #make probs into patches 2017
-    probs_2021 = ['/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2021_06.nc']
+    probs_2021 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2021_06.nc')
 
     make_wofs_patches(probs_2021,'2021')
+elif run_num == 11:
+    #combine all probablities
+    patch_2017 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/wofs_probs/wofs_probs_patches_2017.nc')
+    patch_2018 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/wofs_probs/wofs_probs_patches_2018.nc')
+    patch_2019 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/wofs_probs/wofs_probs_patches_2019.nc')
+    patch_2020 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/wofs_probs/wofs_probs_patches_2020.nc')
+    patch_2021 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/wofs_probs/wofs_probs_patches_2021.nc')
+    print('data loaded')
+
+    all_patches = xr.concat([patch_2017,patch_2018,patch_2019,patch_2020,patch_2021], dim = 'n_samples')
+
+    print(all_patches)
+
+    all_patches.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/wofs_probs/wofs_probs_patches_full.nc')  
 
 print('Done')
 

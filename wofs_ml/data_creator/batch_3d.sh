@@ -1,9 +1,8 @@
 #!/bin/bash
-#SBATCH --partition=ai2es
-#SBATCH -w c314
+#SBATCH --partition=large_mem
 #SBATCH --nodes=1
 #SBATCH --ntasks=4
-#SBATCH --mem=10G
+#SBATCH --mem=24G
 #SBATCH --time=02:30:00
 #SBATCH --job-name=3d_examples_dataset
 #SBATCH --mail-user=chadwiley@ou.edu

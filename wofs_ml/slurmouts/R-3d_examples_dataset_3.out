@@ -1,1 +1,18 @@
 Data is loaded
+<xarray.Dataset>
+Dimensions:       (n_samples: 16810, time: 12, lat: 64, lon: 64)
+Dimensions without coordinates: n_samples, time, lat, lon
+Data variables: (12/14)
+    comp_dz_max   (n_samples, time, lat, lon) float32 0.01482 ... 0.004654
+    comp_dz_90    (n_samples, time, lat, lon) float64 0.01602 ... 0.004344
+    comp_dz_avg   (n_samples, time, lat, lon) float32 0.01356 ... 0.00302
+    w_up_max      (n_samples, time, lat, lon) float32 0.01482 ... 0.004654
+    w_up_90       (n_samples, time, lat, lon) float64 0.01602 ... 0.004344
+    w_up_avg      (n_samples, time, lat, lon) float32 0.01356 ... 0.00302
+    ...            ...
+    w_down_avg    (n_samples, time, lat, lon) float32 0.9868 0.9868 ... 0.9865
+    cape_sfc_avg  (n_samples, time, lat, lon) float32 0.004585 ... 0.1602
+    cape_ml_avg   (n_samples, time, lat, lon) float32 0.0 0.0 ... 0.03351
+    cin_sfc_avg   (n_samples, time, lat, lon) float32 1.0 1.0 ... 0.9751 0.9737
+    cin_ml_avg    (n_samples, time, lat, lon) float32 1.0 1.0 ... 0.8529 0.862
+    mrms          (n_samples, time, lat, lon) float32 0.1703 0.1703 ... 0.6871

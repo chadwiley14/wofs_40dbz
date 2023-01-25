@@ -234,8 +234,9 @@ def merge_examples():
     print('Data is loaded')
 
     examples = xr.concat([ex_2017,ex_2019,ex_2020],dim='n_samples')
+    print(examples)
 
-    examples.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/full_examples.nc')
+    examples.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/full_examples.nc')
 
 def extract_labels(cur_file):
     '''

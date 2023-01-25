@@ -232,15 +232,18 @@ def save_lat_lon(lat_patches):
 def make_wofs_patches(ds, year):
     wofs_patches = break_into_patches(ds)
     print('wofs patches shape : %s'%str(np.shape(wofs_patches)))
+    
+    #save data to an xr file
+    vars = [wofs_patches[0]]
+    names =['wofs_probs']
+    size = ['n_samples','lat', 'lon']
 
-    #save
-    vars2 =[wofs_patches]
-    names2 = ['wofs_probs']
-    size2 = ['n_samples','lat', 'lon']
-    tup = [(size2,var)for var in vars2]
-    data_vars2  = {names2 : data_tups for names2, data_tups in zip(names2, tup)}
-    out_ds = xr.Dataset(data_vars2)
+    tuples = [(size,var)for var in vars]
+    data_vars = {name : data_tup for name, data_tup in zip(names, tuples)}
+
+    out_ds = xr.Dataset(data_vars)
     out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/wofs_probs/wofs_probs_patches_%s.nc'%year)
+    print(out_ds)
     print('saved wofs patches %s'%year)
     
 

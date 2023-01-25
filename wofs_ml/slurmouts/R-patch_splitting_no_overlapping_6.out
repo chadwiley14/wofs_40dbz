@@ -1,0 +1,10 @@
+/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/norm/wofs_probs_data_2017_06.nc
+(1, 5120, 64, 64)
+wofs patches shape : (1, 5120, 64, 64)
+<xarray.Dataset>
+Dimensions:     (n_samples: 5120, lat: 64, lon: 64)
+Dimensions without coordinates: n_samples, lat, lon
+Data variables:
+    wofs_probs  (n_samples, lat, lon) float64 0.0 0.0 0.0 0.0 ... 0.0 0.0 0.0
+saved wofs patches 2017
+Done

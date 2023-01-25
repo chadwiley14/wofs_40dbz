@@ -1,0 +1,7 @@
+data loaded
+<xarray.Dataset>
+Dimensions:     (n_samples: 41132, lat: 64, lon: 64)
+Dimensions without coordinates: n_samples, lat, lon
+Data variables:
+    wofs_probs  (n_samples, lat, lon) float64 0.0 0.0 0.0 0.0 ... 0.0 0.0 0.0
+Done
