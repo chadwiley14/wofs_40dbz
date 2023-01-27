@@ -29,14 +29,24 @@ class MaxCriticalSuccessIndex(tf.keras.metrics.Metric):
     """ 
 
     def __init__(self, name="max_csi",
-                 tp = tf.keras.metrics.TruePositives(thresholds=np.arange(0.05,1.05,0.05).tolist()),
-                 fp = tf.keras.metrics.FalsePositives(thresholds=np.arange(0.05,1.05,0.05).tolist()),
-                 fn = tf.keras.metrics.FalseNegatives(thresholds=np.arange(0.05,1.05,0.05).tolist()),
+                scope=None,
+                thresholds=np.arange(0.05,1.05,0.05).tolist(),
                  **kwargs):
         super(MaxCriticalSuccessIndex, self).__init__(name=name, **kwargs)
 
         #initialize csi value, if no data given, it will be 0 
         self.csi = self.add_weight(name="csi", initializer="zeros")
+
+        if scope is None:
+            tp = tf.keras.metrics.TruePositives(thresholds=thresholds)
+            fp = tf.keras.metrics.FalsePositives(thresholds=thresholds)
+            fn = tf.keras.metrics.FalseNegatives(thresholds=thresholds)
+        else:
+            with scope:
+                tp = tf.keras.metrics.TruePositives(thresholds=thresholds)
+                fp = tf.keras.metrics.FalsePositives(thresholds=thresholds)
+                fn = tf.keras.metrics.FalseNegatives(thresholds=thresholds)
+
 
         #store defined metric functions
         self.tp = tp 

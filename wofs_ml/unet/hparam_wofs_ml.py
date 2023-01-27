@@ -95,10 +95,10 @@ HP_CONV_KERNELS = hp.HParam('num_of_kernels', hp.Discrete([4,8,16,32]))
 #unet param
 HP_UNET_DEPTH = hp.HParam('depth_of_unet', hp.Discrete([1,2,3,4]))
 HP_OPTIMIZER = hp.HParam("optimizer", hp.Discrete(["adam", "rmsprop"]))
-HP_LOSS = hp.HParam("loss", hp.Discrete(["binary_crossentropy", 'weighted_binary_crossentropy'])) 
+HP_LOSS = hp.HParam("loss", hp.Discrete(['weighted_binary_crossentropy'])) 
 HP_BATCHNORM = hp.HParam('batchnorm', hp.Discrete([False, True]))
 HP_BATCHSIZE = hp.HParam('batch_size', hp.Discrete([32,64,128,256]))
-HP_LEARNING_RATE = hp.HParam('learning_rate', hp.Discrete([1e-1,1e-2,1e-3,1e-4]))
+HP_LEARNING_RATE = hp.HParam('learning_rate', hp.Discrete([1e-2,1e-3,1e-4, 1e-5]))
 HP_LOSS_WEIGHTS = hp.HParam('loss_weights', hp.Discrete([1.0,2.0,3.0,4.0,5.0]))
 
 HPARAMS = [HP_CONV_LAYERS,
@@ -192,7 +192,7 @@ def model_fn(hparams, seed):
     model = models.unet_2d(INPUT_SHAPE, kernel_list, n_labels=OUTPUT_CLASSES,kernel_size=hparams[HP_CONV_KERNEL_SIZE],
                       stack_num_down=hparams[HP_CONV_LAYERS], stack_num_up=hparams[HP_CONV_LAYERS],
                       activation=hparams[HP_CONV_ACTIVATION], output_activation='Sigmoid', weights=None,
-                      batch_norm=hparams[HP_BATCHNORM], pool='max', unpool='nearest', name='unet')
+                      batch_norm=hparams[HP_BATCHNORM], pool='max', unpool='nearest', name='unet', l2=0.001)
 
     #get metric 
     from custom_metrics_Chad import MaxCriticalSuccessIndex
@@ -216,6 +216,7 @@ def prepare_data():
     examples = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/examples_padding.nc')
     labels = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/labels_padding.nc')
     examples['dz_cress']=examples['dz_cress'].fillna(np.min(examples['dz_cress']))
+    labels['dz_cress_binary'] = scipy.ndimage.maximum_filter(labels['dz_cress_bianry',5])
 
     examples = examples.to_array()
     examples = examples.transpose("n_samples",...)
@@ -249,7 +250,7 @@ def prepare_data():
     test_labels = test_labels.to_dataset(dim = 'variable')
 
     test_examples.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/2021_2017_test_ex.nc')
-    test_labels.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/2021_2017_test_labels.nc')
+    test_labels.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/2021_2017_test_labels_max_filter.nc')
 
 
     ds_train = tf.data.Dataset.from_tensor_slices((train_examples, train_labels)) 
@@ -287,7 +288,7 @@ def run(data, base_logdir, session_id, hparams):
     ds_train,ds_val = data
 
     #batch the training data accordingly !!!CHANGE 3870 to your SAMPLE SIZE !!!
-    ds_train = ds_train.shuffle(32095).batch(hparams[HP_BATCHSIZE])
+    ds_train = ds_train.shuffle(ds_train.cardinality().numpy()).batch(hparams[HP_BATCHSIZE])
 
     #this batch is arbitrary, just needed so that you don't overwhelm RAM. 
     ds_val = ds_val.batch(512)
@@ -301,7 +302,7 @@ def run(data, base_logdir, session_id, hparams):
     hparams_callback = hp.KerasCallback(logdir, hparams)
 
     
-    callback_es = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=8)
+    callback_es = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
     
     #add images to board 
     print(model.summary())

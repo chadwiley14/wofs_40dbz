@@ -20,7 +20,7 @@ MNIST models.
 
 #GRAB GPU0
 import py3nvml
-py3nvml.grab_gpus(num_gpus=1, gpu_select=[2])
+py3nvml.grab_gpus(num_gpus=2, gpu_select=[2,3])
 
 import os.path
 import random
@@ -82,7 +82,7 @@ flags.DEFINE_integer(
 )
 
 
-INPUT_SHAPE = (64,64,14) #12 timesets
+INPUT_SHAPE = (64,64,12,14) #12 timesets
 OUTPUT_CLASSES = 1 #binary output for 12 timesteps
 
 #convolution params
@@ -172,7 +172,7 @@ def build_opt_dict(learning_rate):
     opt_dict['rmsprop'] = tf.keras.optimizers.RMSprop(learning_rate=learning_rate)
     return opt_dict
 
-def model_fn(hparams, seed):
+def model_fn(hparams,seed, scope = None):
     """Create a Keras model with the given hyperparameters.
     Args:
       hparams: A dict mapping hyperparameters in `HPARAMS` to values.
@@ -189,10 +189,10 @@ def model_fn(hparams, seed):
     for i in np.arange(1,hparams[HP_UNET_DEPTH]+1,1):
         kernel_list.append(hparams[HP_CONV_KERNELS]*i)
 
-    model = models.unet_2d(INPUT_SHAPE, kernel_list, n_labels=OUTPUT_CLASSES,kernel_size=hparams[HP_CONV_KERNEL_SIZE],
+    model = models.unet_3d(INPUT_SHAPE, kernel_list, n_labels=OUTPUT_CLASSES,kernel_size=hparams[HP_CONV_KERNEL_SIZE],
                       stack_num_down=hparams[HP_CONV_LAYERS], stack_num_up=hparams[HP_CONV_LAYERS],
                       activation=hparams[HP_CONV_ACTIVATION], output_activation='Sigmoid', weights=None,
-                      batch_norm=hparams[HP_BATCHNORM], pool='max', unpool='nearest', name='unet', l2=0.001)
+                      batch_norm=hparams[HP_BATCHNORM], pool='max', unpool='nearest', name='unet', l2=0.001, collapse=True)
 
     #get metric 
     from custom_metrics_Chad import MaxCriticalSuccessIndex
@@ -204,7 +204,7 @@ def model_fn(hparams, seed):
     loss_dict = build_loss_dict(hparams[HP_LOSS_WEIGHTS])
     model.compile(
         optimizer=opt_dict[hparams[HP_OPTIMIZER]],
-        metrics=[MaxCriticalSuccessIndex(), tf.keras.metrics.AUC(),
+        metrics=[MaxCriticalSuccessIndex(scope = scope), tf.keras.metrics.AUC(),
         tf.keras.metrics.BinaryAccuracy()], #add more metrics here if you want them tf.keras.metrics... loss_dict[hparams[HP_LOSS]]
         loss = loss_dict[hparams[HP_LOSS]])#tf.keras.losses.BinaryCrossentropy(from_logits=False),
 
@@ -225,7 +225,7 @@ def prepare_data():
     labels = labels.transpose(...,"variable")
 
     train_examples = examples[:13448,:,:,:,:]
-    train_labels = labels[:13448,:,:,:,:]#FIX THE BREAKING OF DATASETS
+    train_labels = labels[:13448,:,:,:,:]
 
     val_examples = examples[13448:15129,:,:,:,:]
     val_labels = labels[13448:15129,:,:,:,:]
@@ -286,7 +286,7 @@ def run(data, base_logdir, session_id, hparams):
     ds_train,ds_val = data
 
     #batch the training data accordingly !!!CHANGE 3870 to your SAMPLE SIZE !!!
-    ds_train = ds_train.shuffle(32095).batch(hparams[HP_BATCHSIZE])
+    ds_train = ds_train.shuffle(ds_train.cardinality().numpy()).batch(hparams[HP_BATCHSIZE])
 
     #this batch is arbitrary, just needed so that you don't overwhelm RAM. 
     ds_val = ds_val.batch(512)
@@ -330,6 +330,12 @@ def run_all(logdir, verbose=False):
     """
     data = prepare_data()
     rng = random.Random(0)
+
+    #define Scope
+    mirrored_strat = tf.distribute.MirroredStrategy()
+
+    with mirrored_strat.scope():
+         model = model_fn(hparams=hparams, seed = session_id, scope=mirrored_strat.scope())
 
     with tf.summary.create_file_writer(logdir).as_default():
         hp.hparams_config(hparams=HPARAMS, metrics=METRICS)
