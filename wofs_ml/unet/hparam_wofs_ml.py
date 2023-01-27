@@ -216,7 +216,9 @@ def prepare_data():
     examples = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/examples_padding.nc')
     labels = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/labels_padding.nc')
     examples['dz_cress']=examples['dz_cress'].fillna(np.min(examples['dz_cress']))
-    labels['dz_cress_binary'] = scipy.ndimage.maximum_filter(labels['dz_cress_bianry',5])
+    
+    for n in range(np.size(labels['dz_cress_binary'],axis=0)):
+        labels['dz_cress_binary'][n] = scipy.ndimage.maximum_filter(labels['dz_cress_binary'][n], 5)
 
     examples = examples.to_array()
     examples = examples.transpose("n_samples",...)

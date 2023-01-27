@@ -1,0 +1,29 @@
+2023-01-27 11:30:18.433222: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Traceback (most recent call last):
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/dataset.py", line 1339, in _construct_dataarray
+    variable = self._variables[name]
+KeyError: ('dz_cress_bianry', 5)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_ml.py", line 374, in <module>
+    app.run(main)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/absl/app.py", line 308, in run
+    _run_main(main, args)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/absl/app.py", line 254, in _run_main
+    sys.exit(main(argv))
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_ml.py", line 369, in main
+    run_all(logdir=logdir, verbose=True)
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_ml.py", line 333, in run_all
+    data = prepare_data()
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_ml.py", line 219, in prepare_data
+    labels['dz_cress_binary'] = scipy.ndimage.maximum_filter(labels['dz_cress_bianry',5])
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/dataset.py", line 1430, in __getitem__
+    return self._construct_dataarray(key)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/dataset.py", line 1341, in _construct_dataarray
+    _, name, variable = _get_virtual_variable(self._variables, name, self.dims)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/dataset.py", line 173, in _get_virtual_variable
+    raise KeyError(key)
+KeyError: ('dz_cress_bianry', 5)
