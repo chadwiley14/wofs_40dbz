@@ -8,99 +8,101 @@ from dask.diagnostics import ProgressBar
 import pandas as pd
 import copy
 import sys 
+import argparse
+def create_parser():
+    """
+    This gets the informaiton from the command line
+    that is needed to run the program
+    """
 
-print('grabbing files')
-files = glob.glob('/scratch/randychase/testing_2020_cmb_*.nc')
-files.sort()
+    parser = argparse.ArgumentParser(description="files given",
+                                    fromfile_prefix_chars ='@')
 
-# Arguments passed
-input_array_id = int(sys.argv[1])
+    parser.add_argument('--run_num', type=int, default=None)
 
-train_ds = xr.open_dataset(files[input_array_id],chunks={'n_samples':10})
+    return parser
 
-# #calc min max for each one 
-# print('Computing Max')
-# with ProgressBar():
-#     z_max = train_ds.z_patch.max().compute()
-# print('Computing Min')
-# with ProgressBar():
-#     z_min = train_ds.z_patch.min().compute()
+#create parser
+parser = create_parser()
+args = parser.parse_args()
 
-# print('Max: {}; Min: {};'.format(z_max,z_min))
-    
-# train_ds.close()
-
-#Old 2d method fill val 
-#fill nans with 0s 
-# train_ds = train_ds.fillna(0.0)
-
-# fill nans with minx (its so this is bascially 0 in the scaled space)
-# train_ds = train_ds.fillna(-51)
-
-#bring into memory 
-train_images = train_ds.z_patch.fillna(-39.7).astype(np.float16).values 
-
-#check max value
-print(train_images.max(),train_images.min())
-
-# #check for infs.
-print(np.where(np.isinf(train_images)))
-
-# # #scale inputs to 0 - 1, unstable otherwise, loss goes to infinity 
-# # # mu = np.mean(train_images[train_images != 0.0])
-# # # sigma = np.std(train_images[train_images != 0.0])
-# # # print('SCALARS: {} , {}'.format(mu,sigma))
-# # # train_images = (train_images - mu)/sigma
-
-# #old factors (for 2d models)
-# # maxx = 85.321304
-# # minx = -33.83131
-
-# #new factors 
-# maxx = 90.338135
-# minx = -51.577034
-
-#newnew factors
-maxx = 85.8
-minx = -39.7
-
-train_images = (train_images - minx) / (maxx - minx)
-
-# #check max value
-print(train_images.max(),train_images.min())
-
-#load labels into memory
-train_labels = train_ds.w_patch.astype(np.float16).values 
-
-# #check max value
-print(train_labels.max(),train_labels.min())
-
-#clear up RAM 
-train_ds.close()
-
-#make tensorflow dataset 
-train_dataset = tf.data.Dataset.from_tensor_slices((train_images,train_labels))
-
-#dump to disk 
-tf.data.experimental.save(train_dataset, files[input_array_id][:-2]+ 'tf')
-
-del train_dataset, train_images, train_labels,train_ds
-
-gc.collect()
-
+input_array_id = args.run_num
 
 #load in the examples from ourdisk
 print('grabbing files')
 examples_nc = ('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/full_examples.nc')
 labels_nc = ('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_full/labels_full.nc')
 
-# Arguments passed
-input_array_id = int(sys.argv[1])
+first_indice = input_array_id*2689
+second_indice = first_indice + 2689
+print('first %d'%first_indice)
+print('second %d'%second_indice)
 
-train_ex_ds = xr.load_dataset(examples_nc,chunks={'n_samples':2689})
-train_lb_ds = xr.load_dataset(labels_nc, chunks = {'n_samples':2689})
-#split into train/valid/test (13448,1681,1681)
-#split into train into 5 seperate tf ds (2689)
-#split val into 1
-#split testing into 1
+#load in the chunks
+ex_ds = xr.load_dataset(examples_nc, chunks = {'n_samples' :2689})
+lb_ds = xr.load_dataset(labels_nc, chunks = {'n_samples' :2689})
+
+
+#based on the run num it multiplies the run num by 2689 for the first
+#indices and adds 2689 to the first indice to get the second indice. Stop onces it
+#gets to 13448
+
+#get the slice
+if second_indice <= 13448:
+    #This is the training ds
+    ds_temp_ex = ex_ds.isel(n_samples=slice(first_indice,second_indice))
+    ds_temp_lb = lb_ds.isel(n_samples=slice(first_indice,second_indice))
+
+    ds_temp_ex = ds_temp_ex.to_array()
+    ds_temp_lb = ds_temp_lb.to_array()
+
+    #data must be in certain shape (n_samples,lat,lon,time,variable)
+    ds_temp_ex  = ds_temp_ex.transpose('n_samples',...)
+    ds_temp_ex = ds_temp_ex.transpose(...,'variable')
+
+    ds_temp_lb  = ds_temp_lb.transpose('n_samples',...)
+    ds_temp_lb = ds_temp_lb.transpose(...,'variable')
+
+
+    training_ds = tf.data.Dataset.from_tensor_slices((ds_temp_ex,ds_temp_lb))
+
+    #dump to disk
+    tf.data.experimental.save(training_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/training_ds_%d.tf'%input_array_id)
+    print('saved %d'%input_array_id)
+else:
+    #this is the validation and testing ds
+    ds_temp_ex_val = ex_ds.isel(n_samples=slice(13445,15129))
+    ds_temp_lb_val = lb_ds.isel(n_samples=slice(3445,15129))
+
+    ds_temp_ex_test = ex_ds.isel(n_samples=slice(15129,16810))
+    ds_temp_lb_test = lb_ds.isel(n_samples=slice(15129,16810))
+
+    ds_temp_ex_val = ds_temp_ex_val.to_array()
+    ds_temp_lb_val = ds_temp_lb_val.to_array()
+
+    ds_temp_ex_test = ds_temp_ex_test.to_array()
+    ds_temp_lb_test = ds_temp_lb_test.to_array()
+
+    #data must be in certain shape (n_samples,lat,lon,time,variable)
+    #validation
+    ds_temp_ex_val  = ds_temp_ex_val.transpose('n_samples',...)
+    ds_temp_ex_val = ds_temp_ex_val.transpose(...,'variable')
+
+    ds_temp_lb_val  = ds_temp_lb_val.transpose('n_samples',...)
+    ds_temp_lb_val = ds_temp_lb_val.transpose(...,'variable')
+
+    #testing
+    ds_temp_ex_test  = ds_temp_ex_test.transpose('n_samples',...)
+    ds_temp_ex_test = ds_temp_ex_test.transpose(...,'variable')
+
+    ds_temp_lb_test  = ds_temp_lb_test.transpose('n_samples',...)
+    ds_temp_lb_test = ds_temp_lb_test.transpose(...,'variable')
+
+    val_ds = tf.data.Dataset.from_tensor_slices((ds_temp_ex_val,ds_temp_lb_val))
+    test_ds = tf.data.Dataset.from_tensor_slices((ds_temp_ex_test,ds_temp_lb_test))
+
+    #dump to disk
+    tf.data.experimental.save(val_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/val_ds.tf')
+    tf.data.experimental.save(test_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/val_ds.tf')
+    print('saved val and testing')
 
