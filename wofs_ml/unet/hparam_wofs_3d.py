@@ -226,7 +226,7 @@ def model_fn(hparams,seed, mirrored_strat = None):
         model = models.unet_3d(INPUT_SHAPE, kernel_list, n_labels=OUTPUT_CLASSES,kernel_size=hparams[HP_CONV_KERNEL_SIZE],
                         stack_num_down=hparams[HP_CONV_LAYERS], stack_num_up=hparams[HP_CONV_LAYERS],
                         activation=hparams[HP_CONV_ACTIVATION], output_activation='Sigmoid', weights=None,
-                        batch_norm=hparams[HP_BATCHNORM], pool='max', unpool='nearest', name='unet', l2=0.001, collapse=True)
+                        batch_norm=hparams[HP_BATCHNORM], pool='max', unpool='nearest', name='unet', l2=0.001, collapse=False)
 
         #get metric 
         from custom_metrics_Chad import MaxCriticalSuccessIndex
@@ -389,7 +389,7 @@ def run(data, base_logdir, session_id, hparams):
     
 
     #save trained model, need to build path first 
-    split_dir = logdir.split('log1')
+    split_dir = logdir.split('log_3d')
     right = split_dir[0][:-1] + split_dir[1]
     left = '/scratch/chadwiley/models_3d/'
     model.save(left + right + "model.h5")
