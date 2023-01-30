@@ -249,31 +249,29 @@ def model_fn(hparams,seed, mirrored_strat = None):
 
 def prepare_data():
     #grab tf ds
-    tf_ds_files = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/training_ds_20*')
-    tf_ds_files.sort()
+    train_files = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/training_ds_20*')
+    train_files.sort()
 
-    #load in the dataset
-    all_tf_ds = tf.data.experimental.load(tf_ds_files.pop(0))
-    print(all_tf_ds)
+    val_files = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/val_ds_20*')
+    val_files.sort()
 
+    #load in the training ds
+    train_ds = tf.data.experimental.load(train_files.pop(0))
+    for i in train_files:
+        temp_train = tf.data.experimental.load(i)
+        train_ds = train_ds.concatenate(temp_train)
 
-    #concate each of the files together
-    for i in tf_ds_files:
-        temp_ds = tf.data.experimental.load(i)
-        all_tf_ds = all_tf_ds.concatenate(temp_ds)
+    #load in the validation
+    val_ds = tf.data.experimental.load(val_files.pop(0))
+    for j in val_files:
+        temp_val = tf.data.experimental.load(j)
+        val_ds = val_ds.concatenate(temp_val)
 
-    #load onto disk
-    all_tf_ds = all_tf_ds.cache()
+    #bring into memory
+    train_ds = train_ds.cache()
+    val_ds = val_ds.cache()
 
-    #split into training/val/testing
-    training_ds = all_tf_ds[:12447]
-    val_ds = all_tf_ds[12447:14002]
-    testing_ds = all_tf_ds[14002:,]
-
-    #save testing dataset
-    tf.data.experimental.save(testing_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/testing.tf')
-
-    return (training_ds,val_ds)
+    return(train_ds,val_ds)
 
 
 # def prepare_data():

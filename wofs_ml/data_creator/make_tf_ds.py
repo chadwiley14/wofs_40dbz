@@ -45,6 +45,11 @@ for n in range(np.size(examples_nc)):
     cur_examples = xr.load_dataset(examples_nc[n])
     cur_labels = xr.load_dataset(labels_nc[n])
 
+    #get sizes for split
+    train_size = int(np.size(cur_examples['n_samples'], axis =0)*0.8)
+    val_size = int(np.size(cur_examples['n_samples'], axis =0)*0.1)
+
+
     #make into arrays
     cur_examples=cur_examples.to_array()
     cur_labels=cur_labels.to_array()
@@ -55,11 +60,38 @@ for n in range(np.size(examples_nc)):
 
     cur_labels = cur_labels.transpose('n_samples',...)
     cur_labels = cur_labels.transpose(...,'variable')
+    print('---------------------')
+    print('Total Shape: %s'%str(np.shape(cur_examples)))
 
-    training_ds = tf.data.Dataset.from_tensor_slices((cur_examples,cur_labels))
+    #split into training/val/testing sets
+    cur_training_ex = cur_examples[:train_size]
+    cur_training_lb = cur_labels[:train_size]
+
+    cur_val_ex = cur_examples[train_size:(train_size + val_size)]
+    cur_val_lb = cur_labels[train_size:(train_size + val_size)]
+
+    cur_test_ex = cur_examples[(train_size+val_size):]
+    cur_test_lb = cur_labels[(train_size+val_size):]
+
+    print('Train Ex : %s'%str(np.shape(cur_training_ex)))
+    print('Train Lb : %s'%str(np.shape(cur_training_lb)))
+    print('---------------------------------------------\n')
+    print('Val Ex : %s'%str(np.shape(cur_val_ex)))
+    print('Val Lb : %s'%str(np.shape(cur_val_lb)))
+    print('---------------------------------------------\n')
+    print('Testing Ex : %s'%str(np.shape(cur_test_ex)))
+    print('Testing Lb : %s'%str(np.shape(cur_test_lb)))
+    print('---------------------------------------------\n')
+
+
+    training_ds = tf.data.Dataset.from_tensor_slices((cur_training_ex,cur_training_lb))
+    val_ds = tf.data.Dataset.from_tensor_slices((cur_val_ex,cur_val_lb))
+    test_ds = tf.data.Dataset.from_tensor_slices((cur_test_ex,cur_test_lb))
 
     tf.data.experimental.save(training_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/training_ds_%s.tf'%year[n])
-    print('saved %s'%year)
+    tf.data.experimental.save(val_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/val_ds_%s.tf'%year[n])
+    tf.data.experimental.save(test_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/test_ds_%s.tf'%year[n])
+    print('saved %s'%year[n])
 
 
     

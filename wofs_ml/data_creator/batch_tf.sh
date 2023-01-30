@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --partition=normal
+#SBATCH --partition=large_mem
 #SBATCH --nodes=1
 #SBATCH --ntasks=4
 #SBATCH --mem=24G
