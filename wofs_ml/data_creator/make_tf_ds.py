@@ -56,9 +56,11 @@ for n in range(np.size(examples_nc)):
 
 
     cur_examples = cur_examples.transpose('n_samples',...)
+    cur_examples = cur_examples.transpose(...,'time')
     cur_examples = cur_examples.transpose(...,'variable')
 
     cur_labels = cur_labels.transpose('n_samples',...)
+    cur_labels = cur_labels.transpose(...,'time')
     cur_labels = cur_labels.transpose(...,'variable')
     print('---------------------')
     print('Total Shape: %s'%str(np.shape(cur_examples)))
