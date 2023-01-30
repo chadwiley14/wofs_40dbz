@@ -20,7 +20,7 @@ MNIST models.
 
 #GRAB GPU0
 import py3nvml
-py3nvml.grab_gpus(num_gpus=2, gpu_select=[2,3])
+py3nvml.grab_gpus(num_gpus=3, gpu_select=[0,1,2,3])
 
 import os.path
 import random
@@ -38,6 +38,7 @@ import matplotlib.pyplot as plt
 import io
 import scipy
 from scipy.ndimage import gaussian_filter
+import glob
 
 # import tensorflow_probability as tfp
 
@@ -154,7 +155,37 @@ METRICS = [
         'epoch_auc',
         group = "validation",
         display_name='Val. AUC'
-    )
+    ),
+    hp.Metric(
+        'epoch_max_csi_0',
+        group = 'train',
+        display_name = 'Train Max CSI t=0',
+    ),
+    hp.Metric(
+        'epoch_max_csi_30',
+        group = 'train',
+        display_name = 'Train Max CSI t=30',
+    ),
+    hp.Metric(
+        'epoch_max_csi_55',
+        group = 'train',
+        display_name = 'Train Max CSI t=55',
+    ),
+    hp.Metric(
+        'epoch_max_csi_0',
+        group = 'validation',
+        display_name = 'Val. Max CSI t=0',
+    ),
+    hp.Metric(
+        'epoch_max_csi_30',
+        group = 'validation',
+        display_name = 'Val. Max CSI t=30',
+    ),
+    hp.Metric(
+        'epoch_max_csi_55',
+        group = 'validation',
+        display_name = 'Val. Max CSI t=55',
+    ),
 ]
 
 def build_loss_dict(weight):
@@ -172,7 +203,8 @@ def build_opt_dict(learning_rate):
     opt_dict['rmsprop'] = tf.keras.optimizers.RMSprop(learning_rate=learning_rate)
     return opt_dict
 
-def model_fn(hparams,seed, scope = None):
+
+def model_fn(hparams,seed, mirrored_strat = None):
     """Create a Keras model with the given hyperparameters.
     Args:
       hparams: A dict mapping hyperparameters in `HPARAMS` to values.
@@ -188,86 +220,125 @@ def model_fn(hparams,seed, scope = None):
     kernel_list = []
     for i in np.arange(1,hparams[HP_UNET_DEPTH]+1,1):
         kernel_list.append(hparams[HP_CONV_KERNELS]*i)
+    
+    with mirrored_strat.scope():
 
-    model = models.unet_3d(INPUT_SHAPE, kernel_list, n_labels=OUTPUT_CLASSES,kernel_size=hparams[HP_CONV_KERNEL_SIZE],
-                      stack_num_down=hparams[HP_CONV_LAYERS], stack_num_up=hparams[HP_CONV_LAYERS],
-                      activation=hparams[HP_CONV_ACTIVATION], output_activation='Sigmoid', weights=None,
-                      batch_norm=hparams[HP_BATCHNORM], pool='max', unpool='nearest', name='unet', l2=0.001, collapse=True)
+        model = models.unet_3d(INPUT_SHAPE, kernel_list, n_labels=OUTPUT_CLASSES,kernel_size=hparams[HP_CONV_KERNEL_SIZE],
+                        stack_num_down=hparams[HP_CONV_LAYERS], stack_num_up=hparams[HP_CONV_LAYERS],
+                        activation=hparams[HP_CONV_ACTIVATION], output_activation='Sigmoid', weights=None,
+                        batch_norm=hparams[HP_BATCHNORM], pool='max', unpool='nearest', name='unet', l2=0.001, collapse=True)
 
-    #get metric 
-    from custom_metrics_Chad import MaxCriticalSuccessIndex
-    from custom_metrics_Chad import WeightedBinaryCrossEntropy
+        #get metric 
+        from custom_metrics_Chad import MaxCriticalSuccessIndex
+        from custom_metrics_Chad import WeightedBinaryCrossEntropy
 
-    #compile losses: 
-    #loss_dict = build_loss_dict(hparams[HP_LOSS_WEIGHT],hparams[HP_LOSS_THRESH])
-    opt_dict = build_opt_dict(hparams[HP_LEARNING_RATE])
-    loss_dict = build_loss_dict(hparams[HP_LOSS_WEIGHTS])
-    model.compile(
-        optimizer=opt_dict[hparams[HP_OPTIMIZER]],
-        metrics=[MaxCriticalSuccessIndex(scope = scope), tf.keras.metrics.AUC(),
-        tf.keras.metrics.BinaryAccuracy()], #add more metrics here if you want them tf.keras.metrics... loss_dict[hparams[HP_LOSS]]
-        loss = loss_dict[hparams[HP_LOSS]])#tf.keras.losses.BinaryCrossentropy(from_logits=False),
+        #compile losses: 
+        #loss_dict = build_loss_dict(hparams[HP_LOSS_WEIGHT],hparams[HP_LOSS_THRESH])
+        opt_dict = build_opt_dict(hparams[HP_LEARNING_RATE])
+        loss_dict = build_loss_dict(hparams[HP_LOSS_WEIGHTS])
+        model.compile(
+            optimizer=opt_dict[hparams[HP_OPTIMIZER]],
+            metrics=[MaxCriticalSuccessIndex(name = 'max_csi_0', scope = mirrored_strat, is_3D = True, time_index = 0),
+                    MaxCriticalSuccessIndex(name = 'max_csi_30', scope = mirrored_strat, is_3D = True, time_index = 6),
+                    MaxCriticalSuccessIndex(name = 'max_csi_55', scope = mirrored_strat, is_3D = True, time_index = 11),
+                    tf.keras.metrics.AUC(),
+                    tf.keras.metrics.BinaryAccuracy()], #add more metrics here if you want them tf.keras.metrics... loss_dict[hparams[HP_LOSS]]
+            loss = loss_dict[hparams[HP_LOSS]])#tf.keras.losses.BinaryCrossentropy(from_logits=False),
 
     return model
 
 def prepare_data():
-    """ Load data """
-    #load in the training data.
-    examples = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/full_examples.nc')
-    labels = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_full/labels_full.nc')
+    #grab tf ds
+    tf_ds_files = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/training_ds_20*')
+    tf_ds_files.sort()
 
-    examples = examples.to_array()
-    examples = examples.transpose("n_samples",...)
-    examples = examples.transpose(...,"variable")
-
-    labels = labels.to_array()
-    labels = labels.transpose("n_samples", ...)
-    labels = labels.transpose(...,"variable")
-
-    train_examples = examples[:13448,:,:,:,:]
-    train_labels = labels[:13448,:,:,:,:]
-
-    val_examples = examples[13448:15129,:,:,:,:]
-    val_labels = labels[13448:15129,:,:,:,:]
-
-    train_examples = train_examples.to_numpy()
-    train_labels = train_labels.to_numpy()
-
-    val_examples = val_examples.to_numpy()
-    val_labels = val_labels.to_numpy()
-
-    print(np.shape(train_examples))
-    print(np.shape(train_labels))
-    print(np.shape(val_examples))
-    print(np.shape(val_labels))
-
-    test_examples = examples[15129:,:,:,:,:]
-    test_labels = labels[15129:,:,:,:,:]
-
-    test_examples = test_examples.to_dataset(dim = 'variable')
-    test_labels = test_labels.to_dataset(dim = 'variable')
-
-    test_examples.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/3d_test_ex.nc')
-    test_labels.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_full/3d_test_labels.nc')
+    #load in the dataset
+    all_tf_ds = tf.data.experimental.load(tf_ds_files.pop(0))
+    print(all_tf_ds)
 
 
-    ds_train = tf.data.Dataset.from_tensor_slices((train_examples, train_labels)) 
-    ds_val = tf.data.Dataset.from_tensor_slices((val_examples, val_labels))
+    #concate each of the files together
+    for i in tf_ds_files:
+        temp_ds = tf.data.experimental.load(i)
+        all_tf_ds = all_tf_ds.concatenate(temp_ds)
 
-    #do this for both training and validations
-    #load netcdf
-    #convert to tensors ds_train = tf.data.Dataset.from_???_tensors(([125,125,7], [125,125,1]))
+    #load onto disk
+    all_tf_ds = all_tf_ds.cache()
+
+    #split into training/val/testing
+    training_ds = all_tf_ds[:12447]
+    val_ds = all_tf_ds[12447:14002]
+    testing_ds = all_tf_ds[14002:,]
+
+    #save testing dataset
+    tf.data.experimental.save(testing_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/testing.tf')
+
+    return (training_ds,val_ds)
+
+
+# def prepare_data():
+#     """ Load data """
+#     #load in the training data.
+#     examples = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/training_ds_*')
+#     val = '/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/val_ds.tf'
+
+#     #load and concat the examples into one ds
+#     #DO THIS
+#     examples = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/full_examples.nc')
+#     labels = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_full/labels_full.nc')
+
+#     examples = examples.to_array()
+#     examples = examples.transpose("n_samples",...)
+#     examples = examples.transpose(...,"variable")
+
+#     labels = labels.to_array()
+#     labels = labels.transpose("n_samples", ...)
+#     labels = labels.transpose(...,"variable")
+
+#     train_examples = examples[:13448,:,:,:,:]
+#     train_labels = labels[:13448,:,:,:,:]
+
+#     val_examples = examples[13448:15129,:,:,:,:]
+#     val_labels = labels[13448:15129,:,:,:,:]
+
+#     train_examples = train_examples.to_numpy()
+#     train_labels = train_labels.to_numpy()
+
+#     val_examples = val_examples.to_numpy()
+#     val_labels = val_labels.to_numpy()
+
+#     print(np.shape(train_examples))
+#     print(np.shape(train_labels))
+#     print(np.shape(val_examples))
+#     print(np.shape(val_labels))
+
+#     test_examples = examples[15129:,:,:,:,:]
+#     test_labels = labels[15129:,:,:,:,:]
+
+#     test_examples = test_examples.to_dataset(dim = 'variable')
+#     test_labels = test_labels.to_dataset(dim = 'variable')
+
+#     test_examples.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/3d_test_ex.nc')
+#     test_labels.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_full/3d_test_labels.nc')
+
+
+#     ds_train = tf.data.Dataset.from_tensor_slices((train_examples, train_labels)) 
+#     ds_val = tf.data.Dataset.from_tensor_slices((val_examples, val_labels))
+
+#     #do this for both training and validations
+#     #load netcdf
+#     #convert to tensors ds_train = tf.data.Dataset.from_???_tensors(([125,125,7], [125,125,1]))
      
-    #This is the tf.dataset route 
-    # x_tensor_shape = (128, 128, 29)
-    # y_tensor_shape = (128, 128, 1)
-    # elem_spec = (tf.TensorSpec(shape=x_tensor_shape, dtype=tf.float16), tf.TensorSpec(shape=y_tensor_shape, dtype=tf.float16))
+#     #This is the tf.dataset route 
+#     # x_tensor_shape = (128, 128, 29)
+#     # y_tensor_shape = (128, 128, 1)
+#     # elem_spec = (tf.TensorSpec(shape=x_tensor_shape, dtype=tf.float16), tf.TensorSpec(shape=y_tensor_shape, dtype=tf.float16))
 
-    # ds_train = tf.data.experimental.load('/scratch/randychase/updraft_training2.tf',
-    #                                     elem_spec)
+#     # ds_train = tf.data.experimental.load('/scratch/randychase/updraft_training2.tf',
+#     #                                     elem_spec)
 
-    # ds_val = tf.data.experimental.load('/scratch/randychase/updraft_validation2.tf',
-    #                                     elem_spec)
+#     # ds_val = tf.data.experimental.load('/scratch/randychase/updraft_validation2.tf',
+#     #                                     elem_spec)
     
     return (ds_train, ds_val)
 
@@ -280,7 +351,12 @@ def run(data, base_logdir, session_id, hparams):
       session_id: A unique string ID for this session.
       hparams: A dict mapping hyperparameters in `HPARAMS` to values.
     """
-    model = model_fn(hparams=hparams, seed=session_id)
+
+    #define Scope
+    mirrored_strat = tf.distribute.MirroredStrategy()
+
+    model = model_fn(hparams=hparams, seed = session_id, mirrored_strat=mirrored_strat)
+    
     logdir = os.path.join(base_logdir, session_id)
 
     ds_train,ds_val = data
@@ -317,7 +393,7 @@ def run(data, base_logdir, session_id, hparams):
     #save trained model, need to build path first 
     split_dir = logdir.split('log1')
     right = split_dir[0][:-1] + split_dir[1]
-    left = '/scratch/chadwiley/models/'
+    left = '/scratch/chadwiley/models_3d/'
     model.save(left + right + "model.h5")
 
 
@@ -330,12 +406,6 @@ def run_all(logdir, verbose=False):
     """
     data = prepare_data()
     rng = random.Random(0)
-
-    #define Scope
-    mirrored_strat = tf.distribute.MirroredStrategy()
-
-    with mirrored_strat.scope():
-         model = model_fn(hparams=hparams, seed = session_id, scope=mirrored_strat.scope())
 
     with tf.summary.create_file_writer(logdir).as_default():
         hp.hparams_config(hparams=HPARAMS, metrics=METRICS)

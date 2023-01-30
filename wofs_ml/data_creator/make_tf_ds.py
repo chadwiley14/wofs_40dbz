@@ -30,79 +30,114 @@ input_array_id = args.run_num
 
 #load in the examples from ourdisk
 print('grabbing files')
-examples_nc = ('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/full_examples.nc')
-labels_nc = ('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_full/labels_full.nc')
+examples_nc = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/20*')
+labels_nc = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_full/labels_20*')
 
-first_indice = input_array_id*2689
-second_indice = first_indice + 2689
-print('first %d'%first_indice)
-print('second %d'%second_indice)
+examples_nc.sort()
+labels_nc.sort()
 
-#load in the chunks
-ex_ds = xr.load_dataset(examples_nc, chunks = {'n_samples' :2689})
-lb_ds = xr.load_dataset(labels_nc, chunks = {'n_samples' :2689})
+year = ['2017-2018', '2019', '2020-2021']
 
+for n in range(np.size(examples_nc)):
+    #load in the files
+    print('example : %s'%examples_nc[n])
+    print('labels : %s'%labels_nc[n])
+    cur_examples = xr.load_dataset(examples_nc[n])
+    cur_labels = xr.load_dataset(labels_nc[n])
 
-#based on the run num it multiplies the run num by 2689 for the first
-#indices and adds 2689 to the first indice to get the second indice. Stop onces it
-#gets to 13448
-
-#get the slice
-if second_indice <= 13448:
-    #This is the training ds
-    ds_temp_ex = ex_ds.isel(n_samples=slice(first_indice,second_indice))
-    ds_temp_lb = lb_ds.isel(n_samples=slice(first_indice,second_indice))
-
-    ds_temp_ex = ds_temp_ex.to_array()
-    ds_temp_lb = ds_temp_lb.to_array()
-
-    #data must be in certain shape (n_samples,lat,lon,time,variable)
-    ds_temp_ex  = ds_temp_ex.transpose('n_samples',...)
-    ds_temp_ex = ds_temp_ex.transpose(...,'variable')
-
-    ds_temp_lb  = ds_temp_lb.transpose('n_samples',...)
-    ds_temp_lb = ds_temp_lb.transpose(...,'variable')
+    #make into arrays
+    cur_examples=cur_examples.to_array()
+    cur_labels=cur_labels.to_array()
 
 
-    training_ds = tf.data.Dataset.from_tensor_slices((ds_temp_ex,ds_temp_lb))
+    cur_examples = cur_examples.transpose('n_samples',...)
+    cur_examples = cur_examples.transpose(...,'variable')
 
-    #dump to disk
-    tf.data.experimental.save(training_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/training_ds_%d.tf'%input_array_id)
-    print('saved %d'%input_array_id)
-else:
-    #this is the validation and testing ds
-    ds_temp_ex_val = ex_ds.isel(n_samples=slice(13445,15129))
-    ds_temp_lb_val = lb_ds.isel(n_samples=slice(3445,15129))
+    cur_labels = cur_labels.transpose('n_samples',...)
+    cur_labels = cur_labels.transpose(...,'variable')
 
-    ds_temp_ex_test = ex_ds.isel(n_samples=slice(15129,16810))
-    ds_temp_lb_test = lb_ds.isel(n_samples=slice(15129,16810))
+    training_ds = tf.data.Dataset.from_tensor_slices((cur_examples,cur_labels))
 
-    ds_temp_ex_val = ds_temp_ex_val.to_array()
-    ds_temp_lb_val = ds_temp_lb_val.to_array()
+    tf.data.experimental.save(training_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/training_ds_%s.tf'%year[n])
+    print('saved %s'%year)
 
-    ds_temp_ex_test = ds_temp_ex_test.to_array()
-    ds_temp_lb_test = ds_temp_lb_test.to_array()
 
-    #data must be in certain shape (n_samples,lat,lon,time,variable)
-    #validation
-    ds_temp_ex_val  = ds_temp_ex_val.transpose('n_samples',...)
-    ds_temp_ex_val = ds_temp_ex_val.transpose(...,'variable')
+    
 
-    ds_temp_lb_val  = ds_temp_lb_val.transpose('n_samples',...)
-    ds_temp_lb_val = ds_temp_lb_val.transpose(...,'variable')
+# first_indice = input_array_id*2689
+# second_indice = first_indice + 2689
+# print('first %d'%first_indice)
+# print('second %d'%second_indice)
 
-    #testing
-    ds_temp_ex_test  = ds_temp_ex_test.transpose('n_samples',...)
-    ds_temp_ex_test = ds_temp_ex_test.transpose(...,'variable')
+# #load in the chunks
+# ex_ds = xr.load_dataset(examples_nc, chunks = {'n_samples' :2689})
+# lb_ds = xr.load_dataset(labels_nc, chunks = {'n_samples' :2689})
 
-    ds_temp_lb_test  = ds_temp_lb_test.transpose('n_samples',...)
-    ds_temp_lb_test = ds_temp_lb_test.transpose(...,'variable')
+# print('examples : ', ex_ds)
 
-    val_ds = tf.data.Dataset.from_tensor_slices((ds_temp_ex_val,ds_temp_lb_val))
-    test_ds = tf.data.Dataset.from_tensor_slices((ds_temp_ex_test,ds_temp_lb_test))
+# print('labels : ', lb_ds)
 
-    #dump to disk
-    tf.data.experimental.save(val_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/val_ds.tf')
-    tf.data.experimental.save(test_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/val_ds.tf')
-    print('saved val and testing')
+
+# #based on the run num it multiplies the run num by 2689 for the first
+# #indices and adds 2689 to the first indice to get the second indice. Stop onces it
+# #gets to 13448
+
+# #get the slice
+# if second_indice <= 13448:
+#     #This is the training ds
+#     ds_temp_ex = ex_ds.isel(n_samples=slice(first_indice,second_indice))
+#     ds_temp_lb = lb_ds.isel(n_samples=slice(first_indice,second_indice))
+
+#     ds_temp_ex = ds_temp_ex.to_array()
+#     ds_temp_lb = ds_temp_lb.to_array()
+
+#     #data must be in certain shape (n_samples,lat,lon,time,variable)
+#     ds_temp_ex  = ds_temp_ex.transpose('n_samples',...)
+#     ds_temp_ex = ds_temp_ex.transpose(...,'variable')
+
+#     ds_temp_lb  = ds_temp_lb.transpose('n_samples',...)
+#     ds_temp_lb = ds_temp_lb.transpose(...,'variable')
+
+
+#     training_ds = tf.data.Dataset.from_tensor_slices((ds_temp_ex,ds_temp_lb))
+
+#     #dump to disk
+#     tf.data.experimental.save(training_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/training_ds_%d.tf'%input_array_id)
+#     print('saved %d'%input_array_id)
+# else:
+#     #this is the validation and testing ds
+#     ds_temp_ex_val = ex_ds.isel(n_samples=slice(13445,15129))
+#     ds_temp_lb_val = lb_ds.isel(n_samples=slice(13445,15129))
+
+#     ds_temp_ex_test = ex_ds.isel(n_samples=slice(15129,16810))
+#     ds_temp_lb_test = lb_ds.isel(n_samples=slice(15129,16810))
+
+#     ds_temp_ex_val = ds_temp_ex_val.to_array()
+#     ds_temp_lb_val = ds_temp_lb_val.to_array()
+
+#     ds_temp_ex_test = ds_temp_ex_test.to_array()
+#     ds_temp_lb_test = ds_temp_lb_test.to_array()
+
+#     #data must be in certain shape (n_samples,lat,lon,time,variable)
+#     #validation
+#     ds_temp_ex_val  = ds_temp_ex_val.transpose('n_samples',...)
+#     ds_temp_ex_val = ds_temp_ex_val.transpose(...,'variable')
+
+#     ds_temp_lb_val  = ds_temp_lb_val.transpose('n_samples',...)
+#     ds_temp_lb_val = ds_temp_lb_val.transpose(...,'variable')
+
+#     #testing
+#     ds_temp_ex_test  = ds_temp_ex_test.transpose('n_samples',...)
+#     ds_temp_ex_test = ds_temp_ex_test.transpose(...,'variable')
+
+#     ds_temp_lb_test  = ds_temp_lb_test.transpose('n_samples',...)
+#     ds_temp_lb_test = ds_temp_lb_test.transpose(...,'variable')
+
+#     val_ds = tf.data.Dataset.from_tensor_slices((ds_temp_ex_val,ds_temp_lb_val))
+#     test_ds = tf.data.Dataset.from_tensor_slices((ds_temp_ex_test,ds_temp_lb_test))
+
+#     #dump to disk
+#     tf.data.experimental.save(val_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/val_ds.tf')
+#     tf.data.experimental.save(test_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/tf_ds/val_ds.tf')
+#     print('saved val and testing')
 

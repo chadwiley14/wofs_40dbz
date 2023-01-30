@@ -29,24 +29,28 @@ class MaxCriticalSuccessIndex(tf.keras.metrics.Metric):
     """ 
 
     def __init__(self, name="max_csi",
-                scope=None,
-                thresholds=np.arange(0.05,1.05,0.05).tolist(),
+                #  tp = tf.keras.metrics.TruePositives(thresholds=np.arange(0.05,1.05,0.05).tolist()),
+                #  fp = tf.keras.metrics.FalsePositives(thresholds=np.arange(0.05,1.05,0.05).tolist()),
+                #  fn = tf.keras.metrics.FalseNegatives(thresholds=np.arange(0.05,1.05,0.05).tolist()),
+                 is_3D = False,
+                 time_index = 0,
+                 scope = None,
                  **kwargs):
+
+        if scope is not None:
+            with scope.scope():
+                tp = tf.keras.metrics.TruePositives(thresholds=np.arange(0.05,1.05,0.05).tolist())
+                fp = tf.keras.metrics.FalsePositives(thresholds=np.arange(0.05,1.05,0.05).tolist())
+                fn = tf.keras.metrics.FalseNegatives(thresholds=np.arange(0.05,1.05,0.05).tolist())
+        else:
+            tp = tf.keras.metrics.TruePositives(thresholds=np.arange(0.05,1.05,0.05).tolist())
+            fp = tf.keras.metrics.FalsePositives(thresholds=np.arange(0.05,1.05,0.05).tolist())
+            fn = tf.keras.metrics.FalseNegatives(thresholds=np.arange(0.05,1.05,0.05).tolist())
+
         super(MaxCriticalSuccessIndex, self).__init__(name=name, **kwargs)
 
         #initialize csi value, if no data given, it will be 0 
         self.csi = self.add_weight(name="csi", initializer="zeros")
-
-        if scope is None:
-            tp = tf.keras.metrics.TruePositives(thresholds=thresholds)
-            fp = tf.keras.metrics.FalsePositives(thresholds=thresholds)
-            fn = tf.keras.metrics.FalseNegatives(thresholds=thresholds)
-        else:
-            with scope:
-                tp = tf.keras.metrics.TruePositives(thresholds=thresholds)
-                fp = tf.keras.metrics.FalsePositives(thresholds=thresholds)
-                fn = tf.keras.metrics.FalseNegatives(thresholds=thresholds)
-
 
         #store defined metric functions
         self.tp = tp 
@@ -57,21 +61,24 @@ class MaxCriticalSuccessIndex(tf.keras.metrics.Metric):
         self.fp.reset_state()
         self.fn.reset_state()
 
+        self.is_3D = is_3D
+        self.time_index = time_index
+
     def update_state(self, y_true, y_pred, sample_weight=None):
-        
-        if (len(y_true.shape[1:]) > 2 ) and (y_true.shape[-1] == 2):
-            #convert back to 1 map 
-            y_true = tf.where(y_true[:,:,:,1]>0,1,0)
-            #ypred[:,:,:,0] = 1 - y_pred[:,:,:,1]
-            y_pred = y_pred[:,:,:,1]
-            #ravel for pixelwise comparison
-            y_true = tf.experimental.numpy.ravel(y_true)
-            y_pred = tf.experimental.numpy.ravel(y_pred)
+        if len(y_true.shape) > 1:
+            if y_true.shape[-1] > 1:
+                raise Exception("Max CSI not supported for non-binary rn")
+            if self.is_3D:
+                y_true = y_true[...,self.time_index,0]
+                y_pred = y_pred[...,self.time_index,0]
+            else:
+                y_true = y_true[...,0]
+                y_pred = y_pred[...,0]
+            
+        #ravel for pixelwise comparison
+        y_true = tf.experimental.numpy.ravel(y_true)
+        y_pred = tf.experimental.numpy.ravel(y_pred)
         #if the output is a map (batch,nx,ny,nl) ravel it
-        elif (len(y_true.shape[1:]) > 2):
-            y_true = tf.experimental.numpy.ravel(y_true)
-            y_pred = tf.experimental.numpy.ravel(y_pred)
-        
 
         #call vectorized stats metrics, add them to running amount of each
         self.tp.update_state(y_true,y_pred)
@@ -203,7 +210,7 @@ def _constant_to_tensor(x, dtype):
 # Fraction Skill Score (FSS) Loss Function - code taken from: https://github.com/CIRA-ML/custom_loss_functions
 # Fraction Skill Score original paper: N.M. Roberts and H.W. Lean, "Scale-Selective Verification of Rainfall
 #     Accumulation from High-Resolution Forecasts of Convective Events", Monthly Weather Review, 2008.
-def make_fractions_skill_score(mask_size, c=1.0, cutoff=0.5, want_hard_discretization=False):
+def make_fractions_skill_score(mask_size, c=1.0, cutoff=0.5, want_hard_discretization=False, scope = None):
     """
     Make fractions skill score loss function. Visit https://github.com/CIRA-ML/custom_loss_functions for documentation.
     Parameters
@@ -255,7 +262,13 @@ def make_fractions_skill_score(mask_size, c=1.0, cutoff=0.5, want_hard_discretiz
 
         y_pred_density = pool2(y_pred_binary)
 
-        MSE_n = tf.keras.metrics.mean_squared_error(y_true_density, y_pred_density)
+        if scope is not None:
+
+            with scope:
+                MSE_n = tf.keras.metrics.mean_squared_error(y_true_density, y_pred_density)
+        else:
+            MSE_n = tf.keras.metrics.mean_squared_error(y_true_density, y_pred_density)
+        
 
         O_n_squared_image = tf.keras.layers.Multiply()([y_true_density, y_true_density])
         O_n_squared_vector = tf.keras.layers.Flatten()(O_n_squared_image)

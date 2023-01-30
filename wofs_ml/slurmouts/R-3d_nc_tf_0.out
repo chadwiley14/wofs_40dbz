@@ -1,3 +1,10 @@
 grabbing files
-first 0
-second 2689
+example : /ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/2017-2018examples.nc
+labels : /ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_full/labels_2017-2018.nc
+saved ['2017-2018', '2019', '2020-2021']
+example : /ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/2019examples.nc
+labels : /ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_full/labels_2019.nc
+saved ['2017-2018', '2019', '2020-2021']
+example : /ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/2020_2021examples.nc
+labels : /ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_full/labels_2020-2021.nc
+saved ['2017-2018', '2019', '2020-2021']

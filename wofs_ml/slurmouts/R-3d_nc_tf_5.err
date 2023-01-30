@@ -1,2 +1,18 @@
-2023-01-27 15:55:55.417369: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+2023-01-27 16:52:05.894091: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-27 17:03:00.696581: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2023-01-27 17:03:00.696786: W tensorflow/stream_executor/cuda/cuda_driver.cc:263] failed call to cuInit: UNKNOWN ERROR (303)
+2023-01-27 17:03:00.696857: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (andre.oscer.ou.edu): /proc/driver/nvidia/version does not exist
+2023-01-27 17:03:00.697307: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Traceback (most recent call last):
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/make_tf_ds.py", line 106, in <module>
+    test_ds = tf.data.Dataset.from_tensor_slices((ds_temp_ex_test,ds_temp_lb_test))
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/data/ops/dataset_ops.py", line 814, in from_tensor_slices
+    return TensorSliceDataset(tensors, name=name)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/data/ops/dataset_ops.py", line 4720, in __init__
+    batch_dim.assert_is_compatible_with(
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/framework/tensor_shape.py", line 299, in assert_is_compatible_with
+    raise ValueError("Dimensions %s and %s are not compatible" %
+ValueError: Dimensions 1681 and 428 are not compatible
+slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name
