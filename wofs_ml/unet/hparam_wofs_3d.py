@@ -20,7 +20,7 @@ MNIST models.
 
 #GRAB GPU0
 import py3nvml
-py3nvml.grab_gpus(num_gpus=3, gpu_select=[0,1,2,3])
+py3nvml.grab_gpus(num_gpus=4, gpu_select=[0,1,2,3])
 
 import os.path
 import random
@@ -61,7 +61,7 @@ if int(tf.__version__.split(".")[0]) < 2:
 
 flags.DEFINE_integer(
     "num_session_groups",
-    25,
+    50,
     "The approximate number of session groups to create.",
 )
 
@@ -99,7 +99,7 @@ HP_OPTIMIZER = hp.HParam("optimizer", hp.Discrete(["adam", "rmsprop"]))
 HP_LOSS = hp.HParam("loss", hp.Discrete(["binary_crossentropy", 'weighted_binary_crossentropy'])) #Does WBC work?
 HP_BATCHNORM = hp.HParam('batchnorm', hp.Discrete([False, True]))
 HP_BATCHSIZE = hp.HParam('batch_size', hp.Discrete([32,64,128,256]))
-HP_LEARNING_RATE = hp.HParam('learning_rate', hp.Discrete([1e-1,1e-2,1e-3,1e-4]))
+HP_LEARNING_RATE = hp.HParam('learning_rate', hp.Discrete([1e-2,1e-3,1e-4]))
 HP_LOSS_WEIGHTS = hp.HParam('loss_weights', hp.Discrete([1.0,2.0,3.0,4.0,5.0]))
 
 HPARAMS = [HP_CONV_LAYERS,
