@@ -1,11 +1,11 @@
-2023-01-29 23:23:36.727864: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+2023-01-30 00:01:37.020091: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2023-01-29 23:26:57.761506: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2023-01-29 23:26:57.761709: W tensorflow/stream_executor/cuda/cuda_driver.cc:263] failed call to cuInit: UNKNOWN ERROR (303)
-2023-01-29 23:26:57.761779: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (andre.oscer.ou.edu): /proc/driver/nvidia/version does not exist
-2023-01-29 23:26:57.762281: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+2023-01-30 00:05:51.725401: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2023-01-30 00:05:51.725594: W tensorflow/stream_executor/cuda/cuda_driver.cc:263] failed call to cuInit: UNKNOWN ERROR (303)
+2023-01-30 00:05:51.725664: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (andre.oscer.ou.edu): /proc/driver/nvidia/version does not exist
+2023-01-30 00:05:51.726185: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
-WARNING:tensorflow:From /home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/make_tf_ds.py:91: save (from tensorflow.python.data.experimental.ops.io) is deprecated and will be removed in a future version.
+WARNING:tensorflow:From /home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/make_tf_ds.py:93: save (from tensorflow.python.data.experimental.ops.io) is deprecated and will be removed in a future version.
 Instructions for updating:
 Use `tf.data.Dataset.save(...)` instead.
 slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name

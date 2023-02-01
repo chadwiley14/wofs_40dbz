@@ -1,0 +1,295 @@
+2023-01-30 10:41:22.533616: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:From /home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py:259: load (from tensorflow.python.data.experimental.ops.io) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.data.Dataset.load(...)` instead.
+W0130 10:41:48.500302 47028306370304 deprecation.py:350] From /home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py:259: load (from tensorflow.python.data.experimental.ops.io) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.data.Dataset.load(...)` instead.
+2023-01-30 10:41:48.573890: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-30 10:41:54.180457: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38259 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:01:00.0, compute capability: 8.0
+2023-01-30 10:41:54.219026: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 38259 MB memory:  -> device: 1, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:41:00.0, compute capability: 8.0
+2023-01-30 10:41:54.220193: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:2 with 38259 MB memory:  -> device: 2, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:81:00.0, compute capability: 8.0
+2023-01-30 10:41:54.221357: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:3 with 38259 MB memory:  -> device: 3, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:c1:00.0, compute capability: 8.0
+INFO:tensorflow:Using MirroredStrategy with devices ('/job:localhost/replica:0/task:0/device:GPU:0', '/job:localhost/replica:0/task:0/device:GPU:1', '/job:localhost/replica:0/task:0/device:GPU:2', '/job:localhost/replica:0/task:0/device:GPU:3')
+I0130 10:41:55.082012 47028306370304 mirrored_strategy.py:374] Using MirroredStrategy with devices ('/job:localhost/replica:0/task:0/device:GPU:0', '/job:localhost/replica:0/task:0/device:GPU:1', '/job:localhost/replica:0/task:0/device:GPU:2', '/job:localhost/replica:0/task:0/device:GPU:3')
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 10:41:55.318960 47028306370304 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 10:41:55.323672 47028306370304 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 10:41:55.326338 47028306370304 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 10:41:55.327092 47028306370304 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 10:41:55.331432 47028306370304 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 10:41:55.334808 47028306370304 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 10:41:55.357737 47028306370304 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 10:41:55.358515 47028306370304 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 10:41:55.360860 47028306370304 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 10:41:55.361606 47028306370304 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+2023-01-30 10:41:55.881857: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:776] AUTO sharding policy will apply DATA sharding policy as it failed to apply FILE sharding policy because of the following reason: Did not find a shardable source, walked to a node which is not a dataset: name: "LoadDataset/_1"
+op: "LoadDataset"
+input: "Const/_0"
+attr {
+  key: "Treader_func_args"
+  value {
+    list {
+    }
+  }
+}
+attr {
+  key: "_cardinality"
+  value {
+    i: 5213
+  }
+}
+attr {
+  key: "compression"
+  value {
+    s: ""
+  }
+}
+attr {
+  key: "output_shapes"
+  value {
+    list {
+      shape {
+        dim {
+          size: 64
+        }
+        dim {
+          size: 64
+        }
+        dim {
+          size: 12
+        }
+        dim {
+          size: 14
+        }
+      }
+      shape {
+        dim {
+          size: 64
+        }
+        dim {
+          size: 64
+        }
+        dim {
+          size: 12
+        }
+        dim {
+          size: 1
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "output_types"
+  value {
+    list {
+      type: DT_DOUBLE
+      type: DT_DOUBLE
+    }
+  }
+}
+attr {
+  key: "reader_func"
+  value {
+    func {
+      name: "__inference_load_lambda_14"
+    }
+  }
+}
+experimental_type {
+  type_id: TFT_PRODUCT
+  args {
+    type_id: TFT_DATASET
+    args {
+      type_id: TFT_PRODUCT
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_DOUBLE
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_DOUBLE
+        }
+      }
+    }
+  }
+}
+. Consider either turning off auto-sharding or switching the auto_shard_policy to DATA to shard this dataset. You can do this by creating a new `tf.data.Options()` object then setting `options.experimental_distribute.auto_shard_policy = AutoShardPolicy.DATA` before applying the options object to the dataset via `dataset.with_options(options)`.
+INFO:tensorflow:batch_all_reduce: 23 all-reduces with algorithm = nccl, num_packs = 1
+I0130 10:41:57.912900 47028306370304 cross_device_ops.py:897] batch_all_reduce: 23 all-reduces with algorithm = nccl, num_packs = 1
+INFO:tensorflow:batch_all_reduce: 23 all-reduces with algorithm = nccl, num_packs = 1
+I0130 10:42:01.873071 47028306370304 cross_device_ops.py:897] batch_all_reduce: 23 all-reduces with algorithm = nccl, num_packs = 1
+2023-01-30 10:42:15.989410: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 347 of 12444
+2023-01-30 10:42:26.003112: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 689 of 12444
+2023-01-30 10:42:35.999022: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 1041 of 12444
+2023-01-30 10:42:45.999871: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 1416 of 12444
+2023-01-30 10:42:55.977465: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 1765 of 12444
+2023-01-30 10:43:05.962746: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 2118 of 12444
+2023-01-30 10:43:15.981593: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 2443 of 12444
+2023-01-30 10:43:25.990845: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 2779 of 12444
+2023-01-30 10:43:35.967713: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3139 of 12444
+2023-01-30 10:43:45.965254: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3490 of 12444
+2023-01-30 10:43:55.975010: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3844 of 12444
+2023-01-30 10:44:06.027351: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4205 of 12444
+2023-01-30 10:44:16.026812: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4522 of 12444
+2023-01-30 10:44:25.983283: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4871 of 12444
+2023-01-30 10:44:35.976654: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5217 of 12444
+2023-01-30 10:44:45.969932: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5564 of 12444
+2023-01-30 10:44:55.966072: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5873 of 12444
+2023-01-30 10:45:06.003174: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6228 of 12444
+2023-01-30 10:45:15.975230: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6587 of 12444
+2023-01-30 10:45:25.996981: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6928 of 12444
+2023-01-30 10:45:36.045294: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7282 of 12444
+2023-01-30 10:45:45.964470: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7622 of 12444
+2023-01-30 10:45:55.972445: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7961 of 12444
+2023-01-30 10:46:05.987581: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8288 of 12444
+2023-01-30 10:46:16.027890: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8614 of 12444
+2023-01-30 10:46:26.030875: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8972 of 12444
+2023-01-30 10:46:36.005142: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9323 of 12444
+2023-01-30 10:46:46.028635: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9680 of 12444
+2023-01-30 10:46:55.991047: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10022 of 12444
+2023-01-30 10:47:05.964429: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10368 of 12444
+2023-01-30 10:47:16.143181: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10731 of 12444
+2023-01-30 10:47:25.975278: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11069 of 12444
+2023-01-30 10:47:35.964766: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11430 of 12444
+2023-01-30 10:47:45.994459: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11778 of 12444
+2023-01-30 10:47:55.963934: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12135 of 12444
+2023-01-30 10:48:04.665080: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2023-01-30 10:48:10.727607: I tensorflow/stream_executor/cuda/cuda_dnn.cc:384] Loaded cuDNN version 8401
+2023-01-30 10:48:10.857077: I tensorflow/stream_executor/cuda/cuda_dnn.cc:384] Loaded cuDNN version 8401
+2023-01-30 10:48:11.135025: I tensorflow/stream_executor/cuda/cuda_dnn.cc:384] Loaded cuDNN version 8401
+2023-01-30 10:48:11.482147: I tensorflow/stream_executor/cuda/cuda_dnn.cc:384] Loaded cuDNN version 8401
+2023-01-30 10:48:18.262342: W tensorflow/stream_executor/gpu/asm_compiler.cc:80] Couldn't get ptxas version string: INTERNAL: Running ptxas --version returned 32512
+2023-01-30 10:48:18.808932: W tensorflow/stream_executor/gpu/redzone_allocator.cc:314] INTERNAL: ptxas exited with non-zero error code 32512, output: 
+Relying on driver to perform ptx compilation. 
+Modify $PATH to customize ptxas location.
+This message will be only logged once.
+2023-01-30 10:48:19.348748: W tensorflow/stream_executor/gpu/asm_compiler.cc:80] Couldn't get ptxas version string: INTERNAL: Running ptxas --version returned 32512
+2023-01-30 10:48:20.446436: W tensorflow/stream_executor/gpu/asm_compiler.cc:80] Couldn't get ptxas version string: INTERNAL: Running ptxas --version returned 32512
+2023-01-30 10:48:21.558423: W tensorflow/stream_executor/gpu/asm_compiler.cc:80] Couldn't get ptxas version string: INTERNAL: Running ptxas --version returned 32512
+2023-01-30 10:48:24.819257: I tensorflow/stream_executor/cuda/cuda_blas.cc:1614] TensorFloat-32 will be used for the matrix multiplication. This will only be logged once.
+2023-01-30 10:49:06.704472: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:776] AUTO sharding policy will apply DATA sharding policy as it failed to apply FILE sharding policy because of the following reason: Did not find a shardable source, walked to a node which is not a dataset: name: "LoadDataset/_1"
+op: "LoadDataset"
+input: "Const/_0"
+attr {
+  key: "Treader_func_args"
+  value {
+    list {
+    }
+  }
+}
+attr {
+  key: "_cardinality"
+  value {
+    i: 651
+  }
+}
+attr {
+  key: "compression"
+  value {
+    s: ""
+  }
+}
+attr {
+  key: "output_shapes"
+  value {
+    list {
+      shape {
+        dim {
+          size: 64
+        }
+        dim {
+          size: 64
+        }
+        dim {
+          size: 12
+        }
+        dim {
+          size: 14
+        }
+      }
+      shape {
+        dim {
+          size: 64
+        }
+        dim {
+          size: 64
+        }
+        dim {
+          size: 12
+        }
+        dim {
+          size: 1
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "output_types"
+  value {
+    list {
+      type: DT_DOUBLE
+      type: DT_DOUBLE
+    }
+  }
+}
+attr {
+  key: "reader_func"
+  value {
+    func {
+      name: "__inference_load_lambda_64"
+    }
+  }
+}
+experimental_type {
+  type_id: TFT_PRODUCT
+  args {
+    type_id: TFT_DATASET
+    args {
+      type_id: TFT_PRODUCT
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_DOUBLE
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_DOUBLE
+        }
+      }
+    }
+  }
+}
+. Consider either turning off auto-sharding or switching the auto_shard_policy to DATA to shard this dataset. You can do this by creating a new `tf.data.Options()` object then setting `options.experimental_distribute.auto_shard_policy = AutoShardPolicy.DATA` before applying the options object to the dataset via `dataset.with_options(options)`.
+Traceback (most recent call last):
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py", line 446, in <module>
+    app.run(main)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/absl/app.py", line 308, in run
+    _run_main(main, args)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/absl/app.py", line 254, in _run_main
+    sys.exit(main(argv))
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py", line 441, in main
+    run_all(logdir=logdir, verbose=True)
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py", line 427, in run_all
+    run(
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py", line 393, in run
+    right = split_dir[0][:-1] + split_dir[1]
+IndexError: list index out of range

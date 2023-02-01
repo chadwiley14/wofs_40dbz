@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 .png 
-./wofs_ml/slurmouts/*
+./wofs_ml/slurmouts/
 .txt
 .out
 .err

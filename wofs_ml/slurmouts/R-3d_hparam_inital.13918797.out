@@ -1,0 +1,105 @@
+We have 4 GPUs
+
+removing old logs
+Saving output to /ourdisk/hpc/ai2es/chadwiley/boardlogs/log_3d/.
+--- Running training session 1/50
+{HParam(name='conv_layers', domain=IntInterval(1, 3), display_name=None, description=None): 2, HParam(name='conv_kernel_size', domain=Discrete([3, 5, 7]), display_name=None, description=None): 5, HParam(name='conv_activation', domain=Discrete(['ELU', 'LeakyReLU', 'ReLU']), display_name=None, description=None): 'ELU', HParam(name='num_of_kernels', domain=Discrete([4, 8, 16, 32]), display_name=None, description=None): 16, HParam(name='depth_of_unet', domain=Discrete([1, 2]), display_name=None, description=None): 2, HParam(name='optimizer', domain=Discrete(['adam', 'rmsprop']), display_name=None, description=None): 'rmsprop', HParam(name='loss', domain=Discrete(['binary_crossentropy', 'weighted_binary_crossentropy']), display_name=None, description=None): 'weighted_binary_crossentropy', HParam(name='batchnorm', domain=Discrete([False, True]), display_name=None, description=None): True, HParam(name='batch_size', domain=Discrete([32, 64, 128, 256]), display_name=None, description=None): 128, HParam(name='learning_rate', domain=Discrete([0.0001, 0.001, 0.01]), display_name=None, description=None): 0.01, HParam(name='loss_weights', domain=Discrete([1.0, 2.0, 3.0, 4.0, 5.0]), display_name=None, description=None): 2.0}
+--- repeat #: 1
+Model: "unet_model"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ input_1 (InputLayer)           [(None, 64, 64, 12,  0           []                               
+                                 14)]                                                             
+                                                                                                  
+ unet_down0_0 (Conv3D)          (None, 64, 64, 12,   28000       ['input_1[0][0]']                
+                                16)                                                               
+                                                                                                  
+ unet_down0_0_bn (BatchNormaliz  (None, 64, 64, 12,   64         ['unet_down0_0[0][0]']           
+ ation)                         16)                                                               
+                                                                                                  
+ unet_down0_0_activation (ELU)  (None, 64, 64, 12,   0           ['unet_down0_0_bn[0][0]']        
+                                16)                                                               
+                                                                                                  
+ unet_down0_1 (Conv3D)          (None, 64, 64, 12,   32000       ['unet_down0_0_activation[0][0]']
+                                16)                                                               
+                                                                                                  
+ unet_down0_1_bn (BatchNormaliz  (None, 64, 64, 12,   64         ['unet_down0_1[0][0]']           
+ ation)                         16)                                                               
+                                                                                                  
+ unet_down0_1_activation (ELU)  (None, 64, 64, 12,   0           ['unet_down0_1_bn[0][0]']        
+                                16)                                                               
+                                                                                                  
+ unet_down1_encode_maxpool (Max  (None, 32, 32, 6, 1  0          ['unet_down0_1_activation[0][0]']
+ Pooling3D)                     6)                                                                
+                                                                                                  
+ unet_down1_conv_0 (Conv3D)     (None, 32, 32, 6, 3  64000       ['unet_down1_encode_maxpool[0][0]
+                                2)                               ']                               
+                                                                                                  
+ unet_down1_conv_0_bn (BatchNor  (None, 32, 32, 6, 3  128        ['unet_down1_conv_0[0][0]']      
+ malization)                    2)                                                                
+                                                                                                  
+ unet_down1_conv_0_activation (  (None, 32, 32, 6, 3  0          ['unet_down1_conv_0_bn[0][0]']   
+ ELU)                           2)                                                                
+                                                                                                  
+ unet_down1_conv_1 (Conv3D)     (None, 32, 32, 6, 3  128000      ['unet_down1_conv_0_activation[0]
+                                2)                               [0]']                            
+                                                                                                  
+ unet_down1_conv_1_bn (BatchNor  (None, 32, 32, 6, 3  128        ['unet_down1_conv_1[0][0]']      
+ malization)                    2)                                                                
+                                                                                                  
+ unet_down1_conv_1_activation (  (None, 32, 32, 6, 3  0          ['unet_down1_conv_1_bn[0][0]']   
+ ELU)                           2)                                                                
+                                                                                                  
+ unet_up0_decode_unpool (UpSamp  (None, 64, 64, 12,   0          ['unet_down1_conv_1_activation[0]
+ ling3D)                        32)                              [0]']                            
+                                                                                                  
+ unet_up0_conv_before_concat_0   (None, 64, 64, 12,   64000      ['unet_up0_decode_unpool[0][0]'] 
+ (Conv3D)                       16)                                                               
+                                                                                                  
+ unet_up0_conv_before_concat_0_  (None, 64, 64, 12,   64         ['unet_up0_conv_before_concat_0[0
+ bn (BatchNormalization)        16)                              ][0]']                           
+                                                                                                  
+ unet_up0_conv_before_concat_0_  (None, 64, 64, 12,   0          ['unet_up0_conv_before_concat_0_b
+ activation (ELU)               16)                              n[0][0]']                        
+                                                                                                  
+ unet_up0_concat (Concatenate)  (None, 64, 64, 12,   0           ['unet_up0_conv_before_concat_0_a
+                                32)                              ctivation[0][0]',                
+                                                                  'unet_down0_1_activation[0][0]']
+                                                                                                  
+ unet_up0_conv_after_concat_0 (  (None, 64, 64, 12,   64000      ['unet_up0_concat[0][0]']        
+ Conv3D)                        16)                                                               
+                                                                                                  
+ unet_up0_conv_after_concat_0_b  (None, 64, 64, 12,   64         ['unet_up0_conv_after_concat_0[0]
+ n (BatchNormalization)         16)                              [0]']                            
+                                                                                                  
+ unet_up0_conv_after_concat_0_a  (None, 64, 64, 12,   0          ['unet_up0_conv_after_concat_0_bn
+ ctivation (ELU)                16)                              [0][0]']                         
+                                                                                                  
+ unet_up0_conv_after_concat_1 (  (None, 64, 64, 12,   32000      ['unet_up0_conv_after_concat_0_ac
+ Conv3D)                        16)                              tivation[0][0]']                 
+                                                                                                  
+ unet_up0_conv_after_concat_1_b  (None, 64, 64, 12,   64         ['unet_up0_conv_after_concat_1[0]
+ n (BatchNormalization)         16)                              [0]']                            
+                                                                                                  
+ unet_up0_conv_after_concat_1_a  (None, 64, 64, 12,   0          ['unet_up0_conv_after_concat_1_bn
+ ctivation (ELU)                16)                              [0][0]']                         
+                                                                                                  
+ ConvolveAndCollapse (Conv3D)   (None, 64, 64, 1, 1  3088        ['unet_up0_conv_after_concat_1_ac
+                                6)                               tivation[0][0]']                 
+                                                                                                  
+ unet_output (Conv3D)           (None, 64, 64, 1, 1  17          ['ConvolveAndCollapse[0][0]']    
+                                )                                                                 
+                                                                                                  
+ unet_output_activation (Activa  (None, 64, 64, 1, 1  0          ['unet_output[0][0]']            
+ tion)                          )                                                                 
+                                                                                                  
+ squeeze (Reshape)              (None, 64, 64, 1)    0           ['unet_output_activation[0][0]'] 
+                                                                                                  
+==================================================================================================
+Total params: 415,681
+Trainable params: 415,393
+Non-trainable params: 288
+__________________________________________________________________________________________________
+None
+Epoch 1/100

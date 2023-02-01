@@ -1,0 +1,307 @@
+2023-01-30 00:26:06.031461: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:From /home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py:259: load (from tensorflow.python.data.experimental.ops.io) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.data.Dataset.load(...)` instead.
+W0130 00:27:14.233275 47096893775616 deprecation.py:350] From /home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py:259: load (from tensorflow.python.data.experimental.ops.io) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.data.Dataset.load(...)` instead.
+2023-01-30 00:27:14.351801: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-30 00:27:16.346870: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38259 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:01:00.0, compute capability: 8.0
+2023-01-30 00:27:16.354131: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 38259 MB memory:  -> device: 1, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:41:00.0, compute capability: 8.0
+2023-01-30 00:27:16.355256: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:2 with 38259 MB memory:  -> device: 2, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:81:00.0, compute capability: 8.0
+2023-01-30 00:27:16.356427: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:3 with 38259 MB memory:  -> device: 3, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:c1:00.0, compute capability: 8.0
+INFO:tensorflow:Using MirroredStrategy with devices ('/job:localhost/replica:0/task:0/device:GPU:0', '/job:localhost/replica:0/task:0/device:GPU:1', '/job:localhost/replica:0/task:0/device:GPU:2', '/job:localhost/replica:0/task:0/device:GPU:3')
+I0130 00:27:18.255381 47096893775616 mirrored_strategy.py:374] Using MirroredStrategy with devices ('/job:localhost/replica:0/task:0/device:GPU:0', '/job:localhost/replica:0/task:0/device:GPU:1', '/job:localhost/replica:0/task:0/device:GPU:2', '/job:localhost/replica:0/task:0/device:GPU:3')
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 00:27:18.325834 47096893775616 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 00:27:18.330317 47096893775616 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 00:27:18.332803 47096893775616 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 00:27:18.333488 47096893775616 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 00:27:18.337705 47096893775616 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 00:27:18.341088 47096893775616 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 00:27:18.362805 47096893775616 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 00:27:18.363497 47096893775616 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 00:27:18.365681 47096893775616 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+INFO:tensorflow:Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+I0130 00:27:18.366356 47096893775616 cross_device_ops.py:616] Reduce to /job:localhost/replica:0/task:0/device:CPU:0 then broadcast to ('/job:localhost/replica:0/task:0/device:CPU:0',).
+2023-01-30 00:27:18.943233: W tensorflow/core/grappler/optimizers/data/auto_shard.cc:776] AUTO sharding policy will apply DATA sharding policy as it failed to apply FILE sharding policy because of the following reason: Did not find a shardable source, walked to a node which is not a dataset: name: "LoadDataset/_1"
+op: "LoadDataset"
+input: "Const/_0"
+attr {
+  key: "Treader_func_args"
+  value {
+    list {
+    }
+  }
+}
+attr {
+  key: "_cardinality"
+  value {
+    i: 5213
+  }
+}
+attr {
+  key: "compression"
+  value {
+    s: ""
+  }
+}
+attr {
+  key: "output_shapes"
+  value {
+    list {
+      shape {
+        dim {
+          size: 64
+        }
+        dim {
+          size: 64
+        }
+        dim {
+          size: 12
+        }
+        dim {
+          size: 14
+        }
+      }
+      shape {
+        dim {
+          size: 64
+        }
+        dim {
+          size: 64
+        }
+        dim {
+          size: 12
+        }
+        dim {
+          size: 1
+        }
+      }
+    }
+  }
+}
+attr {
+  key: "output_types"
+  value {
+    list {
+      type: DT_DOUBLE
+      type: DT_DOUBLE
+    }
+  }
+}
+attr {
+  key: "reader_func"
+  value {
+    func {
+      name: "__inference_load_lambda_14"
+    }
+  }
+}
+experimental_type {
+  type_id: TFT_PRODUCT
+  args {
+    type_id: TFT_DATASET
+    args {
+      type_id: TFT_PRODUCT
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_DOUBLE
+        }
+      }
+      args {
+        type_id: TFT_TENSOR
+        args {
+          type_id: TFT_DOUBLE
+        }
+      }
+    }
+  }
+}
+. Consider either turning off auto-sharding or switching the auto_shard_policy to DATA to shard this dataset. You can do this by creating a new `tf.data.Options()` object then setting `options.experimental_distribute.auto_shard_policy = AutoShardPolicy.DATA` before applying the options object to the dataset via `dataset.with_options(options)`.
+INFO:tensorflow:Error reported to Coordinator: in user code:
+
+    File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/custom_metrics_Chad.py", line 183, in call  *
+        loss = self.binary_crossentropy(y_true, y_pred)
+    File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/custom_metrics_Chad.py", line 174, in binary_crossentropy  *
+        bce = target * tf.math.log(output + tf.keras.backend.epsilon())
+
+    ValueError: Dimensions must be equal, but are 12 and 64 for '{{node WeightedBinaryCrossEntropy/mul}} = Mul[T=DT_DOUBLE](WeightedBinaryCrossEntropy/Cast, WeightedBinaryCrossEntropy/Log)' with input shapes: [?,64,64,12,1], [?,64,64,1].
+Traceback (most recent call last):
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/training/coordinator.py", line 293, in stop_on_exception
+    yield
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/distribute/mirrored_run.py", line 386, in run
+    self.main_result = self.main_fn(*self.main_args, **self.main_kwargs)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 692, in wrapper
+    raise e.ag_error_metadata.to_exception(e)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 689, in wrapper
+    return converted_call(f, args, kwargs, options=options)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 377, in converted_call
+    return _call_unconverted(f, args, kwargs, options)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 458, in _call_unconverted
+    return f(*args, **kwargs)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/engine/training.py", line 1135, in run_step
+    outputs = model.train_step(data)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/engine/training.py", line 994, in train_step
+    loss = self.compute_loss(x, y, y_pred, sample_weight)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/engine/training.py", line 1052, in compute_loss
+    return self.compiled_loss(
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/engine/compile_utils.py", line 265, in __call__
+    loss_value = loss_obj(y_t, y_p, sample_weight=sw)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/losses.py", line 152, in __call__
+    losses = call_fn(y_true, y_pred)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 692, in wrapper
+    raise e.ag_error_metadata.to_exception(e)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 689, in wrapper
+    return converted_call(f, args, kwargs, options=options)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 439, in converted_call
+    result = converted_f(*effective_args, **kwargs)
+  File "/tmp/__autograph_generated_filek0c9iabz.py", line 12, in tf__call
+    loss = ag__.converted_call(ag__.ld(self).binary_crossentropy, (ag__.ld(y_true), ag__.ld(y_pred)), None, fscope)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 441, in converted_call
+    result = converted_f(*effective_args)
+  File "/tmp/__autograph_generated_fileryx3ca06.py", line 108, in tf__binary_crossentropy
+    ag__.if_stmt(ag__.ld(self).from_logits, if_body_3, else_body_3, get_state_3, set_state_3, ('do_return', 'retval_', 'output'), 2)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/operators/control_flow.py", line 1363, in if_stmt
+    _py_if_stmt(cond, body, orelse)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/operators/control_flow.py", line 1416, in _py_if_stmt
+    return body() if cond else orelse()
+  File "/tmp/__autograph_generated_fileryx3ca06.py", line 105, in else_body_3
+    ag__.if_stmt(ag__.and_(lambda : ag__.and_(lambda : ag__.not_(ag__.converted_call(ag__.ld(isinstance), (ag__.ld(output), (ag__.ld(tf).__internal__.EagerTensor, ag__.ld(tf).Variable)), None, fscope)), lambda : ag__.ld(output).op.type == 'Sigmoid'), lambda : ag__.not_(ag__.converted_call(ag__.ld(hasattr), (ag__.ld(output), '_keras_history'), None, fscope))), if_body_2, else_body_2, get_state_2, set_state_2, ('do_return', 'retval_', 'output'), 2)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/operators/control_flow.py", line 1363, in if_stmt
+    _py_if_stmt(cond, body, orelse)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/operators/control_flow.py", line 1416, in _py_if_stmt
+    return body() if cond else orelse()
+  File "/tmp/__autograph_generated_fileryx3ca06.py", line 94, in else_body_2
+    bce = ag__.ld(target) * ag__.converted_call(ag__.ld(tf).math.log, (ag__.ld(output) + ag__.converted_call(ag__.ld(tf).keras.backend.epsilon, (), None, fscope),), None, fscope)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/util/traceback_utils.py", line 153, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/framework/ops.py", line 1969, in _create_c_op
+    raise ValueError(e.message)
+ValueError: in user code:
+
+    File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/custom_metrics_Chad.py", line 183, in call  *
+        loss = self.binary_crossentropy(y_true, y_pred)
+    File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/custom_metrics_Chad.py", line 174, in binary_crossentropy  *
+        bce = target * tf.math.log(output + tf.keras.backend.epsilon())
+
+    ValueError: Dimensions must be equal, but are 12 and 64 for '{{node WeightedBinaryCrossEntropy/mul}} = Mul[T=DT_DOUBLE](WeightedBinaryCrossEntropy/Cast, WeightedBinaryCrossEntropy/Log)' with input shapes: [?,64,64,12,1], [?,64,64,1].
+
+I0130 00:27:20.126647 47144826390272 coordinator.py:213] Error reported to Coordinator: in user code:
+
+    File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/custom_metrics_Chad.py", line 183, in call  *
+        loss = self.binary_crossentropy(y_true, y_pred)
+    File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/custom_metrics_Chad.py", line 174, in binary_crossentropy  *
+        bce = target * tf.math.log(output + tf.keras.backend.epsilon())
+
+    ValueError: Dimensions must be equal, but are 12 and 64 for '{{node WeightedBinaryCrossEntropy/mul}} = Mul[T=DT_DOUBLE](WeightedBinaryCrossEntropy/Cast, WeightedBinaryCrossEntropy/Log)' with input shapes: [?,64,64,12,1], [?,64,64,1].
+Traceback (most recent call last):
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/training/coordinator.py", line 293, in stop_on_exception
+    yield
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/distribute/mirrored_run.py", line 386, in run
+    self.main_result = self.main_fn(*self.main_args, **self.main_kwargs)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 692, in wrapper
+    raise e.ag_error_metadata.to_exception(e)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 689, in wrapper
+    return converted_call(f, args, kwargs, options=options)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 377, in converted_call
+    return _call_unconverted(f, args, kwargs, options)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 458, in _call_unconverted
+    return f(*args, **kwargs)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/engine/training.py", line 1135, in run_step
+    outputs = model.train_step(data)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/engine/training.py", line 994, in train_step
+    loss = self.compute_loss(x, y, y_pred, sample_weight)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/engine/training.py", line 1052, in compute_loss
+    return self.compiled_loss(
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/engine/compile_utils.py", line 265, in __call__
+    loss_value = loss_obj(y_t, y_p, sample_weight=sw)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/losses.py", line 152, in __call__
+    losses = call_fn(y_true, y_pred)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 692, in wrapper
+    raise e.ag_error_metadata.to_exception(e)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 689, in wrapper
+    return converted_call(f, args, kwargs, options=options)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 439, in converted_call
+    result = converted_f(*effective_args, **kwargs)
+  File "/tmp/__autograph_generated_filek0c9iabz.py", line 12, in tf__call
+    loss = ag__.converted_call(ag__.ld(self).binary_crossentropy, (ag__.ld(y_true), ag__.ld(y_pred)), None, fscope)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py", line 441, in converted_call
+    result = converted_f(*effective_args)
+  File "/tmp/__autograph_generated_fileryx3ca06.py", line 108, in tf__binary_crossentropy
+    ag__.if_stmt(ag__.ld(self).from_logits, if_body_3, else_body_3, get_state_3, set_state_3, ('do_return', 'retval_', 'output'), 2)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/operators/control_flow.py", line 1363, in if_stmt
+    _py_if_stmt(cond, body, orelse)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/operators/control_flow.py", line 1416, in _py_if_stmt
+    return body() if cond else orelse()
+  File "/tmp/__autograph_generated_fileryx3ca06.py", line 105, in else_body_3
+    ag__.if_stmt(ag__.and_(lambda : ag__.and_(lambda : ag__.not_(ag__.converted_call(ag__.ld(isinstance), (ag__.ld(output), (ag__.ld(tf).__internal__.EagerTensor, ag__.ld(tf).Variable)), None, fscope)), lambda : ag__.ld(output).op.type == 'Sigmoid'), lambda : ag__.not_(ag__.converted_call(ag__.ld(hasattr), (ag__.ld(output), '_keras_history'), None, fscope))), if_body_2, else_body_2, get_state_2, set_state_2, ('do_return', 'retval_', 'output'), 2)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/operators/control_flow.py", line 1363, in if_stmt
+    _py_if_stmt(cond, body, orelse)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/autograph/operators/control_flow.py", line 1416, in _py_if_stmt
+    return body() if cond else orelse()
+  File "/tmp/__autograph_generated_fileryx3ca06.py", line 94, in else_body_2
+    bce = ag__.ld(target) * ag__.converted_call(ag__.ld(tf).math.log, (ag__.ld(output) + ag__.converted_call(ag__.ld(tf).keras.backend.epsilon, (), None, fscope),), None, fscope)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/util/traceback_utils.py", line 153, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/tensorflow/python/framework/ops.py", line 1969, in _create_c_op
+    raise ValueError(e.message)
+ValueError: in user code:
+
+    File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/custom_metrics_Chad.py", line 183, in call  *
+        loss = self.binary_crossentropy(y_true, y_pred)
+    File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/custom_metrics_Chad.py", line 174, in binary_crossentropy  *
+        bce = target * tf.math.log(output + tf.keras.backend.epsilon())
+
+    ValueError: Dimensions must be equal, but are 12 and 64 for '{{node WeightedBinaryCrossEntropy/mul}} = Mul[T=DT_DOUBLE](WeightedBinaryCrossEntropy/Cast, WeightedBinaryCrossEntropy/Log)' with input shapes: [?,64,64,12,1], [?,64,64,1].
+
+Traceback (most recent call last):
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py", line 446, in <module>
+    app.run(main)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/absl/app.py", line 308, in run
+    _run_main(main, args)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/absl/app.py", line 254, in _run_main
+    sys.exit(main(argv))
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py", line 441, in main
+    run_all(logdir=logdir, verbose=True)
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py", line 427, in run_all
+    run(
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_3d.py", line 382, in run
+    result = model.fit(ds_train,
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/utils/traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/tmp/__autograph_generated_filezgeap5_h.py", line 15, in tf__train_function
+    retval_ = ag__.converted_call(ag__.ld(step_function), (ag__.ld(self), ag__.ld(iterator)), None, fscope)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/six.py", line 719, in reraise
+    raise value
+  File "/tmp/__autograph_generated_filek0c9iabz.py", line 12, in tf__call
+    loss = ag__.converted_call(ag__.ld(self).binary_crossentropy, (ag__.ld(y_true), ag__.ld(y_pred)), None, fscope)
+  File "/tmp/__autograph_generated_fileryx3ca06.py", line 108, in tf__binary_crossentropy
+    ag__.if_stmt(ag__.ld(self).from_logits, if_body_3, else_body_3, get_state_3, set_state_3, ('do_return', 'retval_', 'output'), 2)
+  File "/tmp/__autograph_generated_fileryx3ca06.py", line 105, in else_body_3
+    ag__.if_stmt(ag__.and_(lambda : ag__.and_(lambda : ag__.not_(ag__.converted_call(ag__.ld(isinstance), (ag__.ld(output), (ag__.ld(tf).__internal__.EagerTensor, ag__.ld(tf).Variable)), None, fscope)), lambda : ag__.ld(output).op.type == 'Sigmoid'), lambda : ag__.not_(ag__.converted_call(ag__.ld(hasattr), (ag__.ld(output), '_keras_history'), None, fscope))), if_body_2, else_body_2, get_state_2, set_state_2, ('do_return', 'retval_', 'output'), 2)
+  File "/tmp/__autograph_generated_fileryx3ca06.py", line 94, in else_body_2
+    bce = ag__.ld(target) * ag__.converted_call(ag__.ld(tf).math.log, (ag__.ld(output) + ag__.converted_call(ag__.ld(tf).keras.backend.epsilon, (), None, fscope),), None, fscope)
+ValueError: in user code:
+
+    File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/keras/engine/training.py", line 1160, in train_function  *
+        return step_function(self, iterator)
+    File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/custom_metrics_Chad.py", line 183, in call  *
+        loss = self.binary_crossentropy(y_true, y_pred)
+    File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/custom_metrics_Chad.py", line 174, in binary_crossentropy  *
+        bce = target * tf.math.log(output + tf.keras.backend.epsilon())
+
+    ValueError: Dimensions must be equal, but are 12 and 64 for '{{node WeightedBinaryCrossEntropy/mul}} = Mul[T=DT_DOUBLE](WeightedBinaryCrossEntropy/Cast, WeightedBinaryCrossEntropy/Log)' with input shapes: [?,64,64,12,1], [?,64,64,1].
+
+slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name

@@ -1,5 +1,0 @@
-We have 3 GPUs
-
-removing old logs
-Saving output to /ourdisk/hpc/ai2es/chadwiley/boardlogs/log_3d/.
-<_LoadDataset element_spec=(TensorSpec(shape=(12, 64, 64, 14), dtype=tf.float64, name=None), TensorSpec(shape=(12, 64, 64, 1), dtype=tf.float64, name=None))>
