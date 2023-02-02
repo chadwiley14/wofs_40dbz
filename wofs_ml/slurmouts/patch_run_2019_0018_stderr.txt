@@ -1,0 +1,121 @@
+patcher.py:532: UserWarning: WARNING: One or more of your selected dataset(s) contains at least one netcdf file that does not follow netcdf convections. Less useful netcdf loader had to be used.
+  warnings.warn('WARNING: One or more of your selected dataset(s) contains at least one netcdf file that does not follow netcdf convections. Less useful netcdf loader had to be used.')
+Traceback (most recent call last):
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 199, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/ourdisk/hpc/ai2es/wofs/MRMS/2019/2019/20190530/20190530_190000.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "patcher.py", line 530, in _netcdf_loader
+    ds = xr.open_dataset(path, decode_cf=True)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/api.py", line 495, in open_dataset
+    backend_ds = backend.open_dataset(
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 550, in open_dataset
+    store = NetCDF4DataStore.open(
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 379, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 327, in __init__
+    self.format = self.ds.data_model
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 388, in ds
+    return self._acquire()
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 382, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/tgschmidt/sn_env/lib/python3.8/contextlib.py", line 113, in __enter__
+    return next(self.gen)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 187, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 205, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "src/netCDF4/_netCDF4.pyx", line 2330, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 1948, in netCDF4._netCDF4._ensure_nc_success
+OSError: [Errno -101] NetCDF: HDF error: b'/ourdisk/hpc/ai2es/wofs/MRMS/2019/2019/20190530/20190530_190000.nc'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 199, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/ourdisk/hpc/ai2es/wofs/MRMS/2019/2019/20190530/20190530_190000.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "patcher.py", line 534, in _netcdf_loader
+    ds = xr.open_dataset(path, decode_cf=False)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/api.py", line 495, in open_dataset
+    backend_ds = backend.open_dataset(
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 550, in open_dataset
+    store = NetCDF4DataStore.open(
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 379, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 327, in __init__
+    self.format = self.ds.data_model
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 388, in ds
+    return self._acquire()
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 382, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/tgschmidt/sn_env/lib/python3.8/contextlib.py", line 113, in __enter__
+    return next(self.gen)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 187, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 205, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "src/netCDF4/_netCDF4.pyx", line 2330, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 1948, in netCDF4._netCDF4._ensure_nc_success
+OSError: [Errno -101] NetCDF: HDF error: b'/ourdisk/hpc/ai2es/wofs/MRMS/2019/2019/20190530/20190530_190000.nc'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 199, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/ourdisk/hpc/ai2es/wofs/MRMS/2019/2019/20190530/20190530_190000.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "patcher.py", line 541, in _netcdf_loader
+    ds = xr.open_dataset(path, decode_cf=False, drop_variables=[lat_dim, lon_dim])
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/api.py", line 495, in open_dataset
+    backend_ds = backend.open_dataset(
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 550, in open_dataset
+    store = NetCDF4DataStore.open(
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 379, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 327, in __init__
+    self.format = self.ds.data_model
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 388, in ds
+    return self._acquire()
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 382, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/tgschmidt/sn_env/lib/python3.8/contextlib.py", line 113, in __enter__
+    return next(self.gen)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 187, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/home/tgschmidt/sn_env/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 205, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "src/netCDF4/_netCDF4.pyx", line 2330, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 1948, in netCDF4._netCDF4._ensure_nc_success
+OSError: [Errno -101] NetCDF: HDF error: b'/ourdisk/hpc/ai2es/wofs/MRMS/2019/2019/20190530/20190530_190000.nc'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "patcher.py", line 1587, in <module>
+    patcher.run()
+  File "patcher.py", line 406, in run
+    self._load_datasets_from_disk()
+  File "patcher.py", line 666, in _load_datasets_from_disk
+    ds = self._netcdf_loader(path, i, y_dim_name, x_dim_name)
+  File "patcher.py", line 545, in _netcdf_loader
+    raise Exception('Unable to load at least one of the netcdf files! Had to kill patcher. Note: This may mean I need a more robust _netcdf_loader method. Talk to Tobias.')
+Exception: Unable to load at least one of the netcdf files! Had to kill patcher. Note: This may mean I need a more robust _netcdf_loader method. Talk to Tobias.
+slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name
