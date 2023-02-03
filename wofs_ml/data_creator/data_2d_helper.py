@@ -78,6 +78,7 @@ def extract_ex_data(ds_list,year):
     for cur_ex in ds_list:
         #load in the file
         cur_file = xr.load_dataset(cur_ex)
+        print('Loaded :  %s'%cur_ex)
 
         #get the comp_dz for probs
         
@@ -87,23 +88,23 @@ def extract_ex_data(ds_list,year):
 
         #model stats
         for i in range(np.size(cur_file['comp_dz'], axis = 0)):
-            comp_dz_max.append(np.max(cur_file['w_up'][i], axis = 1))
-            comp_dz_90.append(np.percentile(cur_file['w_up'][i], 90., axis = 1))
-            comp_dz_avg.append(np.average(cur_file['w_up'][i], axis = 1))
+            comp_dz_max.append(np.max(cur_file['w_up'][i], axis = 0))
+            comp_dz_90.append(np.percentile(cur_file['w_up'][i], 90., axis = 0))
+            comp_dz_avg.append(np.average(cur_file['w_up'][i], axis = 0))
 
-            w_up_max.append(np.max(cur_file['w_up'][i], axis = 1))
-            w_up_90.append(np.percentile(cur_file['w_up'][i], 90., axis = 1))
-            w_up_avg.append(np.average(cur_file['w_up'][i], axis = 1))
+            w_up_max.append(np.max(cur_file['w_up'][i], axis = 0))
+            w_up_90.append(np.percentile(cur_file['w_up'][i], 90., axis = 0))
+            w_up_avg.append(np.average(cur_file['w_up'][i], axis = 0))
 
-            w_down_max.append(np.min(cur_file['w_down'][i], axis = 1))
-            w_down_90.append(np.percentile(cur_file['w_down'][i], 10., axis = 1))
+            w_down_max.append(np.min(cur_file['w_down'][i], axis = 0))
+            w_down_90.append(np.percentile(cur_file['w_down'][i], 10., axis = 0))
             w_down_avg.append(np.average(cur_file['w_down'][i], axis = 1))
 
-            cape_sfc_avg.append(np.average(cur_file['cape_sfc'][i], axis = 1))
-            cape_ml_avg.append(np.average(cur_file['cape_ml'][i], axis = 1))
+            cape_sfc_avg.append(np.average(cur_file['cape_sfc'][i], axis = 0))
+            cape_ml_avg.append(np.average(cur_file['cape_ml'][i], axis = 0))
 
-            cin_sfc_avg.append(np.average(cur_file['cin_sfc'][i], axis = 1))
-            cin_ml_avg.append(np.average(cur_file['cin_ml'][i], axis = 1))
+            cin_sfc_avg.append(np.average(cur_file['cin_sfc'][i], axis = 0))
+            cin_ml_avg.append(np.average(cur_file['cin_ml'][i], axis = 0))
 
             if year == '2017-2018' or year =='2019':
                 mrms.append(cur_file['DZ_CRESSMAN'][i])

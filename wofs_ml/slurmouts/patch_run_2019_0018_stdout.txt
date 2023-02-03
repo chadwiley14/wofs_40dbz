@@ -1,6 +1,0 @@
-Number of dates found: [26308, 26308, 4207, 4207]
-Governing dataset size: 435
-Governing dataset's date count after parallel job split: 21
----------------------------------------------
-Reached search number: 0
-Matching dataset time: 0.4237327575683594
