@@ -1,0 +1,97 @@
+Number of dates found: [19684, 19684, 8838, 8838]
+Governing dataset size: 336
+Governing dataset's date count after parallel job split: 17
+---------------------------------------------
+Reached search number: 0
+Matching dataset time: 3.306502103805542
+Load dataset time: 97.97849678993225
+Reproj dataset time: 0.013549089431762695
+Master dataset time: 0.660510778427124
+Find valid patches time: 4.916451454162598
+Accepted Patches: [4]
+Make patches time: 0.21567225456237793
+Indices of patches added in this search: [0, 1, 2, 3]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.3050472736358643
+Load dataset time: 82.21786975860596
+Reproj dataset time: 0.013801097869873047
+Master dataset time: 0.6750593185424805
+Find valid patches time: 4.981095314025879
+Accepted Patches: [4]
+Make patches time: 0.5683820247650146
+Indices of patches added in this search: [4, 5, 6, 7]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.3989670276641846
+Load dataset time: 87.29922080039978
+Reproj dataset time: 0.014844894409179688
+Master dataset time: 0.6656136512756348
+Find valid patches time: 5.140732765197754
+Accepted Patches: [4]
+Make patches time: 1.181699275970459
+Indices of patches added in this search: [8, 9, 10, 11]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.3741908073425293
+Load dataset time: 83.52697944641113
+Reproj dataset time: 0.015479803085327148
+Master dataset time: 0.689446210861206
+Find valid patches time: 5.369370222091675
+Accepted Patches: [4]
+Make patches time: 1.8498914241790771
+Indices of patches added in this search: [12, 13, 14, 15]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.410048484802246
+Load dataset time: 210.72546124458313
+Reproj dataset time: 0.013810396194458008
+Master dataset time: 0.5968379974365234
+Find valid patches time: 4.86121129989624
+Accepted Patches: [4]
+Make patches time: 2.0950632095336914
+Indices of patches added in this search: [16, 17, 18, 19]
+---------------------------------------------
+---------------------------------------------
+Reached search number: 5
+Matching dataset time: 3.33351731300354
+Load dataset time: 204.32666206359863
+Reproj dataset time: 0.016678571701049805
+Master dataset time: 0.6474392414093018
+Find valid patches time: 4.941865921020508
+Accepted Patches: [4]
+Make patches time: 2.5859715938568115
+Indices of patches added in this search: [20, 21, 22, 23]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.49160099029541
+Load dataset time: 134.01454830169678
+Reproj dataset time: 0.014025211334228516
+Master dataset time: 0.6613061428070068
+Find valid patches time: 5.166960000991821
+Accepted Patches: [4]
+Make patches time: 3.291090726852417
+Indices of patches added in this search: [24, 25, 26, 27]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.7057149410247803
+Load dataset time: 119.21146845817566
+Reproj dataset time: 0.01434183120727539
+Master dataset time: 0.7033834457397461
+Find valid patches time: 5.484795093536377
+Accepted Patches: [4]
+Make patches time: 3.809877634048462
+Indices of patches added in this search: [28, 29, 30, 31]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.3193764686584473
+Load dataset time: 107.96289324760437
+Reproj dataset time: 0.014670848846435547
+Master dataset time: 0.7533454895019531
+Find valid patches time: 5.285186529159546
+Accepted Patches: [4]
+Make patches time: 4.297506332397461
+Indices of patches added in this search: [32, 33, 34, 35]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.3242874145507812

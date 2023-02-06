@@ -88,9 +88,9 @@ def extract_ex_data(ds_list,year):
 
         #model stats
         for i in range(np.size(cur_file['comp_dz'], axis = 0)):
-            comp_dz_max.append(np.max(cur_file['w_up'][i], axis = 0))
-            comp_dz_90.append(np.percentile(cur_file['w_up'][i], 90., axis = 0))
-            comp_dz_avg.append(np.average(cur_file['w_up'][i], axis = 0))
+            comp_dz_max.append(np.max(cur_file['comp_dz'][i], axis = 0))
+            comp_dz_90.append(np.percentile(cur_file['comp_dz'][i], 90., axis = 0))
+            comp_dz_avg.append(np.average(cur_file['comp_dz'][i], axis = 0))
 
             w_up_max.append(np.max(cur_file['w_up'][i], axis = 0))
             w_up_90.append(np.percentile(cur_file['w_up'][i], 90., axis = 0))
@@ -98,7 +98,7 @@ def extract_ex_data(ds_list,year):
 
             w_down_max.append(np.min(cur_file['w_down'][i], axis = 0))
             w_down_90.append(np.percentile(cur_file['w_down'][i], 10., axis = 0))
-            w_down_avg.append(np.average(cur_file['w_down'][i], axis = 1))
+            w_down_avg.append(np.average(cur_file['w_down'][i], axis = 0))
 
             cape_sfc_avg.append(np.average(cur_file['cape_sfc'][i], axis = 0))
             cape_ml_avg.append(np.average(cur_file['cape_ml'][i], axis = 0))
@@ -173,6 +173,7 @@ def extract_label_data(list_files, year):
     for cur_label in list_files:
         #load in the file
         cur_file = xr.load_dataset(cur_label)
+        print('loaded : %s'%cur_label)
 
         for i in range(np.size(cur_file['dz_cress_binary'], axis = 0)):
             dz_binary.append(cur_file['dz_cress_binary'][i])

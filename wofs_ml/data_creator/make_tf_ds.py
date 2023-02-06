@@ -36,7 +36,7 @@ labels_nc = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_fu
 examples_nc.sort()
 labels_nc.sort()
 
-year = ['2017-2018', '2019', '2020-2021']
+year = ['2017-2018', '2019', '2020', '2021']
 
 for n in range(np.size(examples_nc)):
     #load in the files

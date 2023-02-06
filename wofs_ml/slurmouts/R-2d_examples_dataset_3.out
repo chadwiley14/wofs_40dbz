@@ -1,0 +1,41 @@
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0000.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0001.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0002.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0003.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0004.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0005.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0006.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0007.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0008.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0009.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0010.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0011.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0012.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0013.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0014.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0015.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0016.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0017.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0018.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/0019.nc
+Examples :  <xarray.Dataset>
+Dimensions:       (n_samples: 1344, lat: 128, lon: 128)
+Dimensions without coordinates: n_samples, lat, lon
+Data variables: (12/14)
+    comp_dz_max   (n_samples, lat, lon) float32 0.0 0.0 0.0 ... 50.75 56.42
+    comp_dz_90    (n_samples, lat, lon) float64 0.0 0.0 0.0 ... 46.78 48.61 51.7
+    comp_dz_avg   (n_samples, lat, lon) float32 0.0 0.0 0.0 ... 36.5 39.32 42.65
+    w_up_max      (n_samples, lat, lon) float32 0.7361 0.7493 ... 8.695 14.31
+    w_up_90       (n_samples, lat, lon) float64 0.7252 0.7298 ... 6.26 9.667
+    w_up_avg      (n_samples, lat, lon) float32 0.5942 0.5978 ... 2.818 4.459
+    ...            ...
+    w_down_avg    (n_samples, lat, lon) float32 -0.134 -0.128 ... -1.136 -1.127
+    cape_sfc_avg  (n_samples, lat, lon) float32 131.4 125.8 ... 44.35 66.84
+    cape_ml_avg   (n_samples, lat, lon) float32 25.9 24.65 24.95 ... 3.827 11.42
+    cin_sfc_avg   (n_samples, lat, lon) float32 -76.97 -84.86 ... -8.845 -17.56
+    cin_ml_avg    (n_samples, lat, lon) float32 -46.66 0.0 0.0 ... 0.0 -6.821
+    mrms          (n_samples, lat, lon) float32 -0.0 -0.0 -0.0 ... 27.33 25.92
+----------------------
+----------------------
+----------------------
+dataset is saved

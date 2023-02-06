@@ -1,0 +1,97 @@
+Number of dates found: [19684, 19684, 8838, 8838]
+Governing dataset size: 336
+Governing dataset's date count after parallel job split: 17
+---------------------------------------------
+Reached search number: 0
+Matching dataset time: 3.3696601390838623
+Load dataset time: 138.31845927238464
+Reproj dataset time: 0.012201070785522461
+Master dataset time: 0.6453051567077637
+Find valid patches time: 4.916795253753662
+Accepted Patches: [4]
+Make patches time: 0.28702545166015625
+Indices of patches added in this search: [0, 1, 2, 3]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.668489694595337
+Load dataset time: 129.68673634529114
+Reproj dataset time: 0.012216567993164062
+Master dataset time: 0.6469094753265381
+Find valid patches time: 4.7185211181640625
+Accepted Patches: [4]
+Make patches time: 0.6169614791870117
+Indices of patches added in this search: [4, 5, 6, 7]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.242176055908203
+Load dataset time: 238.7845377922058
+Reproj dataset time: 0.014907121658325195
+Master dataset time: 0.641352653503418
+Find valid patches time: 4.571167707443237
+Accepted Patches: [4]
+Make patches time: 1.058358907699585
+Indices of patches added in this search: [8, 9, 10, 11]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.2013673782348633
+Load dataset time: 247.35188388824463
+Reproj dataset time: 0.013993978500366211
+Master dataset time: 0.6745543479919434
+Find valid patches time: 5.01092791557312
+Accepted Patches: [4]
+Make patches time: 1.7049553394317627
+Indices of patches added in this search: [12, 13, 14, 15]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.2218270301818848
+Load dataset time: 136.93583607673645
+Reproj dataset time: 0.013787508010864258
+Master dataset time: 0.46820878982543945
+Find valid patches time: 4.9326231479644775
+Accepted Patches: [4]
+Make patches time: 2.310289144515991
+Indices of patches added in this search: [16, 17, 18, 19]
+---------------------------------------------
+---------------------------------------------
+Reached search number: 5
+Matching dataset time: 3.2225708961486816
+Load dataset time: 127.76018810272217
+Reproj dataset time: 0.013882875442504883
+Master dataset time: 0.47786664962768555
+Find valid patches time: 5.566911458969116
+Accepted Patches: [4]
+Make patches time: 2.9206864833831787
+Indices of patches added in this search: [20, 21, 22, 23]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.2954092025756836
+Load dataset time: 132.09002041816711
+Reproj dataset time: 0.014339685440063477
+Master dataset time: 0.46237826347351074
+Find valid patches time: 5.199034929275513
+Accepted Patches: [4]
+Make patches time: 3.2933783531188965
+Indices of patches added in this search: [24, 25, 26, 27]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.26521635055542
+Load dataset time: 131.3501796722412
+Reproj dataset time: 0.013463258743286133
+Master dataset time: 0.5174376964569092
+Find valid patches time: 4.87330174446106
+Accepted Patches: [4]
+Make patches time: 3.5100715160369873
+Indices of patches added in this search: [28, 29, 30, 31]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.3140344619750977
+Load dataset time: 141.8488893508911
+Reproj dataset time: 0.015111207962036133
+Master dataset time: 0.5242466926574707
+Find valid patches time: 5.050189018249512
+Accepted Patches: [4]
+Make patches time: 4.0071704387664795
+Indices of patches added in this search: [32, 33, 34, 35]
+---------------------------------------------
+---------------------------------------------
+Matching dataset time: 3.247607946395874
