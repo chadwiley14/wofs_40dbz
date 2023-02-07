@@ -20,7 +20,7 @@ MNIST models.
 
 #GRAB GPU0
 import py3nvml
-py3nvml.grab_gpus(num_gpus=1, gpu_select=[2])
+py3nvml.grab_gpus(num_gpus=1, gpu_select=[0])
 
 import os.path
 import random
@@ -38,6 +38,7 @@ import matplotlib.pyplot as plt
 import io
 import scipy
 from scipy.ndimage import gaussian_filter
+import glob
 
 # import tensorflow_probability as tfp
 
@@ -82,7 +83,7 @@ flags.DEFINE_integer(
 )
 
 
-INPUT_SHAPE = (64,64,14)
+INPUT_SHAPE = (128,128,14)
 OUTPUT_CLASSES = 1
 
 #convolution params
@@ -93,13 +94,13 @@ HP_CONV_KERNELS = hp.HParam('num_of_kernels', hp.Discrete([4,8,16,32]))
 
 
 #unet param
-HP_UNET_DEPTH = hp.HParam('depth_of_unet', hp.Discrete([1,2,3,4]))
+HP_UNET_DEPTH = hp.HParam('depth_of_unet', hp.Discrete([1,2,3,4,5,6,8]))
 HP_OPTIMIZER = hp.HParam("optimizer", hp.Discrete(["adam", "rmsprop"]))
 HP_LOSS = hp.HParam("loss", hp.Discrete(['weighted_binary_crossentropy'])) 
 HP_BATCHNORM = hp.HParam('batchnorm', hp.Discrete([False, True]))
-HP_BATCHSIZE = hp.HParam('batch_size', hp.Discrete([32,64,128,256]))
+HP_BATCHSIZE = hp.HParam('batch_size', hp.Discrete([32,64,128,256,512]))
 HP_LEARNING_RATE = hp.HParam('learning_rate', hp.Discrete([1e-2,1e-3,1e-4, 1e-5]))
-HP_LOSS_WEIGHTS = hp.HParam('loss_weights', hp.Discrete([1.0,2.0,3.0,4.0,5.0]))
+HP_LOSS_WEIGHTS = hp.HParam('loss_weights', hp.Discrete([1.0,2.0,3.0,4.0,5.0,6.0,7.0]))
 
 HPARAMS = [HP_CONV_LAYERS,
     HP_CONV_KERNEL_SIZE,
@@ -212,66 +213,67 @@ def model_fn(hparams, seed):
 
 def prepare_data():
     """ Load data """
-    #load in the training data.
-    examples = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/examples_padding.nc')
-    labels = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/labels_padding.nc')
-    examples['dz_cress']=examples['dz_cress'].fillna(np.min(examples['dz_cress']))
+    #grab tf ds
+    train_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2017-2018.tf')
+    train_2019 = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2019.tf')
+
+    val_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/validation.tf')
+
+    #concat the two training together
+    train_ds = train_ds.concatenate(train_2019)
+
+
+
+    #bring into memory
+    train_ds = train_ds.cache()
+    val_ds = val_ds.cache()
+
+    return(train_ds,val_ds)
+    # #load in the training data.
+    # examples = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/examples_padding.nc')
+    # labels = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/labels_padding.nc')
+    # examples['dz_cress']=examples['dz_cress'].fillna(np.min(examples['dz_cress']))
     
-    for n in range(np.size(labels['dz_cress_binary'],axis=0)):
-        labels['dz_cress_binary'][n] = scipy.ndimage.maximum_filter(labels['dz_cress_binary'][n], 5)
+    # for n in range(np.size(labels['dz_cress_binary'],axis=0)):
+    #     labels['dz_cress_binary'][n] = scipy.ndimage.maximum_filter(labels['dz_cress_binary'][n], 5)
 
-    examples = examples.to_array()
-    examples = examples.transpose("n_samples",...)
-    examples = examples.transpose(...,"variable")
+    # examples = examples.to_array()
+    # examples = examples.transpose("n_samples",...)
+    # examples = examples.transpose(...,"variable")
 
-    labels = labels.to_array()
-    labels = labels.transpose("n_samples", ...)
-    labels = labels.transpose(...,"variable")
+    # labels = labels.to_array()
+    # labels = labels.transpose("n_samples", ...)
+    # labels = labels.transpose(...,"variable")
 
-    train_examples = examples[:32905,:,:,:]
-    train_labels = labels[:32905,:,:,:]#FIX THE BREAKING OF DATASETS
+    # train_examples = examples[:32905,:,:,:]
+    # train_labels = labels[:32905,:,:,:]#FIX THE BREAKING OF DATASETS
 
-    val_examples = examples[32906:37019,:,:,:]
-    val_labels = labels[32906:37019,:,:,:]
+    # val_examples = examples[32906:37019,:,:,:]
+    # val_labels = labels[32906:37019,:,:,:]
 
-    train_examples = train_examples.to_numpy()
-    train_labels = train_labels.to_numpy()
+    # train_examples = train_examples.to_numpy()
+    # train_labels = train_labels.to_numpy()
 
-    val_examples = val_examples.to_numpy()
-    val_labels = val_labels.to_numpy()
+    # val_examples = val_examples.to_numpy()
+    # val_labels = val_labels.to_numpy()
 
-    print(np.shape(train_examples))
-    print(np.shape(train_labels))
-    print(np.shape(val_examples))
-    print(np.shape(val_labels))
+    # print(np.shape(train_examples))
+    # print(np.shape(train_labels))
+    # print(np.shape(val_examples))
+    # print(np.shape(val_labels))
 
-    test_examples = examples[37020:,:,:,:]
-    test_labels = labels[37020:,:,:,:]
+    # test_examples = examples[37020:,:,:,:]
+    # test_labels = labels[37020:,:,:,:]
 
-    test_examples = test_examples.to_dataset(dim = 'variable')
-    test_labels = test_labels.to_dataset(dim = 'variable')
+    # test_examples = test_examples.to_dataset(dim = 'variable')
+    # test_labels = test_labels.to_dataset(dim = 'variable')
 
-    test_examples.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/2021_2017_test_ex.nc')
-    test_labels.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/2021_2017_test_labels_max_filter.nc')
+    # test_examples.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/2021_2017_test_ex.nc')
+    # test_labels.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_padding/2021_2017_test_labels_max_filter.nc')
 
 
-    ds_train = tf.data.Dataset.from_tensor_slices((train_examples, train_labels)) 
-    ds_val = tf.data.Dataset.from_tensor_slices((val_examples, val_labels))
-
-    #do this for both training and validations
-    #load netcdf
-    #convert to tensors ds_train = tf.data.Dataset.from_???_tensors(([125,125,7], [125,125,1]))
-     
-    #This is the tf.dataset route 
-    # x_tensor_shape = (128, 128, 29)
-    # y_tensor_shape = (128, 128, 1)
-    # elem_spec = (tf.TensorSpec(shape=x_tensor_shape, dtype=tf.float16), tf.TensorSpec(shape=y_tensor_shape, dtype=tf.float16))
-
-    # ds_train = tf.data.experimental.load('/scratch/randychase/updraft_training2.tf',
-    #                                     elem_spec)
-
-    # ds_val = tf.data.experimental.load('/scratch/randychase/updraft_validation2.tf',
-    #                                     elem_spec)
+    # ds_train = tf.data.Dataset.from_tensor_slices((train_examples, train_labels)) 
+    # ds_val = tf.data.Dataset.from_tensor_slices((val_examples, val_labels))
     
     return (ds_train, ds_val)
 
@@ -321,7 +323,7 @@ def run(data, base_logdir, session_id, hparams):
     #save trained model, need to build path first 
     split_dir = logdir.split('log1')
     right = split_dir[0][:-1] + split_dir[1]
-    left = '/scratch/chadwiley/models/'
+    left = '/scratch/chadwiley/models_2d_wbc/'
     model.save(left + right + "model.h5")
 
 
@@ -374,83 +376,3 @@ def main(unused_argv):
 
 if __name__ == "__main__":
     app.run(main)
-
-
-
-    #How the data will be split
-    # train_nums1 = list(range(23))
-    # train_nums2 = list(range(32,54))
-    # train_nums = train_nums1 + train_nums2
-    # val_nums1 = list(range(24,30))
-    # val_nums2 = list(range(58,62))
-    # val_nums = val_nums1 + val_nums2
-
-
-    # examples_path = '/ourdisk/hpc/ai2es/chadwiley/patches/examples_norm/'
-    # labels_path ='/ourdisk/hpc/ai2es/chadwiley/patches/labels/'
-
-    # #load in the training files
-    # train_examples_files =[]
-    # train_labels_files = []
-
-    # for i in train_nums:
-    #     i = str(i)
-    #     cur_file_examples = examples_path + i + '.nc'
-    #     cur_file_labels = labels_path + i + '.nc'
-    #     train_examples_files.append(cur_file_examples)
-    #     train_labels_files.append(cur_file_labels)
-    
-    # train_examples = xr.open_mfdataset(train_examples_files, concat_dim='n_samples', combine='nested', engine='netcdf4')
-    # train_labels = xr.open_mfdataset(train_labels_files, concat_dim='n_samples', combine='nested', engine='netcdf4')
-
-    # #load in validation files
-
-    # val_examples_files = []
-    # val_labels_files = []
-
-    # for i in val_nums:
-    #     i = str(i)
-    #     cur_file_examples = examples_path + i + '.nc'
-    #     cur_file_labels = labels_path + i + '.nc'
-    #     val_examples_files.append(cur_file_examples)
-    #     val_labels_files.append(cur_file_labels)
-
-    
-
-
-    # #load in val data
-    # val_examples = xr.open_mfdataset(val_examples_files, concat_dim='n_samples', combine='nested', engine='netcdf4')
-    # val_labels = xr.open_mfdataset(val_labels_files, concat_dim='n_samples', combine='nested', engine='netcdf4')
-
-    # #drop unneeded label
-    # # train_labels = train_labels.drop('dz_cress')
-    # # val_labels = val_labels.drop('dz_cress')
-
-
-    # #examples
-    # full_train_examples = train_examples.to_array()
-    # full_val_examples = val_examples.to_array()
-
-    # #lables
-    # full_train_labels = train_labels.to_array()
-    # full_val_labels = val_labels.to_array()
-
-    # #put into correct order
-    # full_train_examples = full_train_examples.transpose("n_samples", ...)
-    # full_train_examples = full_train_examples.transpose(..., "variable")
-
-    # full_val_examples = full_val_examples.transpose("n_samples", ...)
-    # full_val_examples = full_val_examples.transpose(..., "variable")
-
-    # full_train_labels = full_train_labels.transpose("n_samples", ...)
-    # full_train_labels = full_train_labels.transpose(..., "variable")
-
-    # full_val_labels = full_val_labels.transpose("n_samples", ...)
-    # full_val_labels = full_val_labels.transpose(..., "variable")
-
-    # #cast to numpy array
-    # full_train_examples = full_train_examples.to_numpy() #not sure this is needed
-    # full_train_labels = full_train_labels.to_numpy()
-
-    # full_val_examples = full_val_examples.to_numpy()
-    # full_val_labels = full_val_labels.to_numpy()
