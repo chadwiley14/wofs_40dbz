@@ -130,6 +130,26 @@ args = parser.parse_args()
 
 run_num = args.run_num
 
+comp_dz_max_norm = []
+comp_dz_90_norm = []
+comp_dz_avg_norm = []
+
+w_up_max_norm =[]
+w_up_90_norm = []
+w_up_avg_norm =[]
+
+w_down_max_norm = []
+w_down_90_norm = []
+w_down_avg_norm = []
+
+cape_ml_avg_norm =[]
+cape_sfc_avg_norm = []
+
+cin_ml_avg_norm = []
+cin_sfc_avg_norm = []
+
+mrms_norm = []
+
 if run_num ==0:
     #get all the example files
     ex_2017 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2017-2018_fix.nc')
@@ -236,40 +256,41 @@ if run_num == 1:
     #do 2017-2018 examples
     ex_2017 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2017-2018_fix.nc')
 
-    #MIN-MAX Scaling on each variable for 2017-2018
-    comp_dz_max_norm = min_max_norm(variable=ex_2017['comp_dz_max'], min = 0., max= 77.749992)
-    comp_dz_90_norm = min_max_norm(variable=ex_2017['comp_dz_90'], min = 0., max = 75.403117)
-    comp_dz_avg_norm = min_max_norm(variable=ex_2017['comp_dz_avg'], min = 0., max = 72.208328)
+    for n in range(np.size(ex_2017['comp_dz_max'], axis=0)):
+        comp_dz_max_norm.append(min_max_norm(variable=ex_2017['comp_dz_max'][n], min = 0., max= 77.749992))
+        comp_dz_90_norm.append(min_max_norm(variable=ex_2017['comp_dz_90'][n], min = 0., max = 75.403117))
+        comp_dz_avg_norm.append(min_max_norm(variable=ex_2017['comp_dz_avg'][n], min = 0., max = 72.208328))
 
-    w_up_max_norm = min_max_norm(variable=ex_2017['w_up_max'], min = 0.,max = 96.656242)
-    w_up_90_norm = min_max_norm(variable=ex_2017['w_up_90'], min = 0., max= 80.421867)
-    w_up_avg_norm = min_max_norm(variable=ex_2017['w_up_avg'], min = 0., max = 66.955719)
+        w_up_max_norm.append(min_max_norm(variable=ex_2017['w_up_max'][n], min = 0.,max = 96.656242))
+        w_up_90_norm.append(min_max_norm(variable=ex_2017['w_up_90'][n], min = 0., max= 80.421867))
+        w_up_avg_norm.append(min_max_norm(variable=ex_2017['w_up_avg'][n], min = 0., max = 66.955719))
 
-    w_down_max_norm = min_max_norm(variable=ex_2017['w_down_max'], min = -96.734375, max = 0.090332)
-    w_down_90_norm = min_max_norm(variable= ex_2017['w_down_90'], min = -64.167187, max= 0.155081)
-    w_down_avg_norm = min_max_norm(variable=ex_2017['w_down_avg'], min= -45.243816, max = 0.220207)
+        w_down_max_norm.append(min_max_norm(variable=ex_2017['w_down_max'][n], min = -96.734375, max = 0.090332))
+        w_down_90_norm.append(min_max_norm(variable= ex_2017['w_down_90'][n], min = -64.167187, max= 0.155081))
+        w_down_avg_norm.append(min_max_norm(variable=ex_2017['w_down_avg'][n], min= -45.243816, max = 0.220207))
 
-    cape_ml_avg_norm = min_max_norm(variable=ex_2017['cape_ml_avg'],  min = 0., max = 5360.163574)
-    cape_sfc_avg_norm = min_max_norm(variable=ex_2017['cape_sfc_avg'], min = 0., max = 7333.146484)
+        cape_ml_avg_norm.append(min_max_norm(variable=ex_2017['cape_ml_avg'][n],  min = 0., max = 5360.163574))
+        cape_sfc_avg_norm.append(min_max_norm(variable=ex_2017['cape_sfc_avg'][n], min = 0., max = 7333.146484))
 
-    cin_ml_avg_norm = min_max_norm(variable=ex_2017['cin_ml_avg'], min = -975.307373, max = 0.)
-    cin_sfc_avg_norm = min_max_norm(variable=ex_2017['cin_sfc_avg'], min= -956.824463, max =0.)
+        cin_ml_avg_norm.append(min_max_norm(variable=ex_2017['cin_ml_avg'][n], min = -975.307373, max = 0.))
+        cin_sfc_avg_norm.append(min_max_norm(variable=ex_2017['cin_sfc_avg'][n], min= -956.824463, max =0.))
 
-    mrms_norm = min_max_norm(variable=ex_2017['mrms'], min=0., max=98.694305)
+        mrms_norm.append(min_max_norm(variable=ex_2017['mrms'][n], min=0., max=98.694305))
+
 
     #save the data to a tf ds
     #make in xr dataset
-    vars = [comp_dz_max_norm,comp_dz_90_norm,comp_dz_avg_norm,
+    vars = [comp_dz_max_norm, comp_dz_90_norm, comp_dz_avg_norm,
             w_up_max_norm, w_up_90_norm, w_up_avg_norm,
             w_down_max_norm, w_down_90_norm, w_down_avg_norm,
-            cape_sfc_avg_norm, cape_ml_avg_norm, cin_sfc_avg_norm,
-            cin_ml_avg_norm, mrms_norm]
+            cape_ml_avg_norm, cape_sfc_avg_norm,
+            cin_ml_avg_norm, cin_sfc_avg_norm, mrms_norm]
         
-    names =['comp_dz_max','comp_dz_90','comp_dz_avg',
-            'w_up_max', 'w_up_90', 'w_up_avg',
-            'w_down_max', 'w_down_90', 'w_down_avg',
-            'cape_sfc_avg', 'cape_ml_avg', 'cin_sfc_avg',
-            'cin_ml_avg', 'mrms']
+    names =['comp_dz_max_norm', 'comp_dz_90_norm', 'comp_dz_avg_norm',
+            'w_up_max_norm', 'w_up_90_norm', 'w_up_avg_norm',
+            'w_down_max_norm', 'w_down_90_norm', 'w_down_avg_norm',
+            'cape_ml_avg_norm', 'cape_sfc_avg_norm',
+            'cin_ml_avg_norm', 'cin_sfc_avg_norm', 'mrms_norm']
 
     size = ['n_samples','lat', 'lon']
 
@@ -277,6 +298,7 @@ if run_num == 1:
     data_vars = {name : data_tup for name, data_tup in zip(names, tuples)}
 
     out_ds = xr.Dataset(data_vars)
+    print(out_ds)
 
     out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2017-2018_norm.nc')
     print('saved to netcdf')
@@ -286,40 +308,41 @@ if run_num == 2:
     #load in 2019 data
     ex_2019 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2019_fix.nc')
 
-    #MIN-MAX Scaling on each variable for 2017-2018
-    comp_dz_max_norm = min_max_norm(variable=ex_2019['comp_dz_max'], min = 0., max= 77.749992)
-    comp_dz_90_norm = min_max_norm(variable=ex_2019['comp_dz_90'], min = 0., max = 75.403117)
-    comp_dz_avg_norm = min_max_norm(variable=ex_2019['comp_dz_avg'], min = 0., max = 72.208328)
+    for n in range(np.size(ex_2019['comp_dz_max'], axis=0)):
+        comp_dz_max_norm.append(min_max_norm(variable=ex_2019['comp_dz_max'][n], min = 0., max= 77.749992))
+        comp_dz_90_norm.append(min_max_norm(variable=ex_2019['comp_dz_90'][n], min = 0., max = 75.403117))
+        comp_dz_avg_norm.append(min_max_norm(variable=ex_2019['comp_dz_avg'][n], min = 0., max = 72.208328))
 
-    w_up_max_norm = min_max_norm(variable=ex_2019['w_up_max'], min = 0.,max = 96.656242)
-    w_up_90_norm = min_max_norm(variable=ex_2019['w_up_90'], min = 0., max= 80.421867)
-    w_up_avg_norm = min_max_norm(variable=ex_2019['w_up_avg'], min = 0., max = 66.955719)
+        w_up_max_norm.append(min_max_norm(variable=ex_2019['w_up_max'][n], min = 0.,max = 96.656242))
+        w_up_90_norm.append(min_max_norm(variable=ex_2019['w_up_90'][n], min = 0., max= 80.421867))
+        w_up_avg_norm.append(min_max_norm(variable=ex_2019['w_up_avg'][n], min = 0., max = 66.955719))
 
-    w_down_max_norm = min_max_norm(variable=ex_2019['w_down_max'], min = -96.734375, max = 0.090332)
-    w_down_90_norm = min_max_norm(variable= ex_2019['w_down_90'], min = -64.167187, max= 0.155081)
-    w_down_avg_norm = min_max_norm(variable=ex_2019['w_down_avg'], min= -45.243816, max = 0.220207)
+        w_down_max_norm.append(min_max_norm(variable=ex_2019['w_down_max'][n], min = -96.734375, max = 0.090332))
+        w_down_90_norm.append(min_max_norm(variable= ex_2019['w_down_90'][n], min = -64.167187, max= 0.155081))
+        w_down_avg_norm.append(min_max_norm(variable=ex_2019['w_down_avg'][n], min= -45.243816, max = 0.220207))
 
-    cape_ml_avg_norm = min_max_norm(variable=ex_2019['cape_ml_avg'],  min = 0., max = 5360.163574)
-    cape_sfc_avg_norm = min_max_norm(variable=ex_2019['cape_sfc_avg'], min = 0., max = 7333.146484)
+        cape_ml_avg_norm.append(min_max_norm(variable=ex_2019['cape_ml_avg'][n],  min = 0., max = 5360.163574))
+        cape_sfc_avg_norm.append(min_max_norm(variable=ex_2019['cape_sfc_avg'][n], min = 0., max = 7333.146484))
 
-    cin_ml_avg_norm = min_max_norm(variable=ex_2019['cin_ml_avg'], min = -975.307373, max = 0.)
-    cin_sfc_avg_norm = min_max_norm(variable=ex_2019['cin_sfc_avg'], min= -956.824463, max =0.)
+        cin_ml_avg_norm.append(min_max_norm(variable=ex_2019['cin_ml_avg'][n], min = -975.307373, max = 0.))
+        cin_sfc_avg_norm.append(min_max_norm(variable=ex_2019['cin_sfc_avg'][n], min= -956.824463, max =0.))
 
-    mrms_norm = min_max_norm(variable=ex_2019['mrms'], min=0., max=98.694305)
+        mrms_norm.append(min_max_norm(variable=ex_2019['mrms'][n], min=0., max=98.694305))
+
 
     #save the data to a tf ds
     #make in xr dataset
-    vars = [comp_dz_max_norm,comp_dz_90_norm,comp_dz_avg_norm,
+    vars = [comp_dz_max_norm, comp_dz_90_norm, comp_dz_avg_norm,
             w_up_max_norm, w_up_90_norm, w_up_avg_norm,
             w_down_max_norm, w_down_90_norm, w_down_avg_norm,
-            cape_sfc_avg_norm, cape_ml_avg_norm, cin_sfc_avg_norm,
-            cin_ml_avg_norm, mrms_norm]
+            cape_ml_avg_norm, cape_sfc_avg_norm,
+            cin_ml_avg_norm, cin_sfc_avg_norm, mrms_norm]
         
-    names =['comp_dz_max','comp_dz_90','comp_dz_avg',
-            'w_up_max', 'w_up_90', 'w_up_avg',
-            'w_down_max', 'w_down_90', 'w_down_avg',
-            'cape_sfc_avg', 'cape_ml_avg', 'cin_sfc_avg',
-            'cin_ml_avg', 'mrms']
+    names =['comp_dz_max_norm', 'comp_dz_90_norm', 'comp_dz_avg_norm',
+            'w_up_max_norm', 'w_up_90_norm', 'w_up_avg_norm',
+            'w_down_max_norm', 'w_down_90_norm', 'w_down_avg_norm',
+            'cape_ml_avg_norm', 'cape_sfc_avg_norm',
+            'cin_ml_avg_norm', 'cin_sfc_avg_norm', 'mrms_norm']
 
     size = ['n_samples','lat', 'lon']
 
@@ -327,6 +350,7 @@ if run_num == 2:
     data_vars = {name : data_tup for name, data_tup in zip(names, tuples)}
 
     out_ds = xr.Dataset(data_vars)
+    print(out_ds)
 
     out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2019_norm.nc')
     print('saved to netcdf')
@@ -335,40 +359,41 @@ if run_num == 3:
     #load in 2020 data
     ex_2020 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/examples/examples_2020_fix.nc')
 
-    #MIN-MAX Scaling on each variable for 2017-2018
-    comp_dz_max_norm = min_max_norm(variable=ex_2020['comp_dz_max'], min = 0., max= 77.749992)
-    comp_dz_90_norm = min_max_norm(variable=ex_2020['comp_dz_90'], min = 0., max = 75.403117)
-    comp_dz_avg_norm = min_max_norm(variable=ex_2020['comp_dz_avg'], min = 0., max = 72.208328)
+    for n in range(np.size(ex_2020['comp_dz_max'], axis=0)):
+        comp_dz_max_norm.append(min_max_norm(variable=ex_2020['comp_dz_max'][n], min = 0., max= 77.749992))
+        comp_dz_90_norm.append(min_max_norm(variable=ex_2020['comp_dz_90'][n], min = 0., max = 75.403117))
+        comp_dz_avg_norm.append(min_max_norm(variable=ex_2020['comp_dz_avg'][n], min = 0., max = 72.208328))
 
-    w_up_max_norm = min_max_norm(variable=ex_2020['w_up_max'], min = 0.,max = 96.656242)
-    w_up_90_norm = min_max_norm(variable=ex_2020['w_up_90'], min = 0., max= 80.421867)
-    w_up_avg_norm = min_max_norm(variable=ex_2020['w_up_avg'], min = 0., max = 66.955719)
+        w_up_max_norm.append(min_max_norm(variable=ex_2020['w_up_max'][n], min = 0.,max = 96.656242))
+        w_up_90_norm.append(min_max_norm(variable=ex_2020['w_up_90'][n], min = 0., max= 80.421867))
+        w_up_avg_norm.append(min_max_norm(variable=ex_2020['w_up_avg'][n], min = 0., max = 66.955719))
 
-    w_down_max_norm = min_max_norm(variable=ex_2020['w_down_max'], min = -96.734375, max = 0.090332)
-    w_down_90_norm = min_max_norm(variable= ex_2020['w_down_90'], min = -64.167187, max= 0.155081)
-    w_down_avg_norm = min_max_norm(variable=ex_2020['w_down_avg'], min= -45.243816, max = 0.220207)
+        w_down_max_norm.append(min_max_norm(variable=ex_2020['w_down_max'][n], min = -96.734375, max = 0.090332))
+        w_down_90_norm.append(min_max_norm(variable= ex_2020['w_down_90'][n], min = -64.167187, max= 0.155081))
+        w_down_avg_norm.append(min_max_norm(variable=ex_2020['w_down_avg'][n], min= -45.243816, max = 0.220207))
 
-    cape_ml_avg_norm = min_max_norm(variable=ex_2020['cape_ml_avg'],  min = 0., max = 5360.163574)
-    cape_sfc_avg_norm = min_max_norm(variable=ex_2020['cape_sfc_avg'], min = 0., max = 7333.146484)
+        cape_ml_avg_norm.append(min_max_norm(variable=ex_2020['cape_ml_avg'][n],  min = 0., max = 5360.163574))
+        cape_sfc_avg_norm.append(min_max_norm(variable=ex_2020['cape_sfc_avg'][n], min = 0., max = 7333.146484))
 
-    cin_ml_avg_norm = min_max_norm(variable=ex_2020['cin_ml_avg'], min = -975.307373, max = 0.)
-    cin_sfc_avg_norm = min_max_norm(variable=ex_2020['cin_sfc_avg'], min= -956.824463, max =0.)
+        cin_ml_avg_norm.append(min_max_norm(variable=ex_2020['cin_ml_avg'][n], min = -975.307373, max = 0.))
+        cin_sfc_avg_norm.append(min_max_norm(variable=ex_2020['cin_sfc_avg'][n], min= -956.824463, max =0.))
 
-    mrms_norm = min_max_norm(variable=ex_2020['mrms'], min=0., max=98.694305)
+        mrms_norm.append(min_max_norm(variable=ex_2020['mrms'][n], min=0., max=98.694305))
+
 
     #save the data to a tf ds
     #make in xr dataset
-    vars = [comp_dz_max_norm,comp_dz_90_norm,comp_dz_avg_norm,
+    vars = [comp_dz_max_norm, comp_dz_90_norm, comp_dz_avg_norm,
             w_up_max_norm, w_up_90_norm, w_up_avg_norm,
             w_down_max_norm, w_down_90_norm, w_down_avg_norm,
-            cape_sfc_avg_norm, cape_ml_avg_norm, cin_sfc_avg_norm,
-            cin_ml_avg_norm, mrms_norm]
+            cape_ml_avg_norm, cape_sfc_avg_norm,
+            cin_ml_avg_norm, cin_sfc_avg_norm, mrms_norm]
         
-    names =['comp_dz_max','comp_dz_90','comp_dz_avg',
-            'w_up_max', 'w_up_90', 'w_up_avg',
-            'w_down_max', 'w_down_90', 'w_down_avg',
-            'cape_sfc_avg', 'cape_ml_avg', 'cin_sfc_avg',
-            'cin_ml_avg', 'mrms']
+    names =['comp_dz_max_norm', 'comp_dz_90_norm', 'comp_dz_avg_norm',
+            'w_up_max_norm', 'w_up_90_norm', 'w_up_avg_norm',
+            'w_down_max_norm', 'w_down_90_norm', 'w_down_avg_norm',
+            'cape_ml_avg_norm', 'cape_sfc_avg_norm',
+            'cin_ml_avg_norm', 'cin_sfc_avg_norm', 'mrms_norm']
 
     size = ['n_samples','lat', 'lon']
 
@@ -376,6 +401,7 @@ if run_num == 3:
     data_vars = {name : data_tup for name, data_tup in zip(names, tuples)}
 
     out_ds = xr.Dataset(data_vars)
+    print(out_ds)
 
     out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/examples/examples_2020_norm.nc')
     print('saved to netcdf')
@@ -384,39 +410,41 @@ if run_num == 4:
     #load in 2021 data
     ex_2021 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/examples_2021_fix.nc')
     #MIN-MAX Scaling on each variable for 2017-2018
-    comp_dz_max_norm = min_max_norm(variable=ex_2021['comp_dz_max'], min = 0., max= 77.749992)
-    comp_dz_90_norm = min_max_norm(variable=ex_2021['comp_dz_90'], min = 0., max = 75.403117)
-    comp_dz_avg_norm = min_max_norm(variable=ex_2021['comp_dz_avg'], min = 0., max = 72.208328)
+    for n in range(np.size(ex_2021['comp_dz_max'], axis=0)):
+        comp_dz_max_norm.append(min_max_norm(variable=ex_2021['comp_dz_max'][n], min = 0., max= 77.749992))
+        comp_dz_90_norm.append(min_max_norm(variable=ex_2021['comp_dz_90'][n], min = 0., max = 75.403117))
+        comp_dz_avg_norm.append(min_max_norm(variable=ex_2021['comp_dz_avg'][n], min = 0., max = 72.208328))
 
-    w_up_max_norm = min_max_norm(variable=ex_2021['w_up_max'], min = 0.,max = 96.656242)
-    w_up_90_norm = min_max_norm(variable=ex_2021['w_up_90'], min = 0., max= 80.421867)
-    w_up_avg_norm = min_max_norm(variable=ex_2021['w_up_avg'], min = 0., max = 66.955719)
+        w_up_max_norm.append(min_max_norm(variable=ex_2021['w_up_max'][n], min = 0.,max = 96.656242))
+        w_up_90_norm.append(min_max_norm(variable=ex_2021['w_up_90'][n], min = 0., max= 80.421867))
+        w_up_avg_norm.append(min_max_norm(variable=ex_2021['w_up_avg'][n], min = 0., max = 66.955719))
 
-    w_down_max_norm = min_max_norm(variable=ex_2021['w_down_max'], min = -96.734375, max = 0.090332)
-    w_down_90_norm = min_max_norm(variable= ex_2021['w_down_90'], min = -64.167187, max= 0.155081)
-    w_down_avg_norm = min_max_norm(variable=ex_2021['w_down_avg'], min= -45.243816, max = 0.220207)
+        w_down_max_norm.append(min_max_norm(variable=ex_2021['w_down_max'][n], min = -96.734375, max = 0.090332))
+        w_down_90_norm.append(min_max_norm(variable= ex_2021['w_down_90'][n], min = -64.167187, max= 0.155081))
+        w_down_avg_norm.append(min_max_norm(variable=ex_2021['w_down_avg'][n], min= -45.243816, max = 0.220207))
 
-    cape_ml_avg_norm = min_max_norm(variable=ex_2021['cape_ml_avg'],  min = 0., max = 5360.163574)
-    cape_sfc_avg_norm = min_max_norm(variable=ex_2021['cape_sfc_avg'], min = 0., max = 7333.146484)
+        cape_ml_avg_norm.append(min_max_norm(variable=ex_2021['cape_ml_avg'][n],  min = 0., max = 5360.163574))
+        cape_sfc_avg_norm.append(min_max_norm(variable=ex_2021['cape_sfc_avg'][n], min = 0., max = 7333.146484))
 
-    cin_ml_avg_norm = min_max_norm(variable=ex_2021['cin_ml_avg'], min = -975.307373, max = 0.)
-    cin_sfc_avg_norm = min_max_norm(variable=ex_2021['cin_sfc_avg'], min= -956.824463, max =0.)
+        cin_ml_avg_norm.append(min_max_norm(variable=ex_2021['cin_ml_avg'][n], min = -975.307373, max = 0.))
+        cin_sfc_avg_norm.append(min_max_norm(variable=ex_2021['cin_sfc_avg'][n], min= -956.824463, max =0.))
 
-    mrms_norm = min_max_norm(variable=ex_2021['mrms'], min=0., max=98.694305)
+        mrms_norm.append(min_max_norm(variable=ex_2021['mrms'][n], min=0., max=98.694305))
+
 
     #save the data to a tf ds
     #make in xr dataset
-    vars = [comp_dz_max_norm,comp_dz_90_norm,comp_dz_avg_norm,
+    vars = [comp_dz_max_norm, comp_dz_90_norm, comp_dz_avg_norm,
             w_up_max_norm, w_up_90_norm, w_up_avg_norm,
             w_down_max_norm, w_down_90_norm, w_down_avg_norm,
-            cape_sfc_avg_norm, cape_ml_avg_norm, cin_sfc_avg_norm,
-            cin_ml_avg_norm, mrms_norm]
+            cape_ml_avg_norm, cape_sfc_avg_norm,
+            cin_ml_avg_norm, cin_sfc_avg_norm, mrms_norm]
         
-    names =['comp_dz_max','comp_dz_90','comp_dz_avg',
-            'w_up_max', 'w_up_90', 'w_up_avg',
-            'w_down_max', 'w_down_90', 'w_down_avg',
-            'cape_sfc_avg', 'cape_ml_avg', 'cin_sfc_avg',
-            'cin_ml_avg', 'mrms']
+    names =['comp_dz_max_norm', 'comp_dz_90_norm', 'comp_dz_avg_norm',
+            'w_up_max_norm', 'w_up_90_norm', 'w_up_avg_norm',
+            'w_down_max_norm', 'w_down_90_norm', 'w_down_avg_norm',
+            'cape_ml_avg_norm', 'cape_sfc_avg_norm',
+            'cin_ml_avg_norm', 'cin_sfc_avg_norm', 'mrms_norm']
 
     size = ['n_samples','lat', 'lon']
 
@@ -424,41 +452,71 @@ if run_num == 4:
     data_vars = {name : data_tup for name, data_tup in zip(names, tuples)}
 
     out_ds = xr.Dataset(data_vars)
+    print(out_ds)
 
     out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/examples_2021_norm.nc')
     print('saved to netcdf')
 
 if run_num ==5:
     ex_2017 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2017-2018.nc')
+    lb_2017 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2017-2018.nc')
+
     problem_cases = unreasonable_values(ex_2017)
 
-    new_2017  = ex_2017.drop_isel({'n_samples' : problem_cases})
-    print(np.shape(new_2017['comp_dz_max']))
-    new_2017.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2017-2018_fix.nc')
+    new_ex_2017  = ex_2017.drop_isel({'n_samples' : problem_cases})
+    new_lb_2017 = lb_2017.drop_isel({'n_samples' : problem_cases})
+    print(np.shape(new_ex_2017['comp_dz_max']))
+
+    new_ex_2017.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2017-2018_fix.nc')
+    new_lb_2017.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2017-2018_fix.nc')
+
+    tf_ds = tf.data.Dataset.from_tensor_slices((new_ex_2017,new_lb_2017))
+    tf.data.experimental.save(tf_ds, '/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2017-2018.tf')
 
 if run_num ==6:
     ex_2019 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2019.nc')
+    lb_2019 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2019.nc')
+
     problem_cases =unreasonable_values(ex_2019)
 
-    new_2019  = ex_2019.drop_isel({'n_samples' : problem_cases})
-    print(np.shape(new_2019['comp_dz_max']))
-    new_2019.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2019_fix.nc')
+    new_ex_2019  = ex_2019.drop_isel({'n_samples' : problem_cases})
+    new_lb_2019 = lb_2019.drop_isel({'n_samples' : problem_cases})
+    print(np.shape(new_ex_2019['comp_dz_max']))
+
+    new_ex_2019.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2019_fix.nc')
+    new_lb_2019.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2019_fix.nc')
+
+    tf_ds = tf.data.Dataset.from_tensor_slices((new_ex_2019,new_lb_2019))
+    tf.data.experimental.save(tf_ds, '/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2019.tf')
 
 if run_num ==7:
     ex_2020 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/examples/examples_2020.nc')
+    lb_2020 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/labels/lables_2020.nc')
     problem_cases =unreasonable_values(ex_2020)
 
-    new_2020  = ex_2020.drop_isel({'n_samples' : problem_cases})
-    print(np.shape(new_2020['comp_dz_max']))
-    new_2020.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/examples/examples_2020_fix.nc')
+    new_ex_2020  = ex_2020.drop_isel({'n_samples' : problem_cases})
+    new_lb_2020 = lb_2020.drop_isel({'n_samples' : problem_cases})
+    print(np.shape(new_ex_2020['comp_dz_max']))
+    new_ex_2020.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/examples/examples_2020_fix.nc')
+    new_lb_2020.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/labels/labels_2020_fix.nc')
+
+    tf_ds = tf.data.Dataset.from_tensor_slices((new_ex_2020,new_lb_2020))
+    tf.data.experimental.save(tf_ds, '/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/validation.tf')
 
 if run_num == 8:
     ex_2021 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/examples_2021.nc')
+    lb_2021 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/labels/labels_2021.nc')
+
     problem_cases = unreasonable_values(ex_2021)
 
-    new_2021  = ex_2021.drop_isel({'n_samples' : problem_cases})
-    print(np.shape(new_2021['comp_dz_max']))
-    new_2021.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/examples_2021_fix.nc')
+    new_ex_2021  = ex_2021.drop_isel({'n_samples' : problem_cases})
+    new_lb_2021 = lb_2021.drop_isel({'n_samples' : problem_cases})
+    print(np.shape(new_ex_2021['comp_dz_max']))
+    new_ex_2021.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/examples_2021_fix.nc')
+    new_lb_2021.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/labels/labels_2021_fix.nc')
+
+    tf_ds = tf.data.Dataset.from_tensor_slices((new_ex_2021,new_lb_2021))
+    tf.data.experimental.save(tf_ds, '/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/test.tf')
 
 print('done')
     

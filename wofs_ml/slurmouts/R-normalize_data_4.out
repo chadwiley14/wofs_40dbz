@@ -1,2 +1,19 @@
-(1625, 128, 128)
+<xarray.Dataset>
+Dimensions:            (n_samples: 1340, lat: 128, lon: 128)
+Dimensions without coordinates: n_samples, lat, lon
+Data variables: (12/14)
+    comp_dz_max_norm   (n_samples, lat, lon) float32 0.0 0.0 ... 0.6527 0.7257
+    comp_dz_90_norm    (n_samples, lat, lon) float64 0.0 0.0 ... 0.6446 0.6856
+    comp_dz_avg_norm   (n_samples, lat, lon) float32 0.0 0.0 ... 0.5446 0.5907
+    w_up_max_norm      (n_samples, lat, lon) float32 0.007615 0.007752 ... 0.148
+    w_up_90_norm       (n_samples, lat, lon) float64 0.009018 ... 0.1202
+    w_up_avg_norm      (n_samples, lat, lon) float32 0.008875 ... 0.06659
+    ...                 ...
+    w_down_avg_norm    (n_samples, lat, lon) float32 0.9922 0.9923 ... 0.9704
+    cape_ml_avg_norm   (n_samples, lat, lon) float32 0.004832 ... 0.002131
+    cape_sfc_avg_norm  (n_samples, lat, lon) float32 0.01791 ... 0.009115
+    cin_ml_avg_norm    (n_samples, lat, lon) float32 0.9522 1.0 ... 1.0 0.993
+    cin_sfc_avg_norm   (n_samples, lat, lon) float32 0.9196 0.9113 ... 0.9816
+    mrms_norm          (n_samples, lat, lon) float32 -0.0 -0.0 ... 0.277 0.2626
+saved to netcdf
 done

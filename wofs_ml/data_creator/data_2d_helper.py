@@ -80,14 +80,12 @@ def extract_ex_data(ds_list,year):
         cur_file = xr.load_dataset(cur_ex)
         print('Loaded :  %s'%cur_ex)
 
-        #get the comp_dz for probs
-        
-        comp_dz.append(cur_file['comp_dz'])
-        lats.append(cur_file['lat'])
-        lons.append(cur_file['lon'])
-
         #model stats
         for i in range(np.size(cur_file['comp_dz'], axis = 0)):
+            comp_dz.append(cur_file['comp_dz'][i])
+            lats.append(cur_file['lat'][i])
+            lons.append(cur_file['lon'][i])
+
             comp_dz_max.append(np.max(cur_file['comp_dz'][i], axis = 0))
             comp_dz_90.append(np.percentile(cur_file['comp_dz'][i], 90., axis = 0))
             comp_dz_avg.append(np.average(cur_file['comp_dz'][i], axis = 0))
@@ -130,7 +128,7 @@ def extract_ex_data(ds_list,year):
     tuples = [(size,var)for var in vars]
     data_vars = {name : data_tup for name, data_tup in zip(names, tuples)}
 
-    out_ds = xr.Dataset(data_vars)
+    out_ds = xr.Dataset(data_vars) 
     print('Examples : ',out_ds)
     print('----------------------')
     print('----------------------')
@@ -245,7 +243,8 @@ def save_comp_prob(comp_dz, year):
     Takes in a list of comp_dz with dim of n_samples, ne, lat_dim,lon_dim
     and saves it to netcdf
     """
-
+    print('COMP DZ SHAPE ::::::')
+    print(np.shape(comp_dz))
     #make in xr dataset
     vars = [comp_dz]
         

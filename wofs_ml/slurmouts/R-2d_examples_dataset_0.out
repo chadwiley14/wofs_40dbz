@@ -39,3 +39,53 @@ Data variables: (12/14)
 ----------------------
 ----------------------
 dataset is saved
+COMP DZ SHAPE ::::::
+(19450, 18, 128, 128)
+comp_dz <xarray.Dataset>
+Dimensions:      (n_samples: 19450, ne: 18, lat: 128, lon: 128)
+Dimensions without coordinates: n_samples, ne, lat, lon
+Data variables:
+    comp_dz_max  (n_samples, ne, lat, lon) float32 0.0 0.0 0.0 ... 0.0 0.0 0.0
+----------------------
+----------------------
+----------------------
+saved probs
+lat_lons <xarray.Dataset>
+Dimensions:  (n_samples: 19450, lat_dim: 128, lon_dim: 128)
+Dimensions without coordinates: n_samples, lat_dim, lon_dim
+Data variables:
+    lats     (n_samples, lat_dim, lon_dim) float32 39.22 39.22 ... 42.85 42.85
+    lons     (n_samples, lat_dim, lon_dim) float32 -81.24 -81.21 ... -96.11
+----------------------
+----------------------
+----------------------
+saved lat and lons
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0000.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0001.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0002.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0003.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0004.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0005.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0006.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0007.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0008.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0009.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0010.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0011.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0012.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0013.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0014.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0015.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0016.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0017.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0018.nc
+loaded : /ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/0019.nc
+label :  <xarray.Dataset>
+Dimensions:    (n_samples: 19450, lat: 128, lon: 128)
+Dimensions without coordinates: n_samples, lat, lon
+Data variables:
+    dz_binary  (n_samples, lat, lon) float64 0.0 0.0 0.0 0.0 ... 0.0 0.0 0.0 0.0
+-------------------
+-------------------
+-------------------
+done
