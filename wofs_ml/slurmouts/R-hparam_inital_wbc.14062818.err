@@ -1,0 +1,68 @@
+2023-02-08 14:03:07.729412: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:From /home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_ml.py:217: load (from tensorflow.python.data.experimental.ops.io) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.data.Dataset.load(...)` instead.
+W0208 14:04:17.894710 47784214548224 deprecation.py:350] From /home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_ml.py:217: load (from tensorflow.python.data.experimental.ops.io) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.data.Dataset.load(...)` instead.
+2023-02-08 14:04:17.990212: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-02-08 14:04:19.510245: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 38259 MB memory:  -> device: 0, name: NVIDIA A100-SXM4-40GB, pci bus id: 0000:01:00.0, compute capability: 8.0
+2023-02-08 14:04:33.937938: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 815 of 25257
+2023-02-08 14:04:43.951585: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 1726 of 25257
+2023-02-08 14:04:53.942572: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 2648 of 25257
+2023-02-08 14:05:03.948755: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3526 of 25257
+2023-02-08 14:05:13.950278: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4388 of 25257
+2023-02-08 14:05:23.936952: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5242 of 25257
+2023-02-08 14:05:33.938785: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6063 of 25257
+2023-02-08 14:05:44.096263: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6931 of 25257
+2023-02-08 14:05:53.944771: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7517 of 25257
+2023-02-08 14:06:03.946900: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8314 of 25257
+2023-02-08 14:06:13.939962: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8996 of 25257
+2023-02-08 14:06:23.949095: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9674 of 25257
+2023-02-08 14:06:33.937797: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10395 of 25257
+2023-02-08 14:06:43.942871: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11088 of 25257
+2023-02-08 14:06:53.941414: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11744 of 25257
+2023-02-08 14:07:03.942338: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12449 of 25257
+2023-02-08 14:07:13.935629: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13164 of 25257
+2023-02-08 14:07:23.940903: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13859 of 25257
+2023-02-08 14:07:33.946942: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14596 of 25257
+2023-02-08 14:07:43.973260: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15305 of 25257
+2023-02-08 14:07:53.935710: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16035 of 25257
+2023-02-08 14:08:03.938525: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16725 of 25257
+2023-02-08 14:08:13.937101: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17440 of 25257
+2023-02-08 14:08:23.959874: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18194 of 25257
+2023-02-08 14:08:34.004771: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18893 of 25257
+2023-02-08 14:08:43.943488: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19629 of 25257
+2023-02-08 14:08:53.986990: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 20126 of 25257
+2023-02-08 14:09:04.079005: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 20872 of 25257
+2023-02-08 14:09:13.945029: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 21558 of 25257
+2023-02-08 14:09:23.936008: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 22297 of 25257
+2023-02-08 14:09:33.965216: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 23014 of 25257
+2023-02-08 14:09:43.978311: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 23782 of 25257
+2023-02-08 14:09:53.943179: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 24474 of 25257
+2023-02-08 14:10:06.113309: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 25002 of 25257
+2023-02-08 14:10:10.541680: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2023-02-08 14:10:12.617369: I tensorflow/stream_executor/cuda/cuda_dnn.cc:384] Loaded cuDNN version 8401
+2023-02-08 14:10:15.242615: W tensorflow/stream_executor/gpu/asm_compiler.cc:80] Couldn't get ptxas version string: INTERNAL: Running ptxas --version returned 32512
+2023-02-08 14:10:15.571481: W tensorflow/stream_executor/gpu/redzone_allocator.cc:314] INTERNAL: ptxas exited with non-zero error code 32512, output: 
+Relying on driver to perform ptx compilation. 
+Modify $PATH to customize ptxas location.
+This message will be only logged once.
+2023-02-08 14:10:19.972276: I tensorflow/stream_executor/cuda/cuda_blas.cc:1614] TensorFloat-32 will be used for the matrix multiplication. This will only be logged once.
+Traceback (most recent call last):
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_ml.py", line 378, in <module>
+    app.run(main)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/absl/app.py", line 308, in run
+    _run_main(main, args)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/absl/app.py", line 254, in _run_main
+    sys.exit(main(argv))
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_ml.py", line 373, in main
+    run_all(logdir=logdir, verbose=True)
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_ml.py", line 359, in run_all
+    run(
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/unet/hparam_wofs_ml.py", line 325, in run
+    right = split_dir[0][:-1] + split_dir[1]
+IndexError: list index out of range
+slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name

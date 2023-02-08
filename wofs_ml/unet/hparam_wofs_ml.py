@@ -94,7 +94,7 @@ HP_CONV_KERNELS = hp.HParam('num_of_kernels', hp.Discrete([4,8,16,32]))
 
 
 #unet param
-HP_UNET_DEPTH = hp.HParam('depth_of_unet', hp.Discrete([2,3,4,5,6]))
+HP_UNET_DEPTH = hp.HParam('depth_of_unet', hp.Discrete([2,3,4,6]))
 HP_OPTIMIZER = hp.HParam("optimizer", hp.Discrete(["adam", "rmsprop"]))
 HP_LOSS = hp.HParam("loss", hp.Discrete(['weighted_binary_crossentropy'])) 
 HP_BATCHNORM = hp.HParam('batchnorm', hp.Discrete([False, True]))
@@ -217,7 +217,7 @@ def prepare_data():
     train_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2017-2018.tf')
     train_2019 = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2019.tf')
 
-    val_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/validation.tf')
+    val_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/validation_2020.tf')
 
     #concat the two training together
     train_ds = train_ds.concatenate(train_2019)
@@ -321,7 +321,7 @@ def run(data, base_logdir, session_id, hparams):
     
 
     #save trained model, need to build path first 
-    split_dir = logdir.split('log1')
+    split_dir = logdir.split('log_2d_wbc')
     right = split_dir[0][:-1] + split_dir[1]
     left = '/scratch/chadwiley/models_2d_wbc/'
     model.save(left + right + "model.h5")

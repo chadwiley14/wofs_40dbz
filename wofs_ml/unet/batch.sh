@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --partition=ai2es
 #SBATCH --nodes=1
-#SBATCH -w c830
+#SBATCH -w c733
 #SBATCH --ntasks=4
 #SBATCH --mem=24G
 #SBATCH --time=24:00:00

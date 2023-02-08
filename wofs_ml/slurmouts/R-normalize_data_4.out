@@ -16,4 +16,5 @@ Data variables: (12/14)
     cin_sfc_avg_norm   (n_samples, lat, lon) float32 0.9196 0.9113 ... 0.9816
     mrms_norm          (n_samples, lat, lon) float32 -0.0 -0.0 ... 0.277 0.2626
 saved to netcdf
+saved to tf ds
 done

@@ -1,6 +1,6 @@
 From patching:
 <xarray.DataArray 'dz_cress' ()>
-array(39.998966, dtype=float32)
+array(61.684174, dtype=float32)
 ---------------------
 Patches in one place:
 <xarray.DataArray 'dz_binary' ()>

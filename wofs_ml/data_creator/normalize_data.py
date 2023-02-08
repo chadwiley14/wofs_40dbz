@@ -122,6 +122,38 @@ def unreasonable_values(ds):
     # print(np.shape(ds['comp_dz_max']))
     return problem_cases
 
+def make_tf_ds(ds_ex, ds_lb):
+    """
+    Given examples and labels, returns
+    a tensorflow dataset. 
+    Data should already be normalized.
+    
+    PARAMETERS
+    -----------------------
+    ds_ex : xr dataset
+        xarray dataset of examples
+    
+    ds_lb : xr dataset
+        dataset of labels
+
+    RETURNS
+    -------------------------
+    tf_ds : tensorflow dataset
+        Returns a tensorflow dataset
+        meant for tf models.
+    """
+    ds_ex=ds_ex.to_array()
+    ds_lb=ds_lb.to_array()
+
+    ds_ex = ds_ex.transpose('n_samples',...)
+    ds_ex = ds_ex.transpose(...,'variable')
+
+    ds_lb = ds_lb.transpose('n_samples',...)
+    ds_lb = ds_lb.transpose(...,'variable')
+
+    tf_ds = tf.data.Dataset.from_tensor_slices((ds_ex,ds_lb))
+    return tf_ds
+
 
 
 #create parser
@@ -231,26 +263,9 @@ if run_num ==0:
     print('-------------------------------')
     print()
 
-def norm_data(variable,min,max):
-    """
-    Takes in a dataset and applies the min-max
-    scaling to the variable and then saves the data
-    in a tf dataset. Min and max are needed due to 
-    being multiple datasets for this case.
-
-    PARAMETERS
-    -------------------
-    variable : xr data array
-        Variable wanting to apply min-max on
-    
-    min : float
-        Min value of that variable across all ds
-
-    max : float
-        Max value of that variable across all ds
-    """
-    variable = min_max_norm(variablemin=min,max=max)
-
+#################################################################
+#################################################################
+#################################################################
 
 if run_num == 1:
     #do 2017-2018 examples
@@ -303,7 +318,17 @@ if run_num == 1:
     out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2017-2018_norm.nc')
     print('saved to netcdf')
 
+    #load in 2017 labels
+    lb_2017 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2017-2018_fix.nc')
 
+    tf_ds = make_tf_ds(out_ds,lb_2017)
+
+    tf.data.experimental.save(tf_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2017-2018.tf')
+    print('saved to tf ds')
+
+#################################################################
+#################################################################
+#################################################################
 if run_num == 2:
     #load in 2019 data
     ex_2019 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2019_fix.nc')
@@ -354,6 +379,18 @@ if run_num == 2:
 
     out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2019_norm.nc')
     print('saved to netcdf')
+
+    #load in 2019 labels
+    lb_2019 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2019_fix.nc')
+
+    tf_ds = make_tf_ds(out_ds,lb_2019)
+
+    tf.data.experimental.save(tf_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2019.tf')
+    print('saved to tf ds')
+
+#################################################################
+#################################################################
+#################################################################
 
 if run_num == 3:
     #load in 2020 data
@@ -406,6 +443,18 @@ if run_num == 3:
     out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/examples/examples_2020_norm.nc')
     print('saved to netcdf')
 
+    #load in 2020 labels
+    lb_2020 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/labels/labels_2020_fix.nc')
+
+    tf_ds = make_tf_ds(out_ds, lb_2020)
+
+    tf.data.experimental.save(tf_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/validation_2020.tf')
+    print('saved to tf ds')
+
+#################################################################
+#################################################################
+#################################################################
+
 if run_num == 4:
     #load in 2021 data
     ex_2021 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/examples_2021_fix.nc')
@@ -457,6 +506,18 @@ if run_num == 4:
     out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/examples_2021_norm.nc')
     print('saved to netcdf')
 
+    #load in 2021 labels
+    lb_2021 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/labels/labels_2021_fix.nc')
+
+    tf_ds = make_tf_ds(out_ds, lb_2021)
+
+    tf.data.experimental.save(tf_ds,'/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/test_2021.tf')
+    print('saved to tf ds')
+
+#################################################################
+#################################################################
+#################################################################
+
 if run_num ==5:
     ex_2017 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2017-2018.nc')
     lb_2017 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2017-2018.nc')
@@ -467,26 +528,14 @@ if run_num ==5:
     new_ex_2017  = ex_2017.drop_isel({'n_samples' : problem_cases})
     new_lb_2017 = lb_2017.drop_isel({'n_samples' : problem_cases})
     new_lat_lon = lat_lon.drop_isel({'n_samples' : problem_cases})
+
     print(np.shape(new_ex_2017['comp_dz_max']))
 
     new_ex_2017.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2017-2018_fix.nc')
     new_lb_2017.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2017-2018_fix.nc')
     new_lat_lon.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/lat_lon_2017-2018_fix.nc')
 
-    new_ex=new_ex_2017.to_array()
-    new_lb=new_lb_2017.to_array()
-
-    new_ex = new_ex.transpose('n_samples',...)
-    new_ex = new_ex.transpose(...,'variable')
-
-    new_lb = new_lb.transpose('n_samples',...)
-    new_lb = new_lb.transpose(...,'variable')
-
-    tf_ds = tf.data.Dataset.from_tensor_slices((new_ex,new_lb))
-    tf.data.experimental.save(tf_ds, '/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2017-2018.tf')
-
 if run_num ==6:
-    #NEED TO TRANSPOSE
     ex_2019 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_2019.nc')
     lb_2019 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2019.nc')
     lat_lon = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/lat_lon_2019.nc')
@@ -502,20 +551,6 @@ if run_num ==6:
     new_lb_2019.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2019_fix.nc')
     new_lat_lon.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/lat_lon_2019_fix.nc')
 
-    #need to put it into a numpy arr, then transpose before putting into tf ds
-    #make into arrays
-    new_ex=new_ex_2019.to_array()
-    new_lb=new_lb_2019.to_array()
-
-    new_ex = new_ex.transpose('n_samples',...)
-    new_ex = new_ex.transpose(...,'variable')
-
-    new_lb = new_lb.transpose('n_samples',...)
-    new_lb = new_lb.transpose(...,'variable')
-
-    #put into tf ds and save
-    tf_ds = tf.data.Dataset.from_tensor_slices((new_ex,new_lb))
-    tf.data.experimental.save(tf_ds, '/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2019.tf')
 
 if run_num ==7:
     ex_2020 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/examples/examples_2020.nc')
@@ -533,18 +568,6 @@ if run_num ==7:
     new_lb_2020.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/labels/labels_2020_fix.nc')
     new_lat_lon.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/lat_lon_2020_fix.nc')
 
-    new_ex=new_ex_2020.to_array()
-    new_lb=new_lb_2020.to_array()
-
-    new_ex = new_ex.transpose('n_samples',...)
-    new_ex = new_ex.transpose(...,'variable')
-
-    new_lb = new_lb.transpose('n_samples',...)
-    new_lb = new_lb.transpose(...,'variable')
-
-    tf_ds = tf.data.Dataset.from_tensor_slices((new_ex,new_lb))
-    tf.data.experimental.save(tf_ds, '/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/validation.tf')
-
 if run_num == 8:
     ex_2021 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/examples_2021.nc')
     lb_2021 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/labels/labels_2021.nc')
@@ -561,20 +584,7 @@ if run_num == 8:
     new_lb_2021.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/labels/labels_2021_fix.nc')
     new_lat_lon.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/lat_lon_2021_fix.nc')
 
-    new_ex=new_ex_2021.to_array()
-    new_lb=new_lb_2021.to_array()
-
-    new_ex = new_ex.transpose('n_samples',...)
-    new_ex = new_ex.transpose(...,'variable')
-
-    new_lb = new_lb.transpose('n_samples',...)
-    new_lb = new_lb.transpose(...,'variable')
-
-    tf_ds = tf.data.Dataset.from_tensor_slices((new_ex,new_lb))
-    tf.data.experimental.save(tf_ds, '/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/test.tf')
-
 print('done')
-    
 
 
 

@@ -1,1 +1,20 @@
+Traceback (most recent call last):
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/dataset.py", line 1339, in _construct_dataarray
+    variable = self._variables[name]
+KeyError: 'comp_dz'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_2d_creator.py", line 46, in <module>
+    extract_ex_data(examples_path_2020,'2020')
+  File "/home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/data_2d_helper.py", line 84, in extract_ex_data
+    for i in range(np.size(cur_file['comp_dz'], axis = 0)):
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/dataset.py", line 1430, in __getitem__
+    return self._construct_dataarray(key)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/dataset.py", line 1341, in _construct_dataarray
+    _, name, variable = _get_virtual_variable(self._variables, name, self.dims)
+  File "/home/chadwiley/miniconda3/envs/tf/lib/python3.10/site-packages/xarray/core/dataset.py", line 177, in _get_virtual_variable
+    raise KeyError(key)
+KeyError: 'comp_dz'
 slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name

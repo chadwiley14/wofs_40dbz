@@ -9,7 +9,7 @@ labels_2020 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/
 labels_fix = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2017-2018_fix.nc')
 
 print('From patching:')
-print(np.max(labels_patcher['dz_cress']))
+print(np.max(labels_patcher['dz_cress_binary']))
 #print(labels_patcher)
 print('---------------------')
 
