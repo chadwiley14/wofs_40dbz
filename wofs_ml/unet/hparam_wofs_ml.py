@@ -94,7 +94,7 @@ HP_CONV_KERNELS = hp.HParam('num_of_kernels', hp.Discrete([4,8,16,32]))
 
 
 #unet param
-HP_UNET_DEPTH = hp.HParam('depth_of_unet', hp.Discrete([1,2,3,4,5,6,8]))
+HP_UNET_DEPTH = hp.HParam('depth_of_unet', hp.Discrete([2,3,4,5,6]))
 HP_OPTIMIZER = hp.HParam("optimizer", hp.Discrete(["adam", "rmsprop"]))
 HP_LOSS = hp.HParam("loss", hp.Discrete(['weighted_binary_crossentropy'])) 
 HP_BATCHNORM = hp.HParam('batchnorm', hp.Discrete([False, True]))

@@ -8,3 +8,4 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 WARNING:tensorflow:From /home/chadwiley/research/wofs_40dbz/wofs_ml/data_creator/normalize_data.py:518: save (from tensorflow.python.data.experimental.ops.io) is deprecated and will be removed in a future version.
 Instructions for updating:
 Use `tf.data.Dataset.save(...)` instead.
+slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name

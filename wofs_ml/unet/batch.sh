@@ -3,7 +3,7 @@
 #SBATCH --nodes=1
 #SBATCH -w c830
 #SBATCH --ntasks=4
-#SBATCH --mem=64G
+#SBATCH --mem=24G
 #SBATCH --time=24:00:00
 #SBATCH --job-name=hparam_inital_wbc
 #SBATCH --mail-user=chadwiley@ou.edu

@@ -1,0 +1,12 @@
+From patching:
+<xarray.DataArray 'dz_cress' ()>
+array(39.998966, dtype=float32)
+---------------------
+Patches in one place:
+<xarray.DataArray 'dz_binary' ()>
+array(1.)
+---------------------
+Patches with fix
+<xarray.DataArray 'dz_binary' ()>
+array(1.)
+---------------------

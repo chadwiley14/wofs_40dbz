@@ -3,24 +3,24 @@ import xarray as xr
 import numpy as np
 #this is to figure out which data set is not correct
 
-labels = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/labels_full/labels_20*')
-examples = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/3d_patches/examples_full/*examples.nc')
+#steps in label procress
+labels_patcher = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/labels/0000.nc')
+labels_2020 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2017-2018.nc')
+labels_fix = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_2017-2018_fix.nc')
 
-labels.sort()
-examples.sort()
+print('From patching:')
+print(np.max(labels_patcher['dz_cress']))
+#print(labels_patcher)
+print('---------------------')
 
-for n in range(np.size(labels)):
-    print('loading in examples : %s'%examples[n])
-    print('loading in label : %s'%labels[n])
-    cur_examples = xr.load_dataset(examples[n])
-    cur_labels = xr.load_dataset(labels[n])
+print('Patches in one place:')
+print(np.max(labels_2020['dz_binary']))
+#print(labels_2020)
+print('---------------------')
 
-    print('------------------------------------')
-    print(cur_examples)
-    print('------------------------------------')
-    print(cur_labels)
-    print('------------------------------------')
-    print('------------------------------------')
-    print('------------------------------------')
-    print()
+print('Patches with fix')
+print(np.max(labels_fix['dz_binary']))
+#print(labels_fix)
+print('---------------------')
+
 
