@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH --partition=ai2es
 #SBATCH --nodes=1
-#SBATCH -w c733
+#SBATCH -w c829
 #SBATCH --ntasks=4
 #SBATCH --mem=24G
-#SBATCH --time=24:00:00
+#SBATCH --time=30:00:00
 #SBATCH --job-name=hparam_inital_wbc
 #SBATCH --mail-user=chadwiley@ou.edu
 #SBATCH --mail-type=ALL

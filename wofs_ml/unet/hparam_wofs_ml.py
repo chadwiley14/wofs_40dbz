@@ -98,9 +98,9 @@ HP_UNET_DEPTH = hp.HParam('depth_of_unet', hp.Discrete([2,3,4,6]))
 HP_OPTIMIZER = hp.HParam("optimizer", hp.Discrete(["adam", "rmsprop"]))
 HP_LOSS = hp.HParam("loss", hp.Discrete(['weighted_binary_crossentropy'])) 
 HP_BATCHNORM = hp.HParam('batchnorm', hp.Discrete([False, True]))
-HP_BATCHSIZE = hp.HParam('batch_size', hp.Discrete([32,64,128,256,512]))
+HP_BATCHSIZE = hp.HParam('batch_size', hp.Discrete([32,64,128,256]))
 HP_LEARNING_RATE = hp.HParam('learning_rate', hp.Discrete([1e-2,1e-3,1e-4, 1e-5]))
-HP_LOSS_WEIGHTS = hp.HParam('loss_weights', hp.Discrete([1.0,2.0,3.0,4.0,5.0,6.0,7.0]))
+HP_LOSS_WEIGHTS = hp.HParam('loss_weights', hp.Discrete([2.0,3.0,4.0,5.0,6.0,7.0]))
 
 HPARAMS = [HP_CONV_LAYERS,
     HP_CONV_KERNEL_SIZE,
