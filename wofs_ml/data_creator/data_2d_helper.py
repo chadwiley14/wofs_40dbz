@@ -137,12 +137,12 @@ def extract_ex_data(ds_list,year):
     #save each variable as (n_samples, lat_dim, lon_dim) not normalized
     if year == '2017-2018' or year == '2019':
         #save to training split
-        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/examples_%s.nc'%year)
-    elif year == '2020':
+        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/examples/examples_%s.nc'%year)
+    elif year[:4] == '2020':
         #save to validation
-        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/examples/examples_%s.nc'%year)
-    elif year == '2021':
-        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/examples_%s.nc'%year)
+        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/examples/examples_%s.nc'%year)
+    elif year[:4] == '2021':
+        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/examples_%s.nc'%year)
     print('dataset is saved')
 
     #save comp_dz
@@ -168,6 +168,7 @@ def extract_label_data(list_files, year):
         string of the year for saving purpose
     """
     dz_binary = []
+    dz = []
     for cur_label in list_files:
         #load in the file
         cur_file = xr.load_dataset(cur_label)
@@ -175,10 +176,15 @@ def extract_label_data(list_files, year):
 
         for i in range(np.size(cur_file['dz_cress_binary'], axis = 0)):
             dz_binary.append(cur_file['dz_cress_binary'][i])
+            if year[:4] == '2020' or year[:4] == '2021':
+                dz.append(cur_file['dz_cress'][i])
+            else:
+                dz.append(cur_file['DZ_CRESSMAN'][i])
 
-    vars = [dz_binary]
 
-    name = ['dz_binary']
+    vars = [dz_binary,dz]
+
+    name = ['dz_binary', 'dz']
 
 
     size = ['n_samples','lat', 'lon']
@@ -195,12 +201,12 @@ def extract_label_data(list_files, year):
     print('-------------------')
     if year == '2017-2018' or year == '2019':
         #save to training split
-        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/labels_%s.nc'%year)
-    elif year == '2020':
+        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/labels_%s.nc'%year)
+    elif year[:4] == '2020':
         #save to validation
-        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/labels/labels_%s.nc'%year)
-    elif year == '2021':
-        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/labels/labels_%s.nc'%year)
+        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/labels_%s.nc'%year)
+    elif year[:4] == '2021':
+        out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/labels_%s.nc'%year)
 
 def save_lat_lon(full_lats, full_lons, year):
     """
@@ -234,7 +240,7 @@ def save_lat_lon(full_lats, full_lons, year):
     print('----------------------')
     print('----------------------')
 
-    out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/lat_lon_%s.nc'%year)
+    out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/lat_lon_%s.nc'%year)
 
 
 
@@ -261,6 +267,6 @@ def save_comp_prob(comp_dz, year):
     print('----------------------')
     print('----------------------')
 
-    out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/probs/comp_dz_probs_%s.nc'%year)
+    out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/probs/comp_dz_probs_%s.nc'%year)
 
 

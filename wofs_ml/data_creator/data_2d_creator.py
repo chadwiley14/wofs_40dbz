@@ -15,8 +15,8 @@ run_num = args.run_num
 
 if run_num == 0:
     #do 2017-2018
-    examples_path_2017 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/2017-2018/00*')
-    labels_path_2017 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2017-2018/00*')
+    examples_path_2017 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/examples/2017-2018/00*')
+    labels_path_2017 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/00*')
 
     examples_path_2017.sort()
     labels_path_2017.sort()
@@ -26,8 +26,8 @@ if run_num == 0:
 
 if run_num == 1:
     #do 2019
-    examples_path_2019 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/examples/2019/00*')
-    labels_path_2019 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/training/labels/2019/00*')
+    examples_path_2019 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/examples/2019/00*')
+    labels_path_2019 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/00*')
 
     examples_path_2019.sort()
     labels_path_2019.sort()
@@ -37,25 +37,44 @@ if run_num == 1:
 
 if run_num == 2:
     #do 2020
-    examples_path_2020 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/examples/00*')
-    labels_path_2020 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/validation/labels/00*')
+    examples_path_2020_train = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/examples/000*')
+    labels_path_2020_train = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/000*')
 
-    examples_path_2020.sort()
-    labels_path_2020.sort()
+    examples_path_2020_test = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/examples/001*')
+    labels_path_2020_test = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/001*')
 
-    extract_ex_data(examples_path_2020,'2020')
-    extract_label_data(labels_path_2020, '2020')
+    examples_path_2020_train.sort()
+    labels_path_2020_train.sort()
+
+    examples_path_2020_test.sort()
+    labels_path_2020_test.sort()
+
+
+    extract_ex_data(examples_path_2020_train,'2020_train')
+    extract_label_data(labels_path_2020_train, '2020_train')
+
+    extract_ex_data(examples_path_2020_test,'2020_test')
+    extract_label_data(labels_path_2020_test, '2020_test')
 
 if run_num == 3:
     #do 2021
-    examples_path_2021 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/examples/00*')
-    labels_path_2021 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/test/labels/00*')
+    examples_path_2021_train = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/000*')
+    labels_path_2021_train = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/000*')
 
-    examples_path_2021.sort()
-    labels_path_2021.sort()
+    examples_path_2021_test = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/001*')
+    labels_path_2021_test = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/001*')
 
-    extract_ex_data(examples_path_2021,'2021')
-    extract_label_data(labels_path_2021, '2021')
+    examples_path_2021_train.sort()
+    labels_path_2021_train.sort()
+
+    examples_path_2021_test.sort()
+    labels_path_2021_test.sort()
+
+    extract_ex_data(examples_path_2021_train,'2021_train')
+    extract_label_data(labels_path_2021_train, '2021_train')
+
+    extract_ex_data(examples_path_2021_test,'2021_test')
+    extract_label_data(labels_path_2021_test, '2021_test')
 
 print('done')
 

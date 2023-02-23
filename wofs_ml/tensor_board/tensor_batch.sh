@@ -16,4 +16,4 @@ bash
 
 conda activate tf
 
-tensorboard --logdir="/ourdisk/hpc/ai2es/chadwiley/boardlogs/log_2d_wbc/" --port=6031 --bind_all
+tensorboard --logdir="/ourdisk/hpc/ai2es/chadwiley/boardlogs/log_2d_fss/" --port=6032 --bind_all

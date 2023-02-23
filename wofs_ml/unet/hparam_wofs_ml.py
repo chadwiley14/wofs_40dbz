@@ -20,7 +20,7 @@ MNIST models.
 
 #GRAB GPU0
 import py3nvml
-py3nvml.grab_gpus(num_gpus=1, gpu_select=[0])
+py3nvml.grab_gpus(num_gpus=1, gpu_select=[2])
 
 import os.path
 import random
@@ -83,7 +83,7 @@ flags.DEFINE_integer(
 )
 
 
-INPUT_SHAPE = (128,128,14)
+INPUT_SHAPE = (64,64,14) #CHANGE BASED ON MRMS OR NOT!!!!!!!
 OUTPUT_CLASSES = 1
 
 #convolution params
@@ -100,7 +100,7 @@ HP_LOSS = hp.HParam("loss", hp.Discrete(['weighted_binary_crossentropy']))
 HP_BATCHNORM = hp.HParam('batchnorm', hp.Discrete([False, True]))
 HP_BATCHSIZE = hp.HParam('batch_size', hp.Discrete([32,64,128,256]))
 HP_LEARNING_RATE = hp.HParam('learning_rate', hp.Discrete([1e-2,1e-3,1e-4, 1e-5]))
-HP_LOSS_WEIGHTS = hp.HParam('loss_weights', hp.Discrete([2.0,3.0,4.0,5.0,6.0,7.0]))
+HP_LOSS_WEIGHTS = hp.HParam('loss_weights', hp.Discrete([2.0,3.0,4.0,5.0]))
 
 HPARAMS = [HP_CONV_LAYERS,
     HP_CONV_KERNEL_SIZE,
@@ -159,10 +159,11 @@ METRICS = [
 ]
 
 def build_loss_dict(weight):
-    from custom_metrics_Chad import WeightedBinaryCrossEntropy
+    from custom_metrics_Chad import WeightedBinaryCrossEntropy, make_fractions_skill_score
     loss_dict = {}
     loss_dict['binary_crossentropy'] = tf.keras.losses.BinaryCrossentropy(from_logits=False)
     loss_dict['weighted_binary_crossentropy'] = WeightedBinaryCrossEntropy(weights=[weight,1.0])
+    loss_dict['fraction_skill_score'] = make_fractions_skill_score(mask_size = 5)
     return loss_dict
 
 def build_opt_dict(learning_rate):
@@ -198,6 +199,7 @@ def model_fn(hparams, seed):
     #get metric 
     from custom_metrics_Chad import MaxCriticalSuccessIndex
     from custom_metrics_Chad import WeightedBinaryCrossEntropy
+    from custom_metrics_Chad import make_fractions_skill_score
 
     #compile losses: 
     #loss_dict = build_loss_dict(hparams[HP_LOSS_WEIGHT],hparams[HP_LOSS_THRESH])
@@ -214,13 +216,15 @@ def model_fn(hparams, seed):
 def prepare_data():
     """ Load data """
     #grab tf ds
-    train_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2017-2018.tf')
-    train_2019 = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/training_2019.tf')
+    train_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/training_2017-2018.tf')
+    train_2019 = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/training_2019.tf')
+    train_2020 = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/validation_2020_train.tf')
+    train_2021 = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/test_2021_train.tf')
 
-    val_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_30_NEW/tf_ds/validation_2020.tf')
+    val_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/validation_2020_val.tf')
 
     #concat the two training together
-    train_ds = train_ds.concatenate(train_2019)
+    train_ds = train_ds.concatenate([train_2019,train_2020,train_2021])
 
 
 
@@ -321,9 +325,9 @@ def run(data, base_logdir, session_id, hparams):
     
 
     #save trained model, need to build path first 
-    split_dir = logdir.split('log_2d_wbc')
+    split_dir = logdir.split('log_2d_64')
     right = split_dir[0][:-1] + split_dir[1]
-    left = '/scratch/chadwiley/models_2d_wbc/'
+    left = '/scratch/chadwiley/models_2d_64/'
     model.save(left + right + "model.h5")
 
 
