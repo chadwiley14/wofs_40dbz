@@ -1,0 +1,7 @@
+[1579, 1782, 2561]
+<xarray.Dataset>
+Dimensions:  (n_samples: 2653, time: 1)
+Dimensions without coordinates: n_samples, time
+Data variables:
+    date     (n_samples, time) datetime64[ns] 2021-05-12T19:00:00 ... 2021-05...
+done

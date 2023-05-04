@@ -108,8 +108,8 @@ class MaxCriticalSuccessIndex(tf.keras.metrics.Metric):
 class WeightedBinaryCrossEntropy(tf.keras.losses.Loss):
     """Adapted tf.keras.backend.binary_crossentropy to have weights that work for a UNET
     
-    Last I checked, weighting the binary cross entropy wouldnt work with the UNETs, it
-    use to complain about the shape being not right. 
+    Forked and adapted from:
+    https://github.com/tensorflow/tensorflow/blob/2a88b9f74f6a444dd8a171564efe70797718f6d5/tensorflow/python/keras/backend.py
     
     To get around this, the class here has a way to weight the 1s and 0s differently.
     This is important for alot of meteorological instances where the event we are looking 

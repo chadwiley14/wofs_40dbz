@@ -1,0 +1,241 @@
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/0010.nc
+<bound method Mapping.keys of <xarray.Dataset>
+Dimensions:            (n_samples: 272, ne: 18, lat_dim: 64, lon_dim: 64,
+                        wofs_ENS_time_dim: 1, wofs_SVR_time_dim: 1,
+                        MRMS_example_time_dim: 1)
+Coordinates:
+    lon                (n_samples, lat_dim, lon_dim) float32 -81.02 ... -100.3
+    lat                (n_samples, lat_dim, lon_dim) float32 26.96 ... 36.96
+Dimensions without coordinates: n_samples, ne, lat_dim, lon_dim,
+                                wofs_ENS_time_dim, wofs_SVR_time_dim,
+                                MRMS_example_time_dim
+Data variables:
+    w_down             (n_samples, ne, lat_dim, lon_dim) float32 -0.2582 ... ...
+    w_up               (n_samples, ne, lat_dim, lon_dim) float32 0.1298 ... 0...
+    comp_dz            (n_samples, ne, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0
+    cape_sfc           (n_samples, ne, lat_dim, lon_dim) float32 1.302e+03 .....
+    cape_ml            (n_samples, ne, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0
+    cin_ml             (n_samples, ne, lat_dim, lon_dim) float32 -0.0 ... -0.0
+    cin_sfc            (n_samples, ne, lat_dim, lon_dim) float32 -80.4 ... -0.0
+    dz_cress           (n_samples, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0 0.0
+    wofs_ENS_time      (n_samples, wofs_ENS_time_dim) datetime64[ns] 2021-05-...
+    wofs_SVR_time      (n_samples, wofs_SVR_time_dim) datetime64[ns] 2021-05-...
+    MRMS_example_time  (n_samples, MRMS_example_time_dim) datetime64[ns] 2021...>
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/0011.nc
+<bound method Mapping.keys of <xarray.Dataset>
+Dimensions:            (n_samples: 272, ne: 18, lat_dim: 64, lon_dim: 64,
+                        wofs_ENS_time_dim: 1, wofs_SVR_time_dim: 1,
+                        MRMS_example_time_dim: 1)
+Coordinates:
+    lon                (n_samples, lat_dim, lon_dim) float32 -100.3 ... -97.15
+    lat                (n_samples, lat_dim, lon_dim) float32 35.23 ... 35.48
+Dimensions without coordinates: n_samples, ne, lat_dim, lon_dim,
+                                wofs_ENS_time_dim, wofs_SVR_time_dim,
+                                MRMS_example_time_dim
+Data variables:
+    w_down             (n_samples, ne, lat_dim, lon_dim) float32 -0.1013 ... ...
+    w_up               (n_samples, ne, lat_dim, lon_dim) float32 0.2712 ... 0...
+    comp_dz            (n_samples, ne, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0
+    cape_sfc           (n_samples, ne, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0
+    cape_ml            (n_samples, ne, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0
+    cin_ml             (n_samples, ne, lat_dim, lon_dim) float32 -0.0 ... -0.0
+    cin_sfc            (n_samples, ne, lat_dim, lon_dim) float32 -0.0 ... -0.0
+    dz_cress           (n_samples, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0 0.0
+    wofs_ENS_time      (n_samples, wofs_ENS_time_dim) datetime64[ns] 2021-05-...
+    wofs_SVR_time      (n_samples, wofs_SVR_time_dim) datetime64[ns] 2021-05-...
+    MRMS_example_time  (n_samples, MRMS_example_time_dim) datetime64[ns] 2021...>
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/0012.nc
+<bound method Mapping.keys of <xarray.Dataset>
+Dimensions:            (n_samples: 272, ne: 18, lat_dim: 64, lon_dim: 64,
+                        wofs_ENS_time_dim: 1, wofs_SVR_time_dim: 1,
+                        MRMS_example_time_dim: 1)
+Coordinates:
+    lon                (n_samples, lat_dim, lon_dim) float32 -101.4 ... -99.68
+    lat                (n_samples, lat_dim, lon_dim) float32 35.57 ... 33.72
+Dimensions without coordinates: n_samples, ne, lat_dim, lon_dim,
+                                wofs_ENS_time_dim, wofs_SVR_time_dim,
+                                MRMS_example_time_dim
+Data variables:
+    w_down             (n_samples, ne, lat_dim, lon_dim) float32 -0.5322 ... ...
+    w_up               (n_samples, ne, lat_dim, lon_dim) float32 0.4329 ... 1...
+    comp_dz            (n_samples, ne, lat_dim, lon_dim) float32 16.46 ... 23.81
+    cape_sfc           (n_samples, ne, lat_dim, lon_dim) float32 0.0 ... 262.3
+    cape_ml            (n_samples, ne, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0
+    cin_ml             (n_samples, ne, lat_dim, lon_dim) float32 -0.0 ... -0.0
+    cin_sfc            (n_samples, ne, lat_dim, lon_dim) float32 -0.0 ... -367.5
+    dz_cress           (n_samples, lat_dim, lon_dim) float32 19.4 ... 26.19
+    wofs_ENS_time      (n_samples, wofs_ENS_time_dim) datetime64[ns] 2021-05-...
+    wofs_SVR_time      (n_samples, wofs_SVR_time_dim) datetime64[ns] 2021-05-...
+    MRMS_example_time  (n_samples, MRMS_example_time_dim) datetime64[ns] 2021...>
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/0013.nc
+<bound method Mapping.keys of <xarray.Dataset>
+Dimensions:            (n_samples: 272, ne: 18, lat_dim: 64, lon_dim: 64,
+                        wofs_ENS_time_dim: 1, wofs_SVR_time_dim: 1,
+                        MRMS_example_time_dim: 1)
+Coordinates:
+    lon                (n_samples, lat_dim, lon_dim) float32 -101.8 ... -97.38
+    lat                (n_samples, lat_dim, lon_dim) float32 35.52 ... 37.19
+Dimensions without coordinates: n_samples, ne, lat_dim, lon_dim,
+                                wofs_ENS_time_dim, wofs_SVR_time_dim,
+                                MRMS_example_time_dim
+Data variables:
+    w_down             (n_samples, ne, lat_dim, lon_dim) float32 -1.328 ... -...
+    w_up               (n_samples, ne, lat_dim, lon_dim) float32 0.8774 ... 0...
+    comp_dz            (n_samples, ne, lat_dim, lon_dim) float32 22.95 ... 0.0
+    cape_sfc           (n_samples, ne, lat_dim, lon_dim) float32 1.107e+03 .....
+    cape_ml            (n_samples, ne, lat_dim, lon_dim) float32 278.3 ... 160.5
+    cin_ml             (n_samples, ne, lat_dim, lon_dim) float32 -181.0 ... -...
+    cin_sfc            (n_samples, ne, lat_dim, lon_dim) float32 -78.93 ... -0.1
+    dz_cress           (n_samples, lat_dim, lon_dim) float32 11.01 ... 9.139
+    wofs_ENS_time      (n_samples, wofs_ENS_time_dim) datetime64[ns] 2021-05-...
+    wofs_SVR_time      (n_samples, wofs_SVR_time_dim) datetime64[ns] 2021-05-...
+    MRMS_example_time  (n_samples, MRMS_example_time_dim) datetime64[ns] 2021...>
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/0014.nc
+<bound method Mapping.keys of <xarray.Dataset>
+Dimensions:            (n_samples: 272, ne: 18, lat_dim: 64, lon_dim: 64,
+                        wofs_ENS_time_dim: 1, wofs_SVR_time_dim: 1,
+                        MRMS_example_time_dim: 1)
+Coordinates:
+    lon                (n_samples, lat_dim, lon_dim) float32 -106.0 ... -94.87
+    lat                (n_samples, lat_dim, lon_dim) float32 33.64 ... 31.74
+Dimensions without coordinates: n_samples, ne, lat_dim, lon_dim,
+                                wofs_ENS_time_dim, wofs_SVR_time_dim,
+                                MRMS_example_time_dim
+Data variables:
+    w_down             (n_samples, ne, lat_dim, lon_dim) float32 -0.2097 ... ...
+    w_up               (n_samples, ne, lat_dim, lon_dim) float32 0.321 ... 0....
+    comp_dz            (n_samples, ne, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0
+    cape_sfc           (n_samples, ne, lat_dim, lon_dim) float32 0.0 ... 2.51...
+    cape_ml            (n_samples, ne, lat_dim, lon_dim) float32 0.0 ... 1.19...
+    cin_ml             (n_samples, ne, lat_dim, lon_dim) float32 -0.0 ... -49.18
+    cin_sfc            (n_samples, ne, lat_dim, lon_dim) float32 -0.0 ... -0.1
+    dz_cress           (n_samples, lat_dim, lon_dim) float32 -0.0 -0.0 ... 0.0
+    wofs_ENS_time      (n_samples, wofs_ENS_time_dim) datetime64[ns] 2021-05-...
+    wofs_SVR_time      (n_samples, wofs_SVR_time_dim) datetime64[ns] 2021-05-...
+    MRMS_example_time  (n_samples, MRMS_example_time_dim) datetime64[ns] 2021...>
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/0015.nc
+<bound method Mapping.keys of <xarray.Dataset>
+Dimensions:            (n_samples: 272, ne: 18, lat_dim: 64, lon_dim: 64,
+                        wofs_ENS_time_dim: 1, wofs_SVR_time_dim: 1,
+                        MRMS_example_time_dim: 1)
+Coordinates:
+    lon                (n_samples, lat_dim, lon_dim) float32 -94.87 ... -99.39
+    lat                (n_samples, lat_dim, lon_dim) float32 30.03 ... 37.53
+Dimensions without coordinates: n_samples, ne, lat_dim, lon_dim,
+                                wofs_ENS_time_dim, wofs_SVR_time_dim,
+                                MRMS_example_time_dim
+Data variables:
+    w_down             (n_samples, ne, lat_dim, lon_dim) float32 -0.1605 ... ...
+    w_up               (n_samples, ne, lat_dim, lon_dim) float32 0.1307 ... 0...
+    comp_dz            (n_samples, ne, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0
+    cape_sfc           (n_samples, ne, lat_dim, lon_dim) float32 1.492e+03 .....
+    cape_ml            (n_samples, ne, lat_dim, lon_dim) float32 483.4 ... 38.44
+    cin_ml             (n_samples, ne, lat_dim, lon_dim) float32 -179.4 ... -0.0
+    cin_sfc            (n_samples, ne, lat_dim, lon_dim) float32 -0.1 ... -0.1
+    dz_cress           (n_samples, lat_dim, lon_dim) float32 0.0 0.0 ... -0.0
+    wofs_ENS_time      (n_samples, wofs_ENS_time_dim) datetime64[ns] 2021-05-...
+    wofs_SVR_time      (n_samples, wofs_SVR_time_dim) datetime64[ns] 2021-05-...
+    MRMS_example_time  (n_samples, MRMS_example_time_dim) datetime64[ns] 2021...>
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/0016.nc
+<bound method Mapping.keys of <xarray.Dataset>
+Dimensions:            (n_samples: 256, ne: 18, lat_dim: 64, lon_dim: 64,
+                        wofs_ENS_time_dim: 1, wofs_SVR_time_dim: 1,
+                        MRMS_example_time_dim: 1)
+Coordinates:
+    lon                (n_samples, lat_dim, lon_dim) float32 -103.3 ... -103.9
+    lat                (n_samples, lat_dim, lon_dim) float32 30.43 ... 43.42
+Dimensions without coordinates: n_samples, ne, lat_dim, lon_dim,
+                                wofs_ENS_time_dim, wofs_SVR_time_dim,
+                                MRMS_example_time_dim
+Data variables:
+    w_down             (n_samples, ne, lat_dim, lon_dim) float32 -0.8958 ... ...
+    w_up               (n_samples, ne, lat_dim, lon_dim) float32 0.1389 ... 0...
+    comp_dz            (n_samples, ne, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0
+    cape_sfc           (n_samples, ne, lat_dim, lon_dim) float32 56.8 ... 920.1
+    cape_ml            (n_samples, ne, lat_dim, lon_dim) float32 0.0 ... 206.7
+    cin_ml             (n_samples, ne, lat_dim, lon_dim) float32 -0.0 ... -359.9
+    cin_sfc            (n_samples, ne, lat_dim, lon_dim) float32 -0.0 ... -13.62
+    dz_cress           (n_samples, lat_dim, lon_dim) float32 17.38 ... -0.0
+    wofs_ENS_time      (n_samples, wofs_ENS_time_dim) datetime64[ns] 2021-05-...
+    wofs_SVR_time      (n_samples, wofs_SVR_time_dim) datetime64[ns] 2021-05-...
+    MRMS_example_time  (n_samples, MRMS_example_time_dim) datetime64[ns] 2021...>
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/0017.nc
+<bound method Mapping.keys of <xarray.Dataset>
+Dimensions:            (n_samples: 256, ne: 18, lat_dim: 64, lon_dim: 64,
+                        wofs_ENS_time_dim: 1, wofs_SVR_time_dim: 1,
+                        MRMS_example_time_dim: 1)
+Coordinates:
+    lon                (n_samples, lat_dim, lon_dim) float32 -103.9 ... -99.06
+    lat                (n_samples, lat_dim, lon_dim) float32 41.66 ... 42.69
+Dimensions without coordinates: n_samples, ne, lat_dim, lon_dim,
+                                wofs_ENS_time_dim, wofs_SVR_time_dim,
+                                MRMS_example_time_dim
+Data variables:
+    w_down             (n_samples, ne, lat_dim, lon_dim) float32 -0.1204 ... ...
+    w_up               (n_samples, ne, lat_dim, lon_dim) float32 0.1314 ... 0...
+    comp_dz            (n_samples, ne, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0
+    cape_sfc           (n_samples, ne, lat_dim, lon_dim) float32 1.197e+03 .....
+    cape_ml            (n_samples, ne, lat_dim, lon_dim) float32 344.4 ... 444.6
+    cin_ml             (n_samples, ne, lat_dim, lon_dim) float32 -336.5 ... -...
+    cin_sfc            (n_samples, ne, lat_dim, lon_dim) float32 -0.1 ... -323.0
+    dz_cress           (n_samples, lat_dim, lon_dim) float32 -0.0 -0.0 ... 0.0
+    wofs_ENS_time      (n_samples, wofs_ENS_time_dim) datetime64[ns] 2021-05-...
+    wofs_SVR_time      (n_samples, wofs_SVR_time_dim) datetime64[ns] 2021-05-...
+    MRMS_example_time  (n_samples, MRMS_example_time_dim) datetime64[ns] 2021...>
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/0018.nc
+<bound method Mapping.keys of <xarray.Dataset>
+Dimensions:            (n_samples: 256, ne: 18, lat_dim: 64, lon_dim: 64,
+                        wofs_ENS_time_dim: 1, wofs_SVR_time_dim: 1,
+                        MRMS_example_time_dim: 1)
+Coordinates:
+    lon                (n_samples, lat_dim, lon_dim) float32 -103.8 ... -101.4
+    lat                (n_samples, lat_dim, lon_dim) float32 40.9 40.9 ... 39.14
+Dimensions without coordinates: n_samples, ne, lat_dim, lon_dim,
+                                wofs_ENS_time_dim, wofs_SVR_time_dim,
+                                MRMS_example_time_dim
+Data variables:
+    w_down             (n_samples, ne, lat_dim, lon_dim) float32 -0.3214 ... ...
+    w_up               (n_samples, ne, lat_dim, lon_dim) float32 0.571 ... 0....
+    comp_dz            (n_samples, ne, lat_dim, lon_dim) float32 0.0 0.0 ... 0.0
+    cape_sfc           (n_samples, ne, lat_dim, lon_dim) float32 631.1 ... 1....
+    cape_ml            (n_samples, ne, lat_dim, lon_dim) float32 43.7 ... 423.2
+    cin_ml             (n_samples, ne, lat_dim, lon_dim) float32 -0.0 ... -311.4
+    cin_sfc            (n_samples, ne, lat_dim, lon_dim) float32 -151.2 ... -...
+    dz_cress           (n_samples, lat_dim, lon_dim) float32 -0.0 -0.0 ... -0.0
+    wofs_ENS_time      (n_samples, wofs_ENS_time_dim) datetime64[ns] 2021-05-...
+    wofs_SVR_time      (n_samples, wofs_SVR_time_dim) datetime64[ns] 2021-05-...
+    MRMS_example_time  (n_samples, MRMS_example_time_dim) datetime64[ns] 2021...>
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/0019.nc
+<bound method Mapping.keys of <xarray.Dataset>
+Dimensions:            (n_samples: 256, ne: 18, lat_dim: 64, lon_dim: 64,
+                        wofs_ENS_time_dim: 1, wofs_SVR_time_dim: 1,
+                        MRMS_example_time_dim: 1)
+Coordinates:
+    lon                (n_samples, lat_dim, lon_dim) float32 -102.7 ... -102.7
+    lat                (n_samples, lat_dim, lon_dim) float32 40.11 ... 41.86
+Dimensions without coordinates: n_samples, ne, lat_dim, lon_dim,
+                                wofs_ENS_time_dim, wofs_SVR_time_dim,
+                                MRMS_example_time_dim
+Data variables:
+    w_down             (n_samples, ne, lat_dim, lon_dim) float32 -0.4127 ... ...
+    w_up               (n_samples, ne, lat_dim, lon_dim) float32 0.9924 ... 1...
+    comp_dz            (n_samples, ne, lat_dim, lon_dim) float32 0.0 ... 60.55
+    cape_sfc           (n_samples, ne, lat_dim, lon_dim) float32 1.137e+03 .....
+    cape_ml            (n_samples, ne, lat_dim, lon_dim) float32 149.2 ... 0.0
+    cin_ml             (n_samples, ne, lat_dim, lon_dim) float32 -313.5 ... -0.0
+    cin_sfc            (n_samples, ne, lat_dim, lon_dim) float32 -167.7 ... -...
+    dz_cress           (n_samples, lat_dim, lon_dim) float32 44.27 ... 18.84
+    wofs_ENS_time      (n_samples, wofs_ENS_time_dim) datetime64[ns] 2021-05-...
+    wofs_SVR_time      (n_samples, wofs_SVR_time_dim) datetime64[ns] 2021-05-...
+    MRMS_example_time  (n_samples, MRMS_example_time_dim) datetime64[ns] 2021...>
+<xarray.Dataset>
+Dimensions:  (n_samples: 2656, lat: 64, lon: 64)
+Dimensions without coordinates: n_samples, lat, lon
+Data variables:
+    mrms     (n_samples, lat, lon) float32 0.0 0.0 0.0 0.0 ... 19.92 19.26 18.84
+<xarray.Dataset>
+Dimensions:  (n_samples: 2653, lat: 64, lon: 64)
+Dimensions without coordinates: n_samples, lat, lon
+Data variables:
+    mrms     (n_samples, lat, lon) float32 0.0 0.0 0.0 0.0 ... 19.92 19.26 18.84
+done

@@ -1,0 +1,10 @@
+2023-03-19 20:14:22.419218: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+
+NOTE: Using experimental fast data loading logic. To disable, pass
+    "--load_fast=false" and report issues on GitHub. More details:
+    https://github.com/tensorflow/tensorboard/issues/4784
+
+TensorBoard 2.10.1 at http://c315.oscer.ou.edu:6031/ (Press CTRL+C to quit)
+slurmstepd: error: *** JOB 14505500 ON c315 CANCELLED AT 2023-03-19T20:44:47 DUE TO TIME LIMIT ***
+slurmstepd: error: acct_gather_profile/influxdb _send_data: curl_easy_perform failed to send data (discarded). Reason: Couldn't resolve host name

@@ -269,4 +269,71 @@ def save_comp_prob(comp_dz, year):
 
     out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/probs/comp_dz_probs_%s.nc'%year)
 
+def get_dates(files_path, year):
+    """
+    Takes in a list of file paths for label data based
+    on year and returns an xr ds of the dates and times.
+    """
+
+    dates=[]
+
+    for cur_lb in files_path:
+        #load in the file
+        cur_file = xr.load_dataset(cur_lb)
+        print('Loaded :  %s'%cur_lb)
+
+        #model stats
+        for i in range(np.size(cur_file['MRMS_labels_time'], axis = 0)):
+            dates.append(cur_file['MRMS_labels_time'][i])
+
+    #make in xr dataset
+    vars = [dates]
+        
+    names =['date']
+
+    size = ['n_samples','time']
+
+    tuples = [(size,var)for var in vars]
+    data_vars = {name : data_tup for name, data_tup in zip(names, tuples)}
+
+    out_ds = xr.Dataset(data_vars) 
+
+    print(out_ds)
+
+    out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/datetime/date_times_%s.nc'%year)
+
+def get_mrms(files_path, year):
+    mrms = []
+
+    for cur_lb in files_path:
+        #load in the file
+        cur_file = xr.load_dataset(cur_lb)
+        print('Loaded :  %s'%cur_lb)
+        print(cur_file.keys)
+
+        #model stats
+        for i in range(np.size(cur_file['dz_cress'], axis = 0)):
+            mrms.append(cur_file['dz_cress'][i])
+
+    #make in xr dataset
+    vars = [mrms]
+        
+    names =['mrms']
+
+    size = ['n_samples','lat', 'lon']
+
+    tuples = [(size,var)for var in vars]
+    data_vars = {name : data_tup for name, data_tup in zip(names, tuples)}
+
+    out_ds = xr.Dataset(data_vars) 
+
+    print(out_ds)
+
+    out_ds = out_ds.drop_isel({'n_samples' : [1579, 1782, 2561]})
+
+    print(out_ds)
+
+
+    out_ds.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/mrms_%s.nc'%year)
+
 

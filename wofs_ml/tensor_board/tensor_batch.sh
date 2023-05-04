@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --partition=debug
+#SBATCH --partition=ai2es
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --mem=4G
@@ -16,4 +16,4 @@ bash
 
 conda activate tf
 
-tensorboard --logdir="/ourdisk/hpc/ai2es/chadwiley/boardlogs/log_2d_fss/" --port=6032 --bind_all
+tensorboard --logdir="/ourdisk/hpc/ai2es/chadwiley/boardlogs/log_2d_64/" --port=6031 --bind_all

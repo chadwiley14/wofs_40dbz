@@ -20,7 +20,7 @@ MNIST models.
 
 #GRAB GPU0
 import py3nvml
-py3nvml.grab_gpus(num_gpus=1, gpu_select=[2])
+py3nvml.grab_gpus(num_gpus=1, gpu_select=[0])
 
 import os.path
 import random
@@ -94,7 +94,7 @@ HP_CONV_KERNELS = hp.HParam('num_of_kernels', hp.Discrete([4,8,16,32]))
 
 
 #unet param
-HP_UNET_DEPTH = hp.HParam('depth_of_unet', hp.Discrete([2,3,4,6]))
+HP_UNET_DEPTH = hp.HParam('depth_of_unet', hp.Discrete([2,3,4,5]))
 HP_OPTIMIZER = hp.HParam("optimizer", hp.Discrete(["adam", "rmsprop"]))
 HP_LOSS = hp.HParam("loss", hp.Discrete(['weighted_binary_crossentropy'])) 
 HP_BATCHNORM = hp.HParam('batchnorm', hp.Discrete([False, True]))
@@ -216,16 +216,29 @@ def model_fn(hparams, seed):
 def prepare_data():
     """ Load data """
     #grab tf ds
-    train_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/training_2017-2018.tf')
-    train_2019 = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/training_2019.tf')
-    train_2020 = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/validation_2020_train.tf')
-    train_2021 = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/test_2021_train.tf')
+    # ds_ex = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/full_examples.nc')
+    # ds_lb = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/training_lb_max.nc')
 
-    val_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/validation_2020_val.tf')
+    # ds_ex_val = xr.load_dataset('')
+    # ds_lb_val = 
+    # print(ds_lb)
 
-    #concat the two training together
-    train_ds = train_ds.concatenate([train_2019,train_2020,train_2021])
 
+    # ds_ex=ds_ex.to_array()
+    # ds_lb=ds_lb.to_array()
+
+    # ds_ex = ds_ex.transpose('n_samples',...)
+    # ds_ex = ds_ex.transpose(...,'variable')
+
+    # ds_lb = ds_lb.transpose('n_samples',...)
+    # ds_lb = ds_lb.transpose(...,'variable')
+
+    # train_ds = tf.data.Dataset.from_tensor_slices((ds_ex,ds_lb))
+    # print(train_ds)
+
+    train_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/training_maxfilter.tf')
+    val_ds = tf.data.experimental.load('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/validation_maxfilter.tf')
+    print(val_ds)
 
 
     #bring into memory
@@ -278,8 +291,6 @@ def prepare_data():
 
     # ds_train = tf.data.Dataset.from_tensor_slices((train_examples, train_labels)) 
     # ds_val = tf.data.Dataset.from_tensor_slices((val_examples, val_labels))
-    
-    return (ds_train, ds_val)
 
 def run(data, base_logdir, session_id, hparams):
     """Run a training/validation session.
@@ -325,9 +336,9 @@ def run(data, base_logdir, session_id, hparams):
     
 
     #save trained model, need to build path first 
-    split_dir = logdir.split('log_2d_64')
+    split_dir = logdir.split('log_2d_64_max')
     right = split_dir[0][:-1] + split_dir[1]
-    left = '/scratch/chadwiley/models_2d_64/'
+    left = '/scratch/chadwiley/models_2d_64_max/'
     model.save(left + right + "model.h5")
 
 

@@ -76,5 +76,38 @@ if run_num == 3:
     extract_ex_data(examples_path_2021_test,'2021_test')
     extract_label_data(labels_path_2021_test, '2021_test')
 
+if run_num==4:
+    #grab dates from each training, valid, and testing from raw labels
+    labels_path_2017 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/00*')
+    labels_path_2019 = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/00*')
+    labels_path_2020_train = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/000*')
+    labels_path_2020_test = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/001*')
+    labels_path_2021_train = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/000*')
+    labels_path_2021_test = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/001*')
+
+    #sort
+    labels_path_2017.sort()
+    labels_path_2019.sort()
+    labels_path_2020_train.sort()
+    labels_path_2021_train.sort()
+    labels_path_2020_test.sort()
+    labels_path_2021_test.sort()
+
+    get_dates(labels_path_2017, '2017_2018')
+    get_dates(labels_path_2019, '2019')
+
+    get_dates(labels_path_2020_train, '2020_train')
+    get_dates(labels_path_2020_test, '2020_val')
+
+    get_dates(labels_path_2021_train, '2021_train')
+    get_dates(labels_path_2021_test, '2021_test')
+
+
+if run_num ==5:
+    labels_path_2021_test = glob.glob('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/001*')
+    labels_path_2021_test.sort()
+
+    get_mrms(labels_path_2021_test, '2021_test')
+
 print('done')
 

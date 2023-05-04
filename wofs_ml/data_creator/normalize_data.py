@@ -7,7 +7,7 @@ import xarray as xr
 import glob
 import argparse
 import tensorflow as tf
-
+import scipy
 def create_parser():
     """
     This gets the informaiton from the command line
@@ -492,6 +492,8 @@ if run_num ==7:
     problem_cases_train =unreasonable_values(ex_2020_train)
     problem_cases_test =unreasonable_values(ex_2020_test)
 
+    print(problem_cases_train)
+
 
     new_ex_2020_train  = ex_2020_train.drop_isel({'n_samples' : problem_cases_train})
     new_lb_2020_train = lb_2020_train.drop_isel({'n_samples' : problem_cases_train})
@@ -560,6 +562,8 @@ if run_num == 9:
     ex_2021_test = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/examples_2021_test_norm.nc')
 
     train = xr.concat([ex_2017,ex_2019,ex_2020_train,ex_2021_train], dim = 'n_samples')
+
+    train.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/full_examples.nc')
     
 
     print(train)
@@ -573,14 +577,51 @@ if run_num == 9:
     print('#######################################')
     print(ex_2021_test)
 
+if run_num == 10:
+    lb_2017 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/labels_2017-2018_fix.nc')
+    lb_2019 = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/labels_2019_fix.nc')
+    lb_2020_train = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/labels_2020_train_fix.nc')
+
+
+    lb_2020_test = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/labels_2020_test_fix.nc')
+    lb_2021_train = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/labels_2021_train_fix.nc')
+
+    full_lb = xr.concat([lb_2017,lb_2019,lb_2020_train,lb_2021_train], dim='n_samples')
+
+    full_lb.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/training_lb.nc')
+
+    print(full_lb)
+
+    print(lb_2020_test)
+
+if run_num == 11:
+    ds_ex = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/full_examples.nc')
+    ds_lb = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/training_lb_max.nc')
+
+    ds_ex_val = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/examples/examples_2020_val_norm.nc')
+    ds_lb_val = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/val_lb_max.nc')
+
+
+    tf_train = make_tf_ds(ds_ex, ds_lb)
+    tf_val = make_tf_ds(ds_ex_val, ds_lb_val)
+
+
+    tf.data.experimental.save(tf_train,'/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/training_maxfilter.tf')
+    tf.data.experimental.save(tf_val,'/ourdisk/hpc/ai2es/chadwiley/patches/data_64/tf_ds/validation_maxfilter.tf')
+
+if run_num==12:
+    #drop problem cases from datetimes
+    ex_2021_test = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/examples/examples_2021_test.nc')
+    dates_2021_test = xr.load_dataset('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/datetime/date_times_2021_test.nc')
+
+    problem_cases_test = unreasonable_values(ex_2021_test)
+
+    print(problem_cases_test)
+
+    new_dates_2021_test = dates_2021_test.drop_isel({'n_samples' : problem_cases_test})
+
+    print(new_dates_2021_test)
+
+    new_dates_2021_test.to_netcdf('/ourdisk/hpc/ai2es/chadwiley/patches/data_64/datetime/date_times_2021_test_fix.nc')
+
 print('done')
-
-
-
-
-
-
-
-
-    
-

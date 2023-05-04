@@ -1,0 +1,107 @@
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0000.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0001.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0002.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0003.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0004.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0005.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0006.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0007.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0008.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0009.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0010.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0011.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0012.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0013.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0014.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0015.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0016.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0017.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0018.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2017-2018/0019.nc
+<xarray.Dataset>
+Dimensions:  (n_samples: 6553, time: 1)
+Dimensions without coordinates: n_samples, time
+Data variables:
+    date     (n_samples, time) datetime64[ns] 2017-05-01T00:30:00 ... 2018-06...
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0000.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0001.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0002.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0003.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0004.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0005.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0006.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0007.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0008.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0009.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0010.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0011.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0012.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0013.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0014.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0015.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/training/labels/2019/0016.nc
+<xarray.Dataset>
+Dimensions:  (n_samples: 5808, time: 1)
+Dimensions without coordinates: n_samples, time
+Data variables:
+    date     (n_samples, time) datetime64[ns] 2019-04-30T00:30:00 ... 2019-05...
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0000.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0001.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0002.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0003.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0004.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0005.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0006.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0007.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0008.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0009.nc
+<xarray.Dataset>
+Dimensions:  (n_samples: 3104, time: 1)
+Dimensions without coordinates: n_samples, time
+Data variables:
+    date     (n_samples, time) datetime64[ns] 2020-04-27T17:30:00 ... 2020-05...
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0010.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0012.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0013.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0014.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0015.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0016.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0017.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0018.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/validation/labels/0019.nc
+<xarray.Dataset>
+Dimensions:  (n_samples: 3584, time: 1)
+Dimensions without coordinates: n_samples, time
+Data variables:
+    date     (n_samples, time) datetime64[ns] 2020-05-20T01:30:00 ... 2020-07...
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0000.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0001.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0002.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0003.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0004.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0005.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0006.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0007.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0008.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0009.nc
+<xarray.Dataset>
+Dimensions:  (n_samples: 2720, time: 1)
+Dimensions without coordinates: n_samples, time
+Data variables:
+    date     (n_samples, time) datetime64[ns] 2021-04-27T00:30:00 ... 2021-05...
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0010.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0011.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0012.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0013.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0014.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0015.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0016.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0017.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0018.nc
+Loaded :  /ourdisk/hpc/ai2es/chadwiley/patches/data_64/testing/labels/0019.nc
+<xarray.Dataset>
+Dimensions:  (n_samples: 2656, time: 1)
+Dimensions without coordinates: n_samples, time
+Data variables:
+    date     (n_samples, time) datetime64[ns] 2021-05-12T19:00:00 ... 2021-05...
+done
