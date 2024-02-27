@@ -23,7 +23,7 @@ class ImagePermI:
         self.orig_images = images 
         self.model = model
         self.seed = seed
-        self.labels = labels
+        self.labels = labels.flatten()
         self.all_shuffled = None
         self.verbose = verbose
         self.n_permute = n_permute
@@ -63,6 +63,8 @@ class ImagePermI:
     def get_score(self,in_images, metric='auc'):
         self.preds = np.ravel(self.model.predict(in_images))
         if metric=='auc':
+            print(np.shape(self.labels))
+            print(np.shape(self.preds))
             score = sklearn.metrics.roc_auc_score(self.labels,self.preds)
         elif metric == 'mse':
             score = sklearn.metrics.mean_squared_error(self.labels,self.preds)
